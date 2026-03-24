@@ -73,36 +73,38 @@ export default function AdminPostForm() {
   const [tab, setTab] = useState('content')
 
   // Load post if editing
-  const { isLoading: loadingPost } = useQuery({
+  const { data: postData, isLoading: loadingPost } = useQuery({
     queryKey: ['admin', 'post', id],
     queryFn: () => axiosInstance.get(`/admin/posts`).then(r => {
       const list = Array.isArray(r.data) ? r.data : []
       return list.find(p => String(p.id) === String(id)) ?? null
     }),
     enabled: isEdit,
-    onSuccess: (p) => {
-      if (!p) { navigate('/admin/posts'); return }
-      setForm({
-        title:            p.title ?? '',
-        slug:             p.slug ?? '',
-        type:             p.type ?? 'blog',
-        category:         p.category ?? '',
-        excerpt:          p.excerpt ?? '',
-        content:          p.content ?? '',
-        thumbnail:        p.thumbnail ?? '',
-        feature_image:    p.feature_image ?? '',
-        is_published:     !!p.is_published,
-        published_at:     p.published_at ? p.published_at.slice(0, 10) : '',
-        meta_title:       p.meta_title ?? '',
-        meta_description: p.meta_description ?? '',
-        og_title:         p.og_title ?? '',
-        og_description:   p.og_description ?? '',
-        og_image:         p.og_image ?? '',
-        focus_keyword:    p.focus_keyword ?? '',
-        canonical_url:    p.canonical_url ?? '',
-      })
-    },
   })
+
+  // Populate form when post data arrives (onSuccess removed in TanStack Query v5)
+  useEffect(() => {
+    if (!postData) return
+    setForm({
+      title:            postData.title ?? '',
+      slug:             postData.slug ?? '',
+      type:             postData.type ?? 'blog',
+      category:         postData.category ?? '',
+      excerpt:          postData.excerpt ?? '',
+      content:          postData.content ?? '',
+      thumbnail:        postData.thumbnail ?? '',
+      feature_image:    postData.feature_image ?? '',
+      is_published:     !!postData.is_published,
+      published_at:     postData.published_at ? postData.published_at.slice(0, 10) : '',
+      meta_title:       postData.meta_title ?? '',
+      meta_description: postData.meta_description ?? '',
+      og_title:         postData.og_title ?? '',
+      og_description:   postData.og_description ?? '',
+      og_image:         postData.og_image ?? '',
+      focus_keyword:    postData.focus_keyword ?? '',
+      canonical_url:    postData.canonical_url ?? '',
+    })
+  }, [postData])
 
   const saveMutation = useMutation({
     mutationFn: (payload) =>
@@ -142,12 +144,17 @@ export default function AdminPostForm() {
     })
   }
 
-  if (loadingPost) {
+  if (isEdit && loadingPost) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: 300 }}>
         <span className="spinner-border text-primary"></span>
       </div>
     )
+  }
+
+  if (isEdit && !loadingPost && !postData) {
+    navigate('/admin/posts')
+    return null
   }
 
   return (
@@ -271,6 +278,7 @@ export default function AdminPostForm() {
                         Content <span className="text-danger">*</span>
                       </label>
                       <Editor
+                        key={postData?.id ?? 'new'}
                         onInit={(_evt, editor) => { editorRef.current = editor }}
                         initialValue={form.content}
                         init={{
