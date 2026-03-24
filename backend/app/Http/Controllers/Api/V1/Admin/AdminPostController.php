@@ -65,9 +65,14 @@ class AdminPostController extends Controller
                 'published_at'     => ['nullable', 'date'],
                 'meta_title'       => ['nullable', 'string', 'max:255'],
                 'meta_description' => ['nullable', 'string'],
+                'category'         => ['nullable', 'string', 'max:100'],
+                'og_title'         => ['nullable', 'string', 'max:255'],
+                'og_description'   => ['nullable', 'string'],
+                'og_image'         => ['nullable', 'string', 'max:2048'],
+                'focus_keyword'    => ['nullable', 'string', 'max:255'],
+                'canonical_url'    => ['nullable', 'string', 'max:2048'],
             ]);
 
-            // Default author to the authenticated admin if not provided
             $validated['author_id'] = $validated['author_id'] ?? $request->user()->id;
 
             $post = Post::create($validated);
@@ -125,6 +130,12 @@ class AdminPostController extends Controller
                 'published_at'     => ['nullable', 'date'],
                 'meta_title'       => ['nullable', 'string', 'max:255'],
                 'meta_description' => ['nullable', 'string'],
+                'category'         => ['nullable', 'string', 'max:100'],
+                'og_title'         => ['nullable', 'string', 'max:255'],
+                'og_description'   => ['nullable', 'string'],
+                'og_image'         => ['nullable', 'string', 'max:2048'],
+                'focus_keyword'    => ['nullable', 'string', 'max:255'],
+                'canonical_url'    => ['nullable', 'string', 'max:2048'],
             ]);
 
             $post->update($validated);
