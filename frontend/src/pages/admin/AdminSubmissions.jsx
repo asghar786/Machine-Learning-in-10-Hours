@@ -17,6 +17,7 @@ export default function AdminSubmissions() {
   const [grading, setGrading]           = useState(null)
   const [form, setForm]                  = useState({ score: '', feedback: '' })
   const [submitting, setSubmitting]      = useState(false)
+  const [autoGrading, setAutoGrading]    = useState(null) // submission id being auto-graded
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['admin', 'submissions', statusFilter],
@@ -28,6 +29,25 @@ export default function AdminSubmissions() {
   const openGrade = (s) => {
     setGrading(s)
     setForm({ score: s.score ?? '', feedback: s.feedback ?? '' })
+  }
+
+  const handleAutoGrade = async (s) => {
+    if (!s.notebook_url) return alert('This submission has no notebook URL.')
+    setAutoGrading(s.id)
+    try {
+      const res = await axiosInstance.post(`/admin/submissions/${s.id}/auto-grade`)
+      const data = res.data
+      if (data.success) {
+        await refetch()
+        alert(`Auto-graded: ${data.data?.score ?? '?'}/100\n\n${data.data?.feedback ?? ''}`)
+      } else {
+        alert(data.message || 'Auto-grade failed.')
+      }
+    } catch (err) {
+      alert(err?.response?.data?.message || 'ML grader service unavailable. Is it running on port 8001?')
+    } finally {
+      setAutoGrading(null)
+    }
   }
 
   const submitGrade = async () => {
@@ -103,9 +123,35 @@ export default function AdminSubmissions() {
                     <td>{s.score !== null && s.score !== undefined ? `${s.score}%` : '—'}</td>
                     <td>{s.submitted_at ? new Date(s.submitted_at).toLocaleDateString() : '—'}</td>
                     <td>
-                      <button className="btn btn-sm btn-primary" onClick={() => openGrade(s)}>
-                        Grade
-                      </button>
+                      <div className="d-flex gap-1 flex-wrap">
+                        <button className="btn btn-sm btn-primary" onClick={() => openGrade(s)}>
+                          Grade
+                        </button>
+                        {s.notebook_url && (
+                          <button
+                            className="btn btn-sm btn-outline-success"
+                            title="Auto-grade with ML service"
+                            disabled={autoGrading === s.id}
+                            onClick={() => handleAutoGrade(s)}
+                          >
+                            {autoGrading === s.id
+                              ? <span className="spinner-border spinner-border-sm" />
+                              : <><i className="fa fa-robot me-1"></i>Auto</>
+                            }
+                          </button>
+                        )}
+                        {s.notebook_url && (
+                          <a
+                            href={s.notebook_url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn btn-sm btn-outline-secondary"
+                            title="View notebook"
+                          >
+                            <i className="fa fa-external-link-alt"></i>
+                          </a>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -128,17 +174,30 @@ export default function AdminSubmissions() {
                 <p className="text-muted small mb-3">
                   Student: {grading.user?.name ?? '—'} | Exercise: {grading.exercise?.session?.title ?? grading.exercise?.title ?? '—'}
                 </p>
-                {grading.file_path && (
-                  <p>
+                {grading.notebook_url && (
+                  <div className="d-flex gap-2 mb-3 flex-wrap">
                     <a
-                      href={`/api/v1/submissions/${grading.id}/download`}
-                      className="btn btn-sm btn-outline-primary mb-3"
+                      href={grading.notebook_url}
                       target="_blank"
                       rel="noreferrer"
+                      className="btn btn-sm btn-outline-primary"
                     >
-                      <i className="ti ti-download me-1"></i>Download Notebook
+                      <i className="fa fa-external-link-alt me-1"></i>View Notebook
                     </a>
-                  </p>
+                    <button
+                      className="btn btn-sm btn-outline-success"
+                      disabled={autoGrading === grading.id}
+                      onClick={async () => {
+                        await handleAutoGrade(grading)
+                        setGrading(null)
+                      }}
+                    >
+                      {autoGrading === grading.id
+                        ? <><span className="spinner-border spinner-border-sm me-1" />Grading…</>
+                        : <><i className="fa fa-robot me-1"></i>Auto Grade</>
+                      }
+                    </button>
+                  </div>
                 )}
                 <div className="mb-3">
                   <label className="form-label fw-medium">Score (0–100) <span className="text-danger">*</span></label>

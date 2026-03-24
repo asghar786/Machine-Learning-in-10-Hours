@@ -117,8 +117,9 @@ Route::prefix('v1')->group(function () {
             Route::put('/users/{id}',        [AdminUserController::class, 'update']);
 
             // Submissions
-            Route::get('/submissions',             [AdminSubmissionController::class, 'index']);
-            Route::post('/submissions/{id}/grade', [AdminSubmissionController::class, 'grade']);
+            Route::get('/submissions',                    [AdminSubmissionController::class, 'index']);
+            Route::post('/submissions/{id}/grade',        [AdminSubmissionController::class, 'grade']);
+            Route::post('/submissions/{id}/auto-grade',   [AdminSubmissionController::class, 'autoGrade']);
 
             // Settings
             Route::get('/settings/site',  [AdminSettingsController::class, 'getSiteSettings']);

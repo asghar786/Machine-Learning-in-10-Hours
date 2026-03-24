@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\SubmissionGradedEmail;
 use App\Models\Submission;
+use App\Services\MlGraderService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -115,5 +116,71 @@ class AdminSubmissionController extends Controller
                 'message' => 'Failed to grade submission.',
             ], 500);
         }
+    }
+
+    /**
+     * POST /api/v1/admin/submissions/{id}/auto-grade
+     * Call the ML grader service to auto-score a notebook submission.
+     */
+    public function autoGrade(Request $request, int $id): JsonResponse
+    {
+        if ($guard = $this->adminGuard($request)) {
+            return $guard;
+        }
+
+        $submission = Submission::with('exercise')->find($id);
+        if (! $submission) {
+            return response()->json([
+                'success' => false,
+                'data'    => null,
+                'message' => 'Submission not found.',
+            ], 404);
+        }
+
+        if (empty($submission->notebook_url)) {
+            return response()->json([
+                'success' => false,
+                'data'    => null,
+                'message' => 'This submission has no notebook URL to grade.',
+            ], 422);
+        }
+
+        $result = (new MlGraderService())->grade($submission);
+
+        if ($result === null) {
+            return response()->json([
+                'success' => false,
+                'data'    => null,
+                'message' => 'ML grader service is unavailable. Make sure it is running on port 8001.',
+            ], 503);
+        }
+
+        // Save the grade
+        $submission->update([
+            'score'     => $result['score'],
+            'feedback'  => $result['feedback'],
+            'status'    => 'graded',
+            'graded_by' => $request->user()->id,
+            'graded_at' => now(),
+        ]);
+
+        // Notify student
+        try {
+            $fresh = $submission->fresh(['user', 'exercise']);
+            Mail::to($fresh->user->email)->send(new SubmissionGradedEmail($fresh));
+        } catch (\Throwable) {}
+
+        // Check course completion
+        $exercise = $submission->exercise()->with('session')->first();
+        if ($exercise && $exercise->session) {
+            $service = new \App\Services\CourseCompletionService();
+            $service->checkAndCertify($submission->user_id, $exercise->session->course_id);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data'    => $submission->fresh(['user', 'exercise', 'grader']),
+            'message' => "Auto-graded: {$result['score']}/100",
+        ], 200);
     }
 }

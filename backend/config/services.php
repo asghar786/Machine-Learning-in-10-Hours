@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'ml_grader' => [
+        'url'    => env('ML_GRADER_URL', 'http://127.0.0.1:8001'),
+        'secret' => env('ML_GRADER_SECRET', ''),
+    ],
+
 ];
