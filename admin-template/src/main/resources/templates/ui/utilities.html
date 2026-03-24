@@ -1,0 +1,578 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Utilities')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Base UI', 'Utilities')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Background Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Similar to the contextual text color classes, set the background
+                        of an element to any contextual class. Background
+                        utilities <strong>do not set <code>color</code></strong>, so in some cases you’ll
+                        want to use <code>.text-*</code>color utilities.</p>
+                    <div class="bg-primary text-white p-2 mb-2">.bg-primary</div>
+                    <div class="bg-secondary text-white p-2 mb-2">.bg-secondary</div>
+                    <div class="bg-success text-white p-2 mb-2">.bg-success</div>
+                    <div class="bg-danger text-white p-2 mb-2">.bg-danger</div>
+                    <div class="bg-warning text-dark p-2 mb-2">.bg-warning</div>
+                    <div class="bg-info text-dark p-2 mb-2">.bg-info</div>
+                    <div class="bg-light text-dark p-2 mb-2">.bg-light</div>
+                    <div class="bg-dark p-2 mb-2">.bg-dark</div>
+                    <div class="bg-body text-dark p-2 mb-2">.bg-body</div>
+                    <div class="bg-body-secondary text-dark p-2 mb-2">.bg-body-secondary</div>
+                    <div class="bg-body-tertiary text-dark p-2 mb-2">.bg-body-tertiary</div>
+                    <div class="bg-white p-2 mb-2">.bg-white</div>
+                    <div class="bg-black text-white p-2 mb-2">.bg-black</div>
+                    <div class="bg-transparent text-dark p-2">.bg-transparent</div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Background Gradient Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">By adding a <code>.bg-gradient</code> class, a linear gradient is
+                        added as background image to the backgrounds. This
+                        gradient starts with a semi-transparent white which fades out to the bottom.</p>
+                    <div class="p-2 mb-2 bg-primary bg-gradient text-white">.bg-gradient.bg-primary
+                    </div>
+                    <div class="p-2 mb-2 bg-secondary bg-gradient text-white">
+                        .bg-secondary.bg-gradient
+                    </div>
+                    <div class="p-2 mb-2 bg-success bg-gradient text-white">.bg-success.bg-gradient
+                    </div>
+                    <div class="p-2 mb-2 bg-danger bg-gradient text-white">.bg-danger.bg-gradient
+                    </div>
+                    <div class="p-2 mb-2 bg-warning bg-gradient text-dark">.bg-warning.bg-gradient
+                    </div>
+                    <div class="p-2 mb-2 bg-info bg-gradient text-dark">.bg-info.bg-gradient</div>
+                    <div class="p-2 mb-2 bg-light bg-gradient text-dark">.bg-light.bg-gradient</div>
+                    <div class="p-2 mb-2 bg-dark bg-gradient text-white">.bg-dark.bg-gradient</div>
+                    <div class="p-2 mb-2 bg-black bg-gradient text-white">.bg-black.bg-gradient
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Soft Background</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Similar to the contextual text color classes, set the background
+                        of an element to any contextual class. Background utilities do not set
+                        <code>color</code>, so in some cases you’ll want to use <code>.text-*</code> <a
+                                href="https://getbootstrap.com/docs/5.3/utilities/colors/">color utilities</a>.
+                    </p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex flex-column gap-2">
+                                <div class="bg-primary-subtle p-2"><code class="text-primary-emphasis">.bg-primary-subtle</code>
+                                </div>
+                                <div class="bg-secondary-subtle p-2"><code class="text-secondary-emphasis">.bg-secondary-subtle </code>
+                                </div>
+                                <div class="bg-success-subtle p-2"><code class="text-success-emphasis">.bg-success-subtle</code>
+                                </div>
+                                <div class="bg-danger-subtle p-2"><code
+                                        class="text-danger-emphasis">.bg-danger-subtle</code></div>
+                                <div class="bg-warning-subtle p-2"><code class="text-warning-emphasis">.bg-warning-subtle</code>
+                                </div>
+                                <div class="bg-info-subtle p-2"><code class="text-info-emphasis">.bg-info-subtle</code>
+                                </div>
+                                <div class="bg-light-subtle p-2"><code
+                                        class="text-light-emphasis">.bg-light-subtle</code></div>
+                                <div class="bg-dark-subtle p-2"><code class="text-dark-emphasis">.bg-dark-subtle</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Color & Background</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Color and background helpers combine the power of our
+                        <code>.text-*</code> utilities and <code>.bg-*</code> utilities in one class. Using
+                        our Sass <code>color-contrast()</code> function, we automatically determine a
+                        contrasting <code>color</code> for a particular <code>background-color</code>.
+                    </p>
+                    <div class="d-flex flex-column gap-2">
+                        <div class="text-bg-primary p-2">Primary with contrasting color
+                            (.text-bg-primary)
+                        </div>
+                        <div class="text-bg-secondary p-2">Secondary with contrasting color
+                            (.text-bg-secondary)
+                        </div>
+                        <div class="text-bg-success p-2">Success with contrasting color
+                            (.text-bg-success)
+                        </div>
+                        <div class="text-bg-danger p-2">Danger with contrasting color
+                            (.text-bg-danger)
+                        </div>
+                        <div class="text-bg-warning p-2">Warning with contrasting color
+                            (.text-bg-warning)
+                        </div>
+                        <div class="text-bg-info p-2">Info with contrasting color (.text-bg-info)
+                        </div>
+                        <div class="text-bg-light p-2">Light with contrasting color (.text-bg-light)
+                        </div>
+                        <div class="text-bg-dark p-2">Dark with contrasting color (.text-bg-dark)
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Colored links</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted fs-14">You can use the <code>.link-*</code> classes to colorize
+                        links. Unlike the <code>.text-*</code> classes, these classes have a
+                        <code>:hover</code> and <code>:focus</code> state.
+                    </p>
+                    <div class="d-flex flex-column gap-2">
+                        <a class="link-primary" href="#">Primary link</a>
+                        <a class="link-secondary" href="#">Secondary link</a>
+                        <a class="link-success" href="#">Success link</a>
+                        <a class="link-danger" href="#">Danger link</a>
+                        <a class="link-warning" href="#">Warning link</a>
+                        <a class="link-info" href="#">Info link</a>
+                        <a class="link-light" href="#">Light link</a>
+                        <a class="link-dark" href="#">Dark link</a>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Background Opacity</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted"><code>background-color</code> utilities are generated with Sass
+                        using CSS variables. This
+                        allows for real-time color changes without compilation and dynamic alpha
+                        transparency changes.</p>
+                    <div class="bg-primary p-2 text-white">This is default primary background</div>
+                    <div class="bg-primary p-2 text-white bg-opacity-75">This is 75% opacity primary
+                        background
+                    </div>
+                    <div class="bg-primary p-2 text-dark bg-opacity-50">This is 50% opacity primary
+                        background
+                    </div>
+                    <div class="bg-primary p-2 text-dark bg-opacity-25">This is 25% opacity primary
+                        background
+                    </div>
+                    <div class="bg-primary p-2 text-dark bg-opacity-10">This is 10% opacity success
+                        background
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Text Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Colorize text with color utilities. If you want to colorize links,
+                        you can use the <code>.link-*</code> helper classes which have <code>:hover</code>
+                        and <code>:focus</code> states.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-primary">.text-primary</p>
+                            <p class="text-primary-emphasis">.text-primary-emphasis</p>
+                            <p class="text-secondary">.text-secondary</p>
+                            <p class="text-secondary-emphasis">.text-secondary-emphasis</p>
+                            <p class="text-success">.text-success</p>
+                            <p class="text-success-emphasis">.text-success-emphasis</p>
+                            <p class="text-danger">.text-danger</p>
+                            <p class="text-danger-emphasis">.text-danger-emphasis</p>
+                            <p class="text-warning">.text-warning</p>
+                            <p class="text-warning-emphasis">.text-warning-emphasis</p>
+                            <p class="text-info">.text-info</p>
+                            <p class="text-info-emphasis">.text-info-emphasis</p>
+                            <p class="text-light bg-dark">.text-light</p>
+                            <p class="text-light-emphasis">.text-light-emphasis</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-dark">.text-dark</p>
+                            <p class="text-dark-emphasis">.text-dark-emphasis</p>
+                            <p class="text-muted">.text-muted</p>
+                            <p class="text-body">.text-body</p>
+                            <p class="text-body-emphasis">.text-body-emphasis</p>
+                            <p class="text-body-secondary">.text-body-secondary</p>
+                            <p class="text-body-tertiary">.text-body-tertiary</p>
+                            <p class="text-black">.text-black</p>
+                            <p class="text-white bg-dark">.text-white</p>
+                            <p class="text-black-50">.text-black-50</p>
+                            <p class="text-white-50 bg-dark">.text-white-50</p>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Text Opacity Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">text color utilities are generated with Sass using CSS variables.
+                        This allows for real-time color
+                        changes without compilation and dynamic alpha transparency changes.</p>
+                    <div class="text-primary">This is default primary text</div>
+                    <div class="text-primary text-opacity-75">This is 75% opacity primary text</div>
+                    <div class="text-primary text-opacity-50">This is 50% opacity primary text</div>
+                    <div class="text-primary text-opacity-25">This is 25% opacity primary text</div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Opacity</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">The <code>opacity</code> property sets the opacity level for an
+                        element. The opacity level describes the transparency
+                        level, where <code>1</code> is not transparent at all, <code>.5</code> is 50%
+                        visible, and <code>0</code> is
+                        completely transparent. Set the <code>opacity</code> of an element using
+                        <code>.opacity-{value}</code> utilities.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="opacity-100 p-2 bg-primary text-light fw-bold rounded">100%
+                        </div>
+                        <div class="opacity-75 p-2 bg-primary text-light fw-bold rounded">75%</div>
+                        <div class="opacity-50 p-2 bg-primary text-light fw-bold rounded">50%</div>
+                        <div class="opacity-25 p-2 bg-primary text-light fw-bold rounded">25%</div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Additive(Add) Border</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use border utilities to <b>add</b> an element’s borders. Choose
+                        from all borders or one at a time.</p>
+                    <div class="d-flex align-items-start flex-wrap gap-4">
+                        <div class="text-center">
+                            <div class="border avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border-top avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border-end avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border-bottom avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border-start avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Subtractive(Remove) Border</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use border utilities to <b>remove</b> an element’s borders. Choose
+                        from all borders or one at a time.</p>
+                    <div class="d-flex align-items-start flex-wrap gap-4">
+                        <div class="text-center">
+                            <div class="border border-0 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-top-0 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-end-0 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-bottom-0 avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-start-0 avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Change the border color using utilities built on our theme colors.
+                    </p>
+                    <div class="d-flex align-items-start flex-wrap gap-2">
+                        <div class="text-center">
+                            <div class="border border-primary avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-secondary avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-success avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-danger avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-warning avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-info avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-light avatar-md"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-dark avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Width Size</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-start flex-wrap gap-2">
+                        <div class="text-center">
+                            <div class="border border-1 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-2 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-3 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-4 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-5 avatar-md bg-light bg-opacity-50"></div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Opacity</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">choose from any of the <code>.border-opacity</code> utilities:</p>
+                    <div class="border border-success p-2 mb-2">This is default success border</div>
+                    <div class="border border-success p-2 mb-2 border-opacity-75">This is 75%
+                        opacity success border
+                    </div>
+                    <div class="border border-success p-2 mb-2 border-opacity-50">This is 50%
+                        opacity success border
+                    </div>
+                    <div class="border border-success p-2 mb-2 border-opacity-25">This is 25%
+                        opacity success border
+                    </div>
+                    <div class="border border-success p-2 border-opacity-10">This is 10% opacity
+                        success border
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Subtle Color</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Change the border color using utilities built on our theme colors.
+                    </p>
+                    <div class="d-flex align-items-start flex-wrap gap-2">
+                        <div class="text-center">
+                            <div class="border border-primary-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-secondary-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-success-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-danger-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-warning-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-info-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-light-subtle avatar-md"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="border border-dark-subtle avatar-md bg-light bg-opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div><!--end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Radius</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Add classes to an element to easily round its corners.</p>
+                    <div class="d-flex align-items-start flex-wrap gap-2">
+                        <img alt="rounded" class="avatar-lg rounded" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-top" class="avatar-lg rounded-top" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-end" class="avatar-lg rounded-end" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-bottom" class="avatar-lg rounded-bottom" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-start" class="avatar-lg rounded-start" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-circle" class="avatar-lg rounded-circle" src="/images/users/avatar-2.jpg"/>
+                        <img alt="rounded-pill" class="avatar-lg w-auto rounded-pill" src="/images/small/small-2.jpg"/>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Border Radius Size</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use the scaling classes for larger or smaller rounded corners.
+                        Sizes range from <code>0</code> to <code>5</code>.</p>
+                    <div class="d-flex align-items-start flex-wrap gap-2">
+                        <img alt="rounded-0" class="avatar-lg rounded-0" src="/images/users/avatar-4.jpg"/>
+                        <img alt="rounded-1" class="avatar-lg rounded-1" src="/images/users/avatar-4.jpg"/>
+                        <img alt="rounded-2" class="avatar-lg rounded-2" src="/images/users/avatar-4.jpg"/>
+                        <img alt="rounded-3" class="avatar-lg rounded-3" src="/images/users/avatar-4.jpg"/>
+                        <img alt="rounded-4" class="avatar-lg rounded-4" src="/images/users/avatar-4.jpg"/>
+                        <img alt="rounded-5" class="avatar-lg rounded-5" src="/images/users/avatar-4.jpg"/>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Text Selection</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use <code>user-select-all</code>, <code>user-select-auto</code>,
+                        or
+                        <code>user-select-none</code> class to the content which is selected when the user
+                        interacts with it.
+                    </p>
+                    <p class="user-select-all">This paragraph will be entirely selected when clicked
+                        by the user.</p>
+                    <p class="user-select-auto">This paragraph has default select behavior.</p>
+                    <p class="user-select-none mb-0">This paragraph will not be selectable when
+                        clicked by the user.</p>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Pointer Events</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Bootstrap provides <code>.pe-none</code> and <code>.pe-auto</code>
+                        classes to prevent or add element interactions.</p>
+                    <p><a aria-disabled="true" class="pe-none" href="#" tabindex="-1">This link</a>
+                        can not be clicked.</p>
+                    <p><a class="pe-auto" href="#">This link</a> can be clicked (this is default
+                        behavior).</p>
+                    <p class="pe-none"><a aria-disabled="true" href="#" tabindex="-1">This link</a>
+                        can not be clicked because the
+                        <code>pointer-events</code> property is inherited from its parent. However,
+                        <a class="pe-auto" href="#">this
+                            link</a> has a <code>pe-auto</code> class and can be clicked.
+                    </p>
+                </div> <!-- end tab-content-->
+            </div> <!-- end card-body -->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

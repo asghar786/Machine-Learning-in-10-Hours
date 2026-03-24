@@ -1,0 +1,174 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Bar Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Bar Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Basic Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1" id="basic-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Grouped Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c,#35b8e0" id="grouped-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Stacked Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#fa5c7c,#35b8e0,#39afd1"
+                             id="stacked-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">100% Stacked Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fbcc5c,#39afd1,#35b8e0,#e3eaef,#6b5eae"
+                             id="full-stacked-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Bar with Negative Values</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c,#31ce77" id="negative-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Reversed Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77" id="reversed-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Bar with Image Fill</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#e3eaef" id="image-fill-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Custom DataLabels Bar</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts"
+                             data-colors="#6b5eae,#31ce77,#fa5c7c,#35b8e0,#39afd1,#2b908f,#fbcc5c,#90ee7e,#f48024,#212730"
+                             id="datalables-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Patterned Bar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#fa5c7c,#39afd1" id="pattern-bar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Bar with Markers</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fa5c7c" id="bar-markers"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+
+    <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+    
+    <script src="/js/components/chart-apex-bar.js"></script>
+</th:block>
+</body>
+
+</html>

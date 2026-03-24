@@ -1,0 +1,209 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Column Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Column Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Basic Column Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#fa5c7c" id="basic-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Column Chart with Datalabels</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae" id="datalabels-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Stacked Column Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1,#fbcc5c,#e3eaef" id="stacked-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">100% Stacked Column Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1,#31ce77,#e3eaef" id="full-stacked-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Column with Markers</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#fbcc5c" id="column-with-markers"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Column with Group Label</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1,#31ce77,#e3eaef"
+                             id="column-with-group-label"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Column Chart with rotated labels & Annotations</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c" id="rotate-labels-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Column Chart with negative values</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae" id="negative-value-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Distributed Column Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts"
+                             data-colors="#6b5eae,#35b8e0,#31ce77,#fa5c7c,#fbcc5c,#39afd1,#e3eaef,#313a46"
+                             id="distributed-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Range Column Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#39afd1" id="range-column"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="d-flex card-header justify-content-between align-items-center">
+                    <h4 class="header-title">Dynamic Loaded Chart</h4>
+                    <div class="flex-shrink-0">
+                        <select class="form-select form-select-sm" id="model">
+                            <option value="iphone5">iPhone 5</option>
+                            <option value="iphone6">iPhone 6</option>
+                            <option value="iphone7">iPhone 7</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <h4 class="header-title"></h4>
+                    <div dir="ltr">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div data-colors="#6b5eae,#35b8e0,#31ce77,#fa5c7c,#fbcc5c,#39afd1"
+                                     id="chart-year"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div data-colors="#6b5eae,#35b8e0,#31ce77,#fa5c7c,#fbcc5c,#39afd1"
+                                     id="chart-quarter"></div>
+                            </div>
+                        </div> <!-- end row-->
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    
+    <!-- Apex Chart Column Demo js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/plugin/quarterOfYear.min.js"></script>
+    <script src="/js/components/chart-apex-column.js"></script>
+</th:block>
+</body>
+
+</html>

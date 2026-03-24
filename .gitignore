@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+backend/public/assets/
+backend/public/vendors/
+backend/public/admin/
+frontend/dist/
+
+# Laravel
+backend/.env
+backend/storage/logs/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+backend/bootstrap/cache/
+
+# Frontend
+frontend/.env
+frontend/.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Admin/frontend templates (large, binary assets)
+admin-template/node_modules/
+frontend-template/

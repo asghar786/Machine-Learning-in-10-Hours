@@ -1,0 +1,125 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Ratings')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Extended UI', 'Ratings')}"></th:block>
+    <div class="row row-cols-lg-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Basic 5 star rater</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div dir="ltr" id="rater"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">5 star rater with step</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div dir="ltr" id="rater-step"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Custom Messages Example</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div dir="ltr" id="rater2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Unlimited Number</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">You can have unlimited number of stars. Example with 16 stars. readOnly option
+                        is set to true.</p>
+                    <div>
+                        <div dir="ltr" id="rater3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Random Number</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div dir="ltr" id="rater4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">On Hover Event Example</h4>
+                </div>
+                <div class="card-body">
+                    <div dir="ltr">
+                        <div class="align-middle" id="rater5"></div>
+                        <span class="live-rating badge bg-info align-middle ms-2"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Clear/Reset Rater Example</h4>
+                </div>
+                <div class="card-body">
+                    <div dir="ltr">
+                        <div class="align-middle" id="rater6"></div>
+                        <span class="clear-rating"></span>
+                        <button class="btn btn-light btn-sm ms-2" id="rater6-button">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Right to left support</h4>
+                </div>
+                <div class="card-body">
+                    <div dir="rtl">
+                        <span id="rater7"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/rater-js/index.js"></script>
+    <script src="/js/components/extended-rating.js"></script>
+</th:block>
+</body>
+
+</html>

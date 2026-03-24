@@ -1,0 +1,83 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Heatmap Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Heatmap Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Basic Heatmap - Single Series</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae" id="basic-heatmap"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Heatmap - Multiple Series</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts"
+                             data-colors="#F3B415,#F27036,#663F59,#6A6E94,#4E88B4,#00A7C6,#18D8D8,#A9D794,#46AF78"
+                             id="multiple-series-heatmap"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Heatmap - Color Range</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c,#fbcc5c,#39afd1,#31ce77"
+                             id="color-range-heatmap"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Heatmap - Range without Shades</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fbcc5c" id="rounded-heatmap"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/components/chart-apex-heatmap.js"></script>
+</th:block>
+</body>
+
+</html>

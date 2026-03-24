@@ -1,0 +1,67 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Boxplot Chart')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Boxplot Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Basic Boxplot</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77" id="basic-boxplot"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Scatter Boxplot </h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c,#35b8e0" id="scatter-boxplot"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Horizontal BoxPlot</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#e3eaef" id="horizontal-boxplot"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/components/chart-apex-boxplot.js"></script>
+</th:block>
+</body>
+
+</html>

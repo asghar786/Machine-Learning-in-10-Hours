@@ -1,0 +1,491 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('FAQ')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Pages', 'FAQ')}"></th:block>
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="bg-body-secondary shadow rounded docs-nav">
+                <ul class="nav bg-transparent flex-column fs-15 ps-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#general">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#integration">Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#payment">Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shipping">Shipping</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#return">Return</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3 anchor" id="general">General FAQ's</h4>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseOne" aria-expanded="true" class="accordion-button"
+                                        data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">
+                                    What is a session tracking dashboard?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" data-bs-parent="#accordionExample"
+                                 id="collapseOne">
+                                <div class="accordion-body">
+                                    A session tracking dashboard is a visual tool used to monitor and analyze user
+                                    sessions on a website or application. It provides insights into user behavior,
+                                    including their interactions, paths, and engagement patterns during their visits.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwo" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwo"
+                                        data-bs-toggle="collapse" type="button">
+                                    Why is session tracking important for a website or app?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                                 id="collapseTwo">
+                                <div class="accordion-body">
+                                    For online stores, session tracking is essential to manage the contents of a user’s
+                                    shopping cart. Without session tracking, the items in the cart could be lost as the
+                                    user navigates through the site.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseThree" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseThree"
+                                        data-bs-toggle="collapse" type="button">
+                                    What metrics can I track in a session tracking dashboard?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                                 id="collapseThree">
+                                <div class="accordion-body">
+                                    In a session tracking dashboard, you can track a variety of metrics to gain insights
+                                    into user behavior, website performance, and overall user experience. Here are some
+                                    key metrics you can monitor:
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseFour" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseFour"
+                                        data-bs-toggle="collapse" type="button">
+                                    How can I use session tracking data to improve my website or app?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                                 id="collapseFour">
+                                <div class="accordion-body">
+                                    Use scroll depth and time-on-page metrics to determine which content is engaging
+                                    users the most. Focus on creating similar content or improving under performing
+                                    pages.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseFive" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseFive"
+                                        data-bs-toggle="collapse" type="button">
+                                    What are some common challenges with session tracking?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                                 id="collapseFive">
+                                <div class="accordion-body">
+                                    Session tracking, while invaluable for understanding user behavior and optimizing
+                                    website or app performance, comes with several challenges. One major issue is
+                                    ensuring data privacy and compliance with regulations like GDPR and CCPA.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3 anchor" id="integration">Integration</h4>
+                    <div class="accordion" id="accordionExample2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseSix" aria-expanded="true" class="accordion-button"
+                                        data-bs-target="#collapseSix" data-bs-toggle="collapse" type="button">
+                                    How can I ensure data accuracy in my session tracking dashboard?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" data-bs-parent="#accordionExample2"
+                                 id="collapseSix">
+                                <div class="accordion-body">
+                                    Set an appropriate session timeout period to avoid splitting a single session into
+                                    multiple sessions or merging distinct sessions into one. Typically, a 30-minute
+                                    timeout is standard, but this can be adjusted based on
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseSeven" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseSeven"
+                                        data-bs-toggle="collapse" type="button">
+                                    Can I track user sessions across multiple platforms and devices?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample2"
+                                 id="collapseSeven">
+                                <div class="accordion-body">
+                                    Yes, you can track user sessions across multiple platforms and devices, but it
+                                    requires implementing a few strategies and using the right tools to ensure accurate
+                                    tracking. Here’s how you can achieve this:
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseEight" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseEight"
+                                        data-bs-toggle="collapse" type="button">
+                                    What is integration, and why is it important for our session tracking dashboard?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample2"
+                                 id="collapseEight">
+                                <div class="accordion-body">
+                                    Session management involves managing requests between a user and web-based app or
+                                    service. Learn about best practices of session management and the attacks
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseNine" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseNine"
+                                        data-bs-toggle="collapse" type="button">
+                                    Which systems or platforms can be integrated with our session tracking dashboard?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample2"
+                                 id="collapseNine">
+                                <div class="accordion-body">
+                                    Integrating your session tracking dashboard with various systems and platforms can
+                                    provide a more comprehensive view of user behavior and streamline data management.
+                                    Here are some commonly integrated systems and platforms
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTen"
+                                        data-bs-toggle="collapse" type="button">
+                                    Is technical expertise required to perform an integration?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample2"
+                                 id="collapseTen">
+                                <div class="accordion-body">
+                                    Session tracking, while invaluable for understanding user behavior and optimizing
+                                    website or app performance, comes with several challenges. One major issue is
+                                    ensuring data privacy and compliance with regulations like GDPR and CCPA.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3 anchor" id="payment">Payment</h4>
+                    <div class="accordion" id="accordionExample3">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseEleven" aria-expanded="true" class="accordion-button"
+                                        data-bs-target="#collapseEleven" data-bs-toggle="collapse" type="button">
+                                    When will payment be processed for my order?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" data-bs-parent="#accordionExample3"
+                                 id="collapseEleven">
+                                <div class="accordion-body">
+                                    Payment is processed during the checkout procedure when you finalize your order. A
+                                    confirmation screen displaying the order number signifies that payment has been
+                                    successfully completed.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwelve" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwelve"
+                                        data-bs-toggle="collapse" type="button">
+                                    What is the process for payment on my order?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample3"
+                                 id="collapseTwelve">
+                                <div class="accordion-body">
+                                    We welcome payments via Visa®, MasterCard®, American Express®, and PayPal®. Rest
+                                    assured, all information transmitted to our servers is encrypted, ensuring the
+                                    utmost security for your credit card details.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseThirteen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseThirteen"
+                                        data-bs-toggle="collapse" type="button">
+                                    What steps should I take if I encounter difficulties while placing an order?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample3"
+                                 id="collapseThirteen">
+                                <div class="accordion-body">
+                                    If you encounter any technical issues with our website, please reach out to us via
+                                    our support portal. Alternatively, you can contact us toll-free at 1-000-000-000 or
+                                    email us at order@companymail.com.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseFourteen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseFourteen"
+                                        data-bs-toggle="collapse" type="button">
+                                    Which license is required for an end product exclusively accessible to paying users?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample3"
+                                 id="collapseFourteen">
+                                <div class="accordion-body">
+                                    If you have paying users or you are developing any SaaS products then you need an
+                                    Extended License. For each products, you need a license. You can get free lifetime
+                                    updates as well.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseFifteen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseFifteen"
+                                        data-bs-toggle="collapse" type="button">
+                                    How does billing work?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample3"
+                                 id="collapseFifteen">
+                                <div class="accordion-body">
+                                    Plans are per workspace, not per account. You can upgrade one workspace, and still
+                                    have any number of free workspaces.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3 anchor" id="shipping">Shipping</h4>
+                    <div class="accordion" id="accordionExample4">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseSixteen" aria-expanded="true" class="accordion-button"
+                                        data-bs-target="#collapseSixteen" data-bs-toggle="collapse" type="button">
+                                    What is the shipping method for delivering my order?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" data-bs-parent="#accordionExample4"
+                                 id="collapseSixteen">
+                                <div class="accordion-body">
+                                    For large items, we use a third-party logistics company to deliver your product,
+                                    providing you with scheduled "room of choice" delivery service. For smaller items,
+                                    we offer complimentary parcel delivery.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseSeventeen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseSeventeen"
+                                        data-bs-toggle="collapse" type="button">
+                                    How much does delivery for my order cost?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample4"
+                                 id="collapseSeventeen">
+                                <div class="accordion-body">
+                                    Scheduled delivery is priced at either $69 or $99 per order, depending on the
+                                    destination postal code. Parcel delivery, on the other hand, is complimentary.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseEighteen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseEighteen"
+                                        data-bs-toggle="collapse" type="button">
+                                    What steps should I take if my product arrives in a damaged condition?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample4"
+                                 id="collapseEighteen">
+                                <div class="accordion-body">
+                                    We will swiftly replace any product damaged during transit. Simply reach out to our
+                                    support team to inform us of the issue within 48 hours of the product's arrival.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseNineteen" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseNineteen"
+                                        data-bs-toggle="collapse" type="button">
+                                    What steps must I take to commence selling?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample4"
+                                 id="collapseNineteen">
+                                <div class="accordion-body">
+                                    We will swiftly replace any product damaged during transit. Simply reach out to our
+                                    support team to inform us of the issue within 48 hours of the product's arrival.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwenty"
+                                        data-bs-toggle="collapse" type="button">
+                                    Can other info be added to an invoice?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample4"
+                                 id="collapseTwenty">
+                                <div class="accordion-body">
+                                    At the moment, the only way to add additional information to invoices is to add the
+                                    information to the workspace's name manually.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3 anchor" id="return">Return</h4>
+                    <div class="accordion" id="accordionExample5">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty-one" aria-expanded="true" class="accordion-button"
+                                        data-bs-target="#collapseTwenty-one" data-bs-toggle="collapse" type="button">
+                                    Is it possible for me to initiate a return for my product?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" data-bs-parent="#accordionExample5"
+                                 id="collapseTwenty-one">
+                                <div class="accordion-body">
+                                    You may initiate a return for your product within 15 days of delivery by reaching
+                                    out to our support team. All returned merchandise must be in its original packaging
+                                    with all accompanying items intact.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty-two" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwenty-two"
+                                        data-bs-toggle="collapse" type="button">
+                                    Is it possible to cancel my order?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample5"
+                                 id="collapseTwenty-two">
+                                <div class="accordion-body">
+                                    For scheduled delivery orders, cancellation is permissible up to 72 hours before
+                                    your chosen delivery date for a full refund. Unfortunately, parcel delivery orders
+                                    cannot be cancelled. Nevertheless, upon request, a free return label can be provided
+                                    .
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty-three" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwenty-three"
+                                        data-bs-toggle="collapse" type="button">
+                                    Where can I check the status of my return?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample5"
+                                 id="collapseTwenty-three">
+                                <div class="accordion-body">
+                                    Find the item in Your Orders Choose Return/Refund Status
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty-four" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwenty-four"
+                                        data-bs-toggle="collapse" type="button">
+                                    What is the duration of the warranty?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample5"
+                                 id="collapseTwenty-four">
+                                <div class="accordion-body">
+                                    Find the item in Your Orders Choose Return/Refund Status
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button aria-controls="collapseTwenty-five" aria-expanded="false"
+                                        class="accordion-button collapsed" data-bs-target="#collapseTwenty-five"
+                                        data-bs-toggle="collapse" type="button">
+                                    What is your cancellation policy?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse" data-bs-parent="#accordionExample5"
+                                 id="collapseTwenty-five">
+                                <div class="accordion-body">
+                                    We understand that things change. You can cancel your plan at any time and we'll
+                                    refund you the difference already paid.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

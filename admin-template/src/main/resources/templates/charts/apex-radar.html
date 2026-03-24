@@ -1,0 +1,70 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Radar Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Radar Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Basic Radar Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae" id="basic-radar"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Radar with Polygon-fill</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#FF4560" id="radar-polygon"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Radar – Multiple Series</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#02a8b5,#fd7e14" id="radar-multiple-series"></div>
+                        <div class="text-center mt-2">
+                            <button class="btn btn-sm btn-primary" onclick="update()">Update</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/components/chart-apex-radar.js"></script>
+</th:block>
+</body>
+
+</html>

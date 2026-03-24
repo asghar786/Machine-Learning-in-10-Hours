@@ -1,0 +1,132 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Carousel')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Base UI', 'Collapse')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Collapse</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">
+                        Bootstrap's collapse provides the way to toggle the visibility of any content or element.
+                        Please read the official <a href="https://getbootstrap.com/docs/5.2/components/collapse/"
+                                                    target="_blank">Bootstrap</a>
+                        documentation for a full list of options.
+                    </p>
+                    <p>
+                        <a aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary"
+                           data-bs-toggle="collapse" href="#collapseExample">
+                            Link with href
+                        </a>
+                        <button aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary ms-1"
+                                data-bs-target="#collapseExample" data-bs-toggle="collapse" type="button">
+                            Button with data-bs-target
+                        </button>
+                    </p>
+                    <div class="collapse show" id="collapseExample">
+                        <div class="card card-body mb-0">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life
+                            accusamus terry
+                            richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                            labore wes
+                            anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Collapse Horizontal</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">The collapse plugin also supports horizontal collapsing. Add the <code>.collapse-horizontal</code>
+                        modifier class to transition the <code>width</code> instead of <code>height</code> and set a
+                        <code>width</code> on the immediate child element.</p>
+                    <p>
+                        <button aria-controls="collapseWidthExample" aria-expanded="false" class="btn btn-primary"
+                                data-bs-target="#collapseWidthExample" data-bs-toggle="collapse" type="button">
+                            Toggle width collapse
+                        </button>
+                    </p>
+                    <div style="min-height: 105px;">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body mb-0" style="width: 300px;">
+                                This is some placeholder content for a horizontal collapse. It's hidden by default and
+                                shown when triggered.
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Multiple Targets</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">
+                        Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide an element if
+                        they each reference it with their <code>href</code> or <code>data-bs-target</code> attribute
+                    </p>
+                    <p>
+                        <a aria-controls="multiCollapseExample1" aria-expanded="false" class="btn btn-primary"
+                           data-bs-toggle="collapse" href="#multiCollapseExample1" role="button">Toggle first
+                            element</a>
+                        <button aria-controls="multiCollapseExample2" aria-expanded="false" class="btn btn-primary"
+                                data-bs-target="#multiCollapseExample2" data-bs-toggle="collapse" type="button">Toggle
+                            second element
+                        </button>
+                        <button aria-controls="multiCollapseExample1 multiCollapseExample2" aria-expanded="false"
+                                class="btn btn-primary" data-bs-target=".multi-collapse" data-bs-toggle="collapse"
+                                type="button">Toggle both elements
+                        </button>
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                <div class="card card-body mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row-->
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div> <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

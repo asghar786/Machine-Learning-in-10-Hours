@@ -1,0 +1,169 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+    <link rel="stylesheet" href="/vendor/sweetalert2/sweetalert2.min.css">
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Sweet Alert 2')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block
+            th:replace="~{partials/page-title :: page-title('Extended UI', 'Sweet Alert 2')}"></th:block>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">A Basic Message</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Here's a basic example of SweetAlert.</p>
+                    <button class="btn btn-primary" id="sweetalert-basic" type="button">Click me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Title</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A Title with a Text Under.</p>
+                    <button class="btn btn-primary" id="sweetalert-title" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">HTML</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Here's an example of SweetAlert with HTML content.</p>
+                    <button class="btn btn-primary" id="custom-html-alert" type="button">Toggle HTML SweetAlert</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">All States</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Here are examples for each of SweetAlert's states.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-info" id="sweetalert-info" type="button">Toggle Info</button>
+                        <button class="btn btn-warning" id="sweetalert-warning" type="button">Toggle Warning</button>
+                        <button class="btn btn-danger" id="sweetalert-error" type="button">Toggle Error</button>
+                        <button class="btn btn-success" id="sweetalert-success" type="button">Toggle Success</button>
+                        <button class="btn btn-primary" id="sweetalert-question" type="button">Toggle Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Long Content</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A modal window with a long content inside.</p>
+                    <button class="btn btn-secondary" id="sweetalert-longcontent" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">With Confirm Button</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A warning message, with a function attached to the "Confirm"-button...</p>
+                    <button class="btn btn-secondary" id="sweetalert-confirm-button" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">With Cancel Button</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">By passing a parameter, you can execute something else for "Cancel".</p>
+                    <button class="btn btn-secondary" id="sweetalert-params" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">With Image Header (Logo)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A message with custom Image Header.</p>
+                    <button class="btn btn-secondary" id="sweetalert-image" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Auto Close</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A message with auto close timer.</p>
+                    <button class="btn btn-secondary" id="sweetalert-close" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Position</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A custom positioned dialog.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-primary" id="position-top-start">Top Start</button>
+                        <button class="btn btn-primary" id="position-top-end">Top End</button>
+                        <button class="btn btn-primary" id="position-bottom-start">Bottom Starts</button>
+                        <button class="btn btn-primary" id="position-bottom-end">Bottom End</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">With Custom Padding, Background</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">A message with custom width, padding and background.</p>
+                    <button class="btn btn-secondary" id="custom-padding-width-alert" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Ajax Request</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Ajax request example.</p>
+                    <button class="btn btn-secondary" id="ajax-alert" type="button">Click Me</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/components/extended-sweetalerts.js"></script>
+</th:block>
+</body>
+
+</html>

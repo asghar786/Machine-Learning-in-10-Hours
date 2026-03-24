@@ -1,0 +1,264 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+    <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.min.css">
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Create Invoice')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Invoices', 'Create Invoice')}"></th:block>
+    <div class="row">
+        <div class="col-12">
+            <div class="card position-relative">
+                <form>
+                    <div class="card-body">
+                        <!-- Invoice Logo-->
+                        <div class="d-flex align-items-start justify-content-between mb-4">
+                            <div class="overflow-hidden position-relative border rounded d-flex align-items-center justify-content-start px-2"
+                                 style="height: 60px; width: 260px;">
+                                <label class="position-absolute top-0 start-0 end-0 bottom-0" for="imageInput"></label>
+                                <input class="d-none" id="imageInput" type="file"/>
+                                <img alt="Preview Image" height="28" id="preview" src="/images/logo-dark.png"/>
+                            </div>
+                            <div class="text-end">
+                                <div class="row g-1 align-items-center">
+                                    <div class="col-auto">
+                                        <label class="col-form-label fs-16 fw-bold" for="invoiceNo">#INV</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input class="form-control" id="invoiceNo" placeholder="00001234"
+                                               type="number"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-sm-0 mt-3">
+                                <div class="mb-2">
+                                    <label class="form-label">Invoice Date :</label>
+                                    <input class="form-control" data-date-format="d M, Y" data-deafult-date="today"
+                                           data-provider="flatpickr" placeholder="Select Date" type="text"/>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Due Date :</label>
+                                    <input class="form-control" data-altformat="F j, Y" data-provider="flatpickr"
+                                           placeholder="Select Date" type="text"/>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label" for="InvoicePaymentStatus">Payment Status</label>
+                                    <select class="form-select" id="InvoicePaymentStatus">
+                                        <option value="">Select Status</option>
+                                        <option value="Choice 1">Paid</option>
+                                        <option value="Choice 2">Unpaid</option>
+                                        <option value="Choice 3">Cancelled</option>
+                                        <option value="Choice 4">Refunded</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="InvoicePaymentMethod">Payment Method</label>
+                                    <select class="form-select" id="InvoicePaymentMethod">
+                                        <option value="">Select Method</option>
+                                        <option value="Choice 1">Credit / Debit Card</option>
+                                        <option value="Choice 2">Bank Transfer</option>
+                                        <option value="Choice 3">PayPal</option>
+                                        <option value="Choice 4">Payoneer</option>
+                                        <option value="Choice 5">Cash On Delivery</option>
+                                        <option value="Choice 6">Wallet</option>
+                                        <option value="Choice 7">UPI (Gpay)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="mb-4">
+                                    <label class="form-label">Billing Address :</label>
+                                    <div class="mb-2 pb-1">
+                                        <input class="form-control" id="BName" placeholder="Full Name" type="text"/>
+                                    </div>
+                                    <div class="mb-2 pb-1">
+                                        <textarea class="form-control" id="BAddress" placeholder="Address" rows="3"
+                                                  type="text"></textarea>
+                                    </div>
+                                    <div>
+                                        <input class="form-control" id="BNumber" placeholder="Phone Number"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-sm-0 mt-3">
+                                <div class="mb-4">
+                                    <label class="form-label">Shipping Address :</label>
+                                    <div class="mb-2 pb-1">
+                                        <input class="form-control" id="SName" placeholder="Full Name" type="text"/>
+                                    </div>
+                                    <div class="mb-2 pb-1">
+                                        <textarea class="form-control" id="SAddress" placeholder="Address" rows="3"
+                                                  type="text"></textarea>
+                                    </div>
+                                    <div>
+                                        <input class="form-control" id="SNumber" placeholder="Phone Number"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="table-responsive">
+                                <table class="table text-center table-nowrap align-middle mb-0">
+                                    <thead>
+                                    <tr class="bg-light bg-opacity-50">
+                                        <th class="border-0" scope="col" style="width: 70px;">#</th>
+                                        <th class="border-0 text-start" scope="col">Product Details</th>
+                                        <th class="border-0" scope="col" style="width: 140px">Quantity</th>
+                                        <th class="border-0" scope="col" style="width: 140px;">Unit price</th>
+                                        <th class="border-0" scope="col" style="width: 240px">Amount</th>
+                                        <th class="border-0" scope="col" style="width: 50px;">•••</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">01</th>
+                                        <td class="text-start">
+                                            <input class="form-control mb-1" id="product-detail-one"
+                                                   placeholder="Product One" type="text"/>
+                                            <input class="form-control" id="product-desc-one"
+                                                   placeholder="Item description" type="text"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" id="product-category-one" placeholder="Quantity"
+                                                   type="number"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" placeholder="Price" type="number"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control w-auto" placeholder="$0.00" type="number"/>
+                                        </td>
+                                        <td>
+                                            <button class="btn flex-shrink-0 rounded-circle btn-icon btn-ghost-danger"
+                                                    type="button">
+                                                <iconify-icon class="fs-20"
+                                                              icon="solar:trash-bin-trash-bold-duotone"></iconify-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">02</th>
+                                        <td class="text-start">
+                                            <input class="form-control mb-1" id="product-detail-two"
+                                                   placeholder="Product Two" type="text"/>
+                                            <input class="form-control" id="product-desc-two"
+                                                   placeholder="Item description" type="text"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" id="product-category-two" placeholder="Quantity"
+                                                   type="number"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" placeholder="Price" type="number"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control w-auto" placeholder="$0.00" type="number"/>
+                                        </td>
+                                        <td>
+                                            <button class="btn flex-shrink-0 rounded-circle btn-icon btn-ghost-danger"
+                                                    type="button">
+                                                <iconify-icon class="fs-20"
+                                                              icon="solar:trash-bin-trash-bold-duotone"></iconify-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table><!--end table-->
+                                <div class="p-2">
+                                    <button class="btn btn-primary" type="button"><i class="ti ti-circle-plus me-1"></i>
+                                        Add Products
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <table class="table table-sm table-borderless table-nowrap align-middle mb-0 ms-auto"
+                                       style="width:300px">
+                                    <tbody>
+                                    <tr>
+                                        <td class="fw-medium">Subtotal</td>
+                                        <td class="text-end">
+                                            <div class="ms-auto" style="width: 160px;">
+                                                <input class="form-control" id="productSubtotal" placeholder="$0.00"
+                                                       type="number"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Shipping</td>
+                                        <td class="text-end">
+                                            <div class="ms-auto" style="width: 160px;">
+                                                <input class="form-control" id="productShipping" placeholder="$0.00"
+                                                       type="number"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Discount <small class="text-muted">(10%)</small></td>
+                                        <td class="text-end">
+                                            <div class="ms-auto" style="width: 160px;">
+                                                <input class="form-control" id="productDiscount" placeholder="$0.00"
+                                                       type="number"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Tax <small class="text-muted">(18%)</small></td>
+                                        <td class="text-end">
+                                            <div class="ms-auto" style="width: 160px;">
+                                                <input class="form-control" id="productTaxes" placeholder="$0.00"
+                                                       type="number"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fs-15">
+                                        <th class="fw-bold" scope="row">Total Amount</th>
+                                        <th class="text-end">
+                                            <div class="ms-auto" style="width: 160px;">
+                                                <input class="form-control" disabled="" id="productTotalAmount"
+                                                       placeholder="$0.00" type="number"/>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--end table-->
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label" for="InvoiceNote"> Note : </label>
+                            <textarea class="form-control" id="InvoiceNote" placeholder="Thanks for your business "
+                                      rows="3"></textarea>
+                        </div>
+                    </div> <!-- end card-body-->
+                </form>
+            </div><!-- end card -->
+            <div class="mb-5">
+                <div class="d-flex justify-content-center gap-2">
+                    <a class="btn btn-primary gap-1" href="javascript:window.print()"><i class="ti ti-eye fs-16"></i>
+                        Preview</a>
+                    <a class="btn btn-success gap-1" href="javascript: void(0);"><i
+                            class="ti ti-device-floppy fs-16"></i> Save</a>
+                    <a class="btn btn-info gap-1" href="javascript: void(0);"><i class="ti ti-send fs-16"></i> Send
+                        Invoice</a>
+                </div>
+            </div>
+            <!-- end buttons -->
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Popovers')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Base UI', 'Popovers')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Simple Popover</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">
+                        Popover is a component which displays a box with a content after a click on an
+                        element - similar to the tooltip but can contain more content.
+                    </p>
+                    <button class="btn btn-danger"
+                            data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                            data-bs-toggle="popover" title="Popover title" type="button">Click to toggle
+                        popover
+                    </button>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Dismiss on Next Click</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use the <code>focus</code> trigger to dismiss popovers
+                        on the user’s next click of a different element than the toggle element.</p>
+                    <button class="btn btn-success"
+                            data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                            data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" title="Dismissible popover"
+                            type="button">
+                        Dismissible popover
+                    </button>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Hover</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Use the attribute <code>data-bs-trigger="hover"</code>
+                        to show the popover on hovering the element.</p>
+                    <button class="btn btn-dark"
+                            data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                            data-bs-toggle="popover" data-bs-trigger="hover" tabindex="0" title="Ohh Wow !"
+                            type="button">
+                        Please Hover Me
+                    </button>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Four Directions</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Four options are available: top, right, bottom, and
+                        left aligned.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-primary"
+                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                data-bs-placement="top" data-bs-toggle="popover" type="button">
+                            Popover on top
+                        </button>
+                        <button class="btn btn-primary"
+                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                data-bs-placement="bottom" data-bs-toggle="popover" type="button">
+                            Popover on bottom
+                        </button>
+                        <button class="btn btn-primary"
+                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                data-bs-placement="right" data-bs-toggle="popover" type="button">
+                            Popover on right
+                        </button>
+                        <button class="btn btn-primary"
+                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                data-bs-placement="left" data-bs-toggle="popover" title="Popover title" type="button">
+                            Popover on left
+                        </button>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Custom Popovers </h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">You can customize the appearance of popovers using CSS variables. We set a
+                        custom class with
+                        <code>data-bs-custom-class="popover-primary"</code> to scope our custom appearance and use it to
+                        override some of the
+                        local CSS variables.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-primary" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-primary" data-bs-placement="right"
+                                data-bs-title="Primary popover" data-bs-toggle="popover" type="button">
+                            Primary popover
+                        </button>
+                        <button class="btn btn-success" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-success" data-bs-placement="right"
+                                data-bs-title="Success popover" data-bs-toggle="popover" type="button">
+                            Success popover
+                        </button>
+                        <button class="btn btn-danger" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-danger" data-bs-placement="right"
+                                data-bs-title="Danger popover" data-bs-toggle="popover" type="button">
+                            Danger popover
+                        </button>
+                        <button class="btn btn-info" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-info" data-bs-placement="right"
+                                data-bs-title="Info popover" data-bs-toggle="popover" type="button">
+                            Info popover
+                        </button>
+                        <button class="btn btn-dark" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-dark" data-bs-placement="right"
+                                data-bs-title="Info popover" data-bs-toggle="popover" type="button">
+                            Dark popover
+                        </button>
+                        <button class="btn btn-secondary" data-bs-content="This popover is themed via CSS variables."
+                                data-bs-custom-class="popover-secondary" data-bs-placement="right"
+                                data-bs-title="Info popover" data-bs-toggle="popover" type="button">
+                            Secondary popover
+                        </button>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+            <div class="card">
+                <div class="card-header border-bottom border-dashed d-flex align-items-center">
+                    <h4 class="header-title">Disabled Elements</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Elements with the <code>disabled</code> attribute
+                        aren’t interactive, meaning users cannot hover or click them to trigger a
+                        popover (or tooltip). As a workaround, you’ll want to trigger the popover from a
+                        wrapper <code>
+                            &lt;div&gt;
+                        </code> or <code>&lt;span&gt;</code> and override the
+                        <code>pointer-events</code> on the disabled element.
+                    </p>
+                    <span class="d-inline-block" data-bs-content="Disabled popover" data-bs-toggle="popover">
+<button class="btn btn-primary" disabled="" style="pointer-events: none;" type="button">Disabled button</button>
+</span>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

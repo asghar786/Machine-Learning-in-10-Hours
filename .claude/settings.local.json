@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l \"D:\\\\Clients\\\\ThemeForest\\\\edumel-education-lms-template-2023-11-27-05-04-01-utc\\\\edumel-html\"/*.html)",
+      "Bash(grep -m 1 \"<title>\" \"D:\\\\Clients\\\\ThemeForest\\\\edumel-education-lms-template-2023-11-27-05-04-01-utc\\\\edumel-html\"/*.html)",
+      "Bash(npm --version)",
+      "Bash(npm list:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"const p=require\\(''./node_modules/react/package.json''\\); console.log\\(''React version:'', p.version\\)\")",
+      "Bash(cp -r \"c:/xampp82/htdocs/machinelearning-local/frontend-template/assets\" \"c:/xampp82/htdocs/machinelearning-local/frontend/public/assets\")",
+      "Bash(cp -r \"c:/xampp82/htdocs/machinelearning-local/frontend-template/assets/vendors\" \"c:/xampp82/htdocs/machinelearning-local/frontend/public/vendors\")",
+      "Bash(xargs -I {} basename {})",
+      "Bash(npm run:*)",
+      "Bash(\"c:/xampp82/htdocs/machinelearning-local/Task.log\")",
+      "Bash(cp \"c:/xampp82/htdocs/hrs-local/admin/template/src/index.js\" \"c:/xampp82/htdocs/hrs-local/admin/template/src/index.jsx\")",
+      "Bash(rm \"c:/xampp82/htdocs/hrs-local/admin/template/src/index.js\")",
+      "Read(//c/xampp82/htdocs/hrs-local/**)",
+      "Read(//c/xampp82/htdocs/hrs-local/admin/**)",
+      "Bash(find c:/xampp82/htdocs/hrs-local/admin/.vite -name *.js)",
+      "Bash(composer --version)",
+      "Bash(php --version)",
+      "Bash(composer create-project:*)",
+      "Bash(composer require:*)",
+      "Bash(php artisan:*)",
+      "Bash(grep -v \"^app$\\\\|^admin$\")",
+      "Bash(cp -rf \"D:/Clients/ThemeForest/greeva-spring-boot-admin-dashboard-template-2026-03-17-09-43-56-utc/Greeva-SpringBoot_v1.0/Greeva/src/main/resources/static/.\" \"c:/xampp82/htdocs/machinelearning-local/frontend/public/admin/\")",
+      "Bash(cp -rf \"D:/Clients/ThemeForest/greeva-spring-boot-admin-dashboard-template-2026-03-17-09-43-56-utc/Greeva-SpringBoot_v1.0/Greeva/src/main/resources/static/.\" \"c:/xampp82/htdocs/machinelearning-local/backend/public/admin/\")",
+      "Bash(find c:/xampp82/htdocs/machinelearning-local/admin-template/src -name *login* -o -name *auth*)",
+      "Bash(curl -s -X POST http://machinelearning.local/api/v1/auth/login -H \"Content-Type: application/json\" -d \"{\"\"email\"\":\"\"admin@ml.local\"\",\"\"password\"\":\"\"Admin@2026!\"\"}\")"
+    ]
+  }
+}

@@ -1,0 +1,959 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+    <link rel="stylesheet" href="/vendor/quill/quill.core.css">
+    <link rel="stylesheet" href="/vendor/quill/quill.snow.css">
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Inbox')}" />
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <th:block th:replace="~{partials/page-title :: page-title('Inbox', null)}"></th:block>
+        <div class="card">
+            <div class="d-flex">
+                <div class="email-sidebar">
+                    <div aria-labelledby="email-sidebarLabel" class="offcanvas-xxl offcanvas-start" id="email-sidebar"
+                        tabindex="-1">
+                        <div class="h-100" data-simplebar="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between gap-2 align-items-center mb-2">
+                                    <button class="btn btn-danger fw-medium w-100" data-bs-target="#email-compose-modal"
+                                        data-bs-toggle="modal" type="button">Compose
+                                    </button>
+                                    <button aria-label="Close"
+                                        class="btn btn-sm btn-icon btn-soft-danger ms-auto d-xl-none"
+                                        data-bs-dismiss="offcanvas" data-bs-target="#email-sidebar" type="button">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </div>
+                                <div class="email-menu-list d-flex flex-column gap-1">
+                                    <a class="active" href="javascript: void(0);">
+                                        <iconify-icon class="me-2 fs-18 text-muted"
+                                            icon="solar:inbox-outline"></iconify-icon>
+                                        <span>Inbox</span>
+                                        <span class="badge bg-danger-subtle fs-12 text-danger ms-auto">21</span>
+                                    </a>
+                                    <a href="javascript: void(0);">
+                                        <iconify-icon class="me-2 fs-18 text-muted"
+                                            icon="solar:map-arrow-right-outline"></iconify-icon>
+                                        <span>Sent</span>
+                                    </a>
+                                    <a href="javascript: void(0);">
+                                        <iconify-icon class="me-2 fs-18 text-muted"
+                                            icon="solar:star-outline"></iconify-icon>
+                                        <span>Starred</span>
+                                    </a>
+                                    <a href="javascript: void(0);">
+                                        <iconify-icon class="me-2 fs-18 text-muted"
+                                            icon="solar:clock-circle-outline"></iconify-icon>
+                                        <span>Scheduled</span>
+                                    </a>
+                                    <a href="javascript: void(0);">
+                                        <iconify-icon class="me-2 fs-18 text-muted"
+                                            icon="solar:clapperboard-edit-outline"></iconify-icon>
+                                        <span>Draft</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body border-top border-light">
+                                <a aria-controls="other" aria-expanded="false"
+                                    class="btn-link d-flex align-items-center text-muted fw-bold fs-12 text-uppercase mb-0"
+                                    data-bs-target="#other" data-bs-toggle="collapse" href="#">Other <i
+                                        class="ti ti-chevron-down ms-auto"></i></a>
+                                <div class="collapse show" id="other">
+                                    <div class="email-menu-list d-flex flex-column gap-1 mt-2">
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="me-2 fs-18 text-muted"
+                                                icon="solar:mailbox-outline"></iconify-icon>
+                                            <span>All Mail</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="me-2 fs-18 text-muted"
+                                                icon="solar:trash-bin-trash-outline"></iconify-icon>
+                                            <span>Trash</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="me-2 fs-18 text-muted"
+                                                icon="solar:info-square-outline"></iconify-icon>
+                                            <span>Spam</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="me-2 fs-18 text-muted"
+                                                icon="solar:chat-round-line-outline"></iconify-icon>
+                                            <span>Chats</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body border-top border-light">
+                                <a aria-controls="labels" aria-expanded="false"
+                                    class="btn-link d-flex align-items-center text-muted fw-bold fs-12 text-uppercase mb-0"
+                                    data-bs-target="#labels" data-bs-toggle="collapse" href="#">Labels <i
+                                        class="ti ti-chevron-down ms-auto"></i></a>
+                                <div class="collapse show" id="labels">
+                                    <div class="email-menu-list d-flex flex-column gap-1 mt-2">
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="text-success fs-16 me-2"
+                                                icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            <span>Personal</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="text-danger fs-16 me-2"
+                                                icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            <span>Client</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="text-info fs-16 me-2"
+                                                icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            <span>Marketing</span>
+                                        </a>
+                                        <a href="javascript: void(0);">
+                                            <iconify-icon class="text-secondary fs-16 me-2"
+                                                icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            <span>Office</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-1 card rounded-0 shadow-none mb-0">
+                    <div class="border-start border-light h-100">
+                        <div class="card-body py-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <button aria-controls="email-sidebar" class="btn btn-light d-xxl-none d-flex p-1"
+                                    data-bs-target="#email-sidebar" data-bs-toggle="offcanvas" type="button">
+                                    <i class="ti ti-menu-2 fs-17"></i>
+                                </button>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="" />
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-icon btn-ghost-light text-dark rounded-circle"
+                                        data-bs-html="true" data-bs-placement="top"
+                                        data-bs-title="<span class='fs-12'>Mark as read</span>" data-bs-toggle="tooltip"
+                                        data-bs-trigger="hover" type="button">
+                                        <i class="ti ti-mail-opened fs-18"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-icon btn-ghost-light text-dark rounded-circle"
+                                        data-bs-html="true" data-bs-placement="top"
+                                        data-bs-title="<span class='fs-12'>Archive</span>" data-bs-toggle="tooltip"
+                                        data-bs-trigger="hover" type="button">
+                                        <i class="ti ti-archive fs-18"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-icon btn-ghost-light text-dark rounded-circle"
+                                        data-bs-html="true" data-bs-placement="top"
+                                        data-bs-title="<span class='fs-12'>Delete</span>" data-bs-toggle="tooltip"
+                                        data-bs-trigger="hover" type="button">
+                                        <i class="ti ti-trash fs-18"></i>
+                                    </button>
+                                    <button class="btn btn-icon btn-sm btn-ghost-light text-dark rounded-circle"
+                                        data-bs-html="true" data-bs-placement="top"
+                                        data-bs-title="<span class='fs-12'>Report spam</span>" data-bs-toggle="tooltip"
+                                        data-bs-trigger="hover" type="button">
+                                        <i class="ti ti-info-hexagon fs-18"></i>
+                                    </button>
+                                </div>
+                                <div class="ms-auto d-xl-flex d-none">
+                                    <div class="app-search">
+                                        <input class="form-control rounded-pill" placeholder="Search mail..."
+                                            type="text" />
+                                        <i class="ti ti-mail-search fs-18 app-search-icon text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top border-light">
+                            <div class="table-responsive">
+                                <table class="table table-hover mail-list mb-0">
+                                    <tbody>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-2.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">George
+                                                            Thomas</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Request
+                                                    For Information </a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> I hope
+                                                        you are doing well. I have a small request. Can you
+                                                        please...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Jan 5, 3:45 PM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-danger fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-3.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Robert C.
+                                                            Lane</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Invitation
+                                                    For Meeting </a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Good
+                                                        Morning, I hope this email finds you well. I am writing
+                                                        to extra...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!"> <i
+                                                        class="ti ti-paperclip"></i> 2 </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Mar 23, 7:30 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-success fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/dribbble.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Dribbble</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Become
+                                                    a successful self-taught designer </a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> There's
+                                                        no one right way to learn design. In fa...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Apr 10, 1:15
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-info fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-5.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Darren C.
+                                                            Gallimore</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Holiday
+                                                    Notice</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Good
+                                                        Evening, I hope you are doing well. I have a small
+                                                        request.</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">May 8,
+                                                    9:45 PM</p>
+                                            </td>
+                                            <td class="pe-3">
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-9.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Mike A.
+                                                            Bell</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Offer
+                                                    Letter</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Thank you
+                                                        for applying. I hope you are doing well. I have a
+                                                        small.</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">Jun 16,
+                                                    6:00 AM</p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-secondary fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-6.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Bennett C.
+                                                            Rice</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Apology
+                                                    Letter</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> I hope
+                                                        you are doing well. I have a small request. Can you
+                                                        please</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!"> <i
+                                                        class="ti ti-paperclip"></i> 4 </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Jun 16, 6:00 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/gitlab.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">John J.
+                                                            Bowser</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal" role="button">How
+                                                    to get started on Gitlab</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> We know
+                                                        setting off on a freelancing journey can feel
+                                                        intim...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!"> <i
+                                                        class="ti ti-paperclip"></i> 3 </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Aug 22, 2:35 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-8.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Jill N.
+                                                            Neal</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Apply
+                                                    For Executive Position</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> I am
+                                                        writing to express my keen interest in the Executive
+                                                        Po...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Aug 22, 2:35 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-success fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/instagram.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Instagram</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal" role="button">You
+                                                    have received 2 new followers</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> 2 new
+                                                        followers, 1 new collected project, and more
+                                                        at...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Oct 31, 8:00 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-info fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/amazon.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Amazon</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Your
+                                                    order is shipped</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Your
+                                                        order is on the way with tracking...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!"> <i
+                                                        class="ti ti-paperclip"></i> 1 </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Nov 19, 10:10 PM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-success fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-7.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Alfredo D.
+                                                            Rico</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Class
+                                                    schedule</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Your
+                                                        online class will be held on Saturday at 2:30 pm
+                                                        Bangladesh.</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Dec 25, 12:30 PM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-secondary fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/users/avatar-4.jpg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Vernon B.
+                                                            Rutter</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Invitation
+                                                    to attend our Exclusive Webinar</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> An
+                                                        exclusive webinar will be held on 23 January...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Jan 30, 4:50 AM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/digital-ocean.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Digital
+                                                            Ocean</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal"
+                                                    role="button">Update
+                                                    to Discord's Policies</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Hey! we
+                                                        wanted to let you know that we are updating our
+                                                        Te...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!">
+                                                      </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    Feb 9, 9:05 PM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-danger fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                        <tr class="position-relative">
+                                            <td class="ps-3">
+                                                <input class="form-check-input position-relative z-2" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <button class="btn p-0 text-warning fs-16 flex-shrink-0"><i
+                                                        class="ti ti-star-filled"></i></button>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img alt="user avatar" class="avatar-xs rounded-circle"
+                                                        src="/images/brands/linkedin.svg" />
+                                                    <h5 class="fs-14 mb-0 fw-medium">
+                                                        <a class="link-reset text-truncate" href="#!">Linkedin</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a aria-controls="email-details-modal"
+                                                    class="link-reset text-truncate fs-14 fw-medium stretched-link"
+                                                    data-bs-toggle="modal" href="#email-details-modal" role="button">New
+                                                    job similar to UI/UX</a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="fs-14 text-muted text-truncate mb-0"> Jobs
+                                                        similar to UI/UX Designer at St Trinity Property group
+                                                        and s...</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="link-reset text-truncate text-nowrap" href="#!"> <i
+                                                        class="ti ti-paperclip"></i> 4 </a>
+                                            </td>
+                                            <td>
+                                                <p class="fs-12 text-muted mb-0 text-end text-truncate">
+                                                    May 17, 3:45 PM
+                                                </p>
+                                            </td>
+                                            <td class="pe-3">
+                                                <iconify-icon class="text-success fs-16 ms-2 align-middle"
+                                                    icon="solar:bolt-circle-bold-duotone"></iconify-icon>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Mail Details modal -->
+        <div aria-hidden="true" aria-labelledby="email-details-modalLabel" class="modal fade" id="email-details-modal"
+            role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-fullscreen-lg-down">
+                <div class="modal-content">
+                    <div class="modal-header d-flex flex-wrap gap-2 align-items-start">
+                        <img alt="placeholder image" class="me-2 rounded-circle" height="40"
+                            src="/images/users/avatar-2.jpg" />
+                        <div class="flex-grow-1">
+                            <h6 class="fs-16">Steven Smith</h6>
+                            <p class="text-muted mb-0">From: jonathan@domain.com</p>
+                        </div>
+                        <div>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="fs-18">Your elite author Graphic Optimization reward is ready!</h5>
+                        <hr />
+                        <p>Hi Coderthemes!</p>
+                        <p>Clicking ‘Order Service’ on the right-hand side of the above page will present you
+                            with an order page. This service has the following Briefing Guidelines that will
+                            need to be filled before placing your order:</p>
+                        <ol>
+                            <li>Your design preferences (Color, style, shapes, Fonts, others)</li>
+                            <li>Tell me, why is your item different?</li>
+                            <li>Do you want to bring up a specific feature of your item? If yes, please tell me
+                            </li>
+                            <li>Do you have any preference or specific thing you would like to change or improve
+                                on your item page?
+                            </li>
+                            <li>Do you want to include your item's or your provider's logo on the page? if yes,
+                                please send it to me in vector format (Ai or EPS)
+                            </li>
+                            <li>Please provide me with the copy or text to display</li>
+                        </ol>
+                        <p>Filling in this form with the above information will ensure that they will be able to
+                            start work quickly.</p>
+                        <p>You can complete your order by putting your coupon code into the Promotional code box
+                            and clicking ‘Apply Coupon’.</p>
+                        <p><b>Best,</b> <br /> Graphic Studio</p>
+                        <hr />
+                        <h5 class="mb-3">Attachments</h5>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-1 shadow-none border border-light">
+                                    <div class="p-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <div class="avatar-lg">
+                                                    <span class="avatar-title bg-soft-primary text-primary rounded">
+                                                        .ZIP
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col ps-0">
+                                                <a class="text-muted fw-bold"
+                                                    href="javascript:void(0);">Greeva-admin-design.zip</a>
+                                                <p class="mb-0">2.3 MB</p>
+                                            </div>
+                                            <div class="col-auto">
+                                                <!-- Button -->
+                                                <a class="btn btn-link btn-lg text-muted" href="javascript:void(0);">
+                                                    <i class="ti ti-download"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-xl-6">
+                                <div class="card mb-1 shadow-none border border-light">
+                                    <div class="p-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <img alt="file-image" class="avatar-lg rounded"
+                                                    src="/images/brands/amazon.svg" />
+                                            </div>
+                                            <div class="col ps-0">
+                                                <a class="text-muted fw-bold"
+                                                    href="javascript:void(0);">Dashboard-design.jpg</a>
+                                                <p class="mb-0">3.25 MB</p>
+                                            </div>
+                                            <div class="col-auto">
+                                                <!-- Button -->
+                                                <a class="btn btn-link btn-lg text-muted" href="javascript:void(0);">
+                                                    <i class="ti ti-download"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                    </div>
+                    <div class="modal-footer gap-1 py-2">
+                        <button class="btn btn-primary" data-bs-target="#email-compose-modal" data-bs-toggle="modal"><i
+                                class="align-text-bottom me-1 ti ti-arrow-back-up"></i>
+                            Reply
+                        </button>
+                        <button class="btn btn-primary" data-bs-target="#email-compose-modal" data-bs-toggle="modal"><i
+                                class="align-text-bottom me-1 ti ti-arrow-big-right"></i>
+                            Forward
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Mail Compose Modal -->
+        <div aria-hidden="true" aria-labelledby="email-compose-modalLabel" class="modal fade" id="email-compose-modal"
+            role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header py-2">
+                        <h4 class="modal-title" id="email-compose-modalLabel">New Message</h4>
+                        <button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-2">
+                                <label class="form-label" for="msgto">To</label>
+                                <input class="form-control" id="msgto" placeholder="Example@email.com" type="text" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="mailsubject">Subject</label>
+                                <input class="form-control" id="mailsubject" placeholder="Your subject" type="text" />
+                            </div>
+                            <div>
+                                <label class="form-label">Message</label>
+                                <div id="mail-compose" style="height: 150px;">
+                                    <p>Writing something...</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer py-2">
+                        <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Send
+                            Message
+                        </button>
+                        <button class="btn btn-light" data-bs-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </th:block>
+
+    <th:block layout:fragment="javascripts">
+        <script src="/vendor/quill/quill.min.js"></script>
+        <script src="/js/pages/apps-email.js"></script>
+    </th:block>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Maintenance Page')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
+                    <a class="auth-brand mb-3" href="/">
+                        <img alt="dark logo" class="logo-dark" height="26" src="/images/logo-dark.png"/>
+                        <img alt="logo light" class="logo-light" height="26" src="/images/logo.png"/>
+                    </a>
+                    <div>
+                        <h3 class="fw-semibold text-dark">Ooop's ! </h3>
+                    </div>
+                    <img alt="" class="img-fluid mt-3" height="320" src="/images/png/maintenance.png"/>
+                    <h5 class="fw-semibold my-3 fs-20 text-dark lh-base">We are under scheduled maintenance</h5>
+                    <a class="btn btn-primary fw-medium" href="/">Contact Site Owner</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{partials/footer-scripts :: footer-scripts}"></th:block>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

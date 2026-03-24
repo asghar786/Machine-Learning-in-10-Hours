@@ -1,0 +1,56 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Lock Screen')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-4 mb-0">
+                    <a class="auth-brand mb-4" href="/">
+                        <img alt="dark logo" class="logo-dark" height="26" src="/images/logo-dark.png"/>
+                        <img alt="logo light" class="logo-light" height="26" src="/images/logo.png"/>
+                    </a>
+                    <div class="text-center">
+                        <img alt="" class="avatar-xl rounded-circle img-thumbnail" src="/images/users/avatar-1.jpg"/>
+                        <div class="mt-2 mb-3">
+                            <h4 class="fw-semibold text-dark">Hi ! Dhanoo K.</h4>
+                            <p class="mb-0 fst-italic">Please input your password to access the screen. </p>
+                        </div>
+                    </div>
+                    <form action="/" class="text-start mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="lock-password">Enter Password</label>
+                            <input class="form-control" id="lock-password" name="lock-password" placeholder="Password"
+                                   type="password"/>
+                        </div>
+                        <div class="mb-2 d-grid">
+                            <button class="btn btn-primary fw-semibold" type="submit">Access to Screen</button>
+                        </div>
+                    </form>
+                    <p class="text-muted fs-14 mb-4">Back To <a class="fw-semibold text-danger ms-1" href="/auth/login">Login
+                        !</a></p>
+                    <p class="mt-auto mb-0">
+                        <script>document.write(new Date().getFullYear())</script>
+                        © Greeva - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{partials/footer-scripts :: footer-scripts}"></th:block>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

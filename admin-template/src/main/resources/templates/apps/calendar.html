@@ -1,0 +1,114 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Calendar')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Calendar', null)}"></th:block>
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-primary w-100" id="btn-new-event">
+                        <i class="ti ti-plus me-2 align-middle"></i> Create New Event
+                    </button>
+                    <div class="mt-2" id="external-events">
+                        <p class="text-muted">Drag and drop your event or click in the calendar</p>
+                        <div class="external-event fc-event bg-success-subtle text-success"
+                             data-class="bg-success-subtle">
+                            <i class="ti ti-circle-filled me-2"></i>New Event Planning
+                        </div>
+                        <div class="external-event fc-event bg-info-subtle text-info" data-class="bg-info-subtle">
+                            <i class="ti ti-circle-filled me-2"></i>Meeting
+                        </div>
+                        <div class="external-event fc-event bg-warning-subtle text-warning"
+                             data-class="bg-warning-subtle">
+                            <i class="ti ti-circle-filled me-2"></i>Generating Reports
+                        </div>
+                        <div class="external-event fc-event bg-danger-subtle text-danger" data-class="bg-danger-subtle">
+                            <i class="ti ti-circle-filled me-2"></i>Create New theme
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col-->
+        <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+    <!--end row-->
+    <!-- Add New Event MODAL -->
+    <div class="modal fade" id="event-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="needs-validation" id="forms-event" name="event-form" novalidate="">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">
+                            Create Event
+                        </h4>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <label class="control-label form-label" for="event-title">Event Name</label>
+                                    <input class="form-control" id="event-title" name="title"
+                                           placeholder="Insert Event Name" required="" type="text"/>
+                                    <div class="invalid-feedback">Please provide a valid event name</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <label class="control-label form-label" for="event-category">Category</label>
+                                    <select class="form-select" id="event-category" name="category" required="">
+                                        <option value="bg-primary">Blue</option>
+                                        <option value="bg-secondary">Gray Dark</option>
+                                        <option value="bg-success">Green</option>
+                                        <option value="bg-info">Cyan</option>
+                                        <option value="bg-warning">Yellow</option>
+                                        <option value="bg-danger">Red</option>
+                                        <option value="bg-dark">Dark</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a valid event category</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <button class="btn btn-danger" id="btn-delete-event" type="button">
+                                Delete
+                            </button>
+                            <button class="btn btn-light ms-auto" data-bs-dismiss="modal" type="button">
+                                Close
+                            </button>
+                            <button class="btn btn-primary" id="btn-save-event" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- end modal-content-->
+        </div>
+        <!-- end modal dialog-->
+    </div>
+    <!-- end modal-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/fullcalendar/index.global.min.js"></script>
+    <script src="/js/pages/apps-calendar.js"></script>
+</th:block>
+</body>
+
+</html>

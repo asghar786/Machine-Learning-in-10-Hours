@@ -1,0 +1,69 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Sign Up')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
+                    <a class="auth-brand mb-4" href="/">
+                        <img alt="dark logo" class="logo-dark" height="26" src="/images/logo-dark.png"/>
+                        <img alt="logo light" class="logo-light" height="26" src="/images/logo.png"/>
+                    </a>
+                    <h4 class="fw-semibold mb-2 fs-18">Welcome to Greeva Admin</h4>
+                    <p class="text-muted mb-4">Enter your name , email address and password to access account.</p>
+                    <form action="/" class="text-start mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="example-name">Your Name</label>
+                            <input class="form-control" id="example-name" name="example-name"
+                                   placeholder="Enter your name" type="text"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="example-email">Email</label>
+                            <input class="form-control" id="example-email" name="example-email"
+                                   placeholder="Enter your email" type="email"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="example-password">Password</label>
+                            <input class="form-control" id="example-password" placeholder="Enter your password"
+                                   type="password"/>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" id="checkbox-signin" type="checkbox"/>
+                                <label class="form-check-label" for="checkbox-signin">I agree to all <a
+                                        class="link-dark text-decoration-underline" href="#!">Terms & Condition</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary fw-semibold" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                    <p class="text-nuted fs-14 mb-4">Already have an account? <a class="fw-semibold text-danger ms-1"
+                                                                                 href="/auth/login">Login !</a></p>
+                    <p class="mt-auto mb-0">
+                        <script>document.write(new Date().getFullYear())</script>
+                        © Greeva - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{partials/footer-scripts :: footer-scripts}"></th:block>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

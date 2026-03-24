@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block layout:fragment="title-meta" />
+
+    <th:block layout:fragment="styles" />
+
+    <div th:replace="~{partials/head-css :: head-css}"></div>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div th:replace="~{partials/sidenav :: sidenav}"></div>
+
+        <div th:replace="~{partials/topbar :: topbar}"></div>
+
+        <div class="page-content">
+
+            <div class="page-container">
+
+                <th:block layout:fragment="content" th:remove="tag"></th:block>
+
+            </div>
+
+            <div th:replace="~{partials/footer :: footer}"></div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="~{partials/customizer :: customizer}"></div>
+
+    <div th:replace="~{partials/footer-scripts :: footer-scripts}"></div>
+
+    <th:block layout:fragment="javascripts" />
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Area Chart')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Area Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Basic Area Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#f34943" id="basic-area"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Spline Area</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#35b8e0" id="spline-area"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Area Chart - Datetime X-axis</h4>
+                    <div class="toolbar apex-toolbar">
+                        <button class="btn btn-sm btn-light" id="one_month">1M</button>
+                        <button class="btn btn-sm btn-light" id="six_months">6M</button>
+                        <button class="btn btn-sm btn-light active" id="one_year">1Y</button>
+                        <button class="btn btn-sm btn-light" id="ytd">YTD</button>
+                        <button class="btn btn-sm btn-light" id="all">ALL</button>
+                    </div>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#35b8e0" id="area-chart-datetime"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Area with Negative Values</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fbcc5c" id="area-chart-negative"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Selection - Github Style</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#7BD39A" id="area-chart-github"></div>
+                        <div class="pt-2 pb-2">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img alt="file-image" class="avatar-xs rounded" src="/images/users/avatar-2.jpg"/>
+                                </div>
+                                <div class="col ps-0">
+                                    <a class="text-muted fw-bold" href="javascript:void(0);">Coderthemes</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apex-charts" data-colors="#FF7F00" id="area-chart-github2"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Stacked Area</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#e3eaef" id="stacked-area"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Irregular TimeSeries</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1,#fa5c7c,#6b5eae" id="area-timeSeries"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Area Chart with Null values</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1" id="area-chart-nullvalues"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/vendor/moment/moment.js"></script>
+
+    <!-- Apex Chart Area Demo js -->
+    <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+    <script src="https://apexcharts.com/samples/assets/series1000.js"></script>
+    <script src="https://apexcharts.com/samples/assets/github-data.js"></script>
+    <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+    
+    <script src="/js/components/chart-apex-area.js"></script>
+</th:block>
+</body>
+
+</html>

@@ -1,0 +1,762 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="sidenav">
+
+    <!-- Sidenav Menu Start -->
+    <div class="sidenav-menu">
+        <!-- Brand Logo -->
+        <a class="logo" href="/">
+            <span class="logo-light">
+                <span class="logo-lg"><img alt="logo" src="/images/logo.png"/></span>
+                <span class="logo-sm"><img alt="small logo" src="/images/logo-sm.png"/></span>
+            </span>
+            <span class="logo-dark">
+                <span class="logo-lg"><img alt="dark logo" src="/images/logo-dark.png"/></span>
+                <span class="logo-sm"><img alt="small logo" src="/images/logo-sm.png"/></span>
+            </span>
+        </a>
+        <!-- Sidebar Hover Menu Toggle Button -->
+        <button class="button-sm-hover">
+            <i class="ti ti-circle align-middle"></i>
+        </button>
+        <!-- Full Sidebar Menu Close Button -->
+        <button class="button-close-fullsidebar">
+            <i class="ti ti-x align-middle"></i>
+        </button>
+        <div data-simplebar="">
+            <!--- Sidenav Menu -->
+            <ul class="side-nav">
+                <li class="side-nav-title">Navigation</li>
+                <li class="side-nav-item">
+                    <a class="side-nav-link" href="/">
+                        <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                        <span class="menu-text"> Dashboard </span>
+                        <span class="badge bg-success rounded-pill">5</span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a class="side-nav-link" href="/apps/calendar">
+                        <span class="menu-icon"><i class="ti ti-calendar"></i></span>
+                        <span class="menu-text"> Calendar </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a class="side-nav-link" href="/apps/email">
+                        <span class="menu-icon"><i class="ti ti-inbox"></i></span>
+                        <span class="menu-text"> Email </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a class="side-nav-link" href="/apps/file-manager">
+                        <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                        <span class="menu-text"> File Manager </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarInvoice" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarInvoice">
+                        <span class="menu-icon"><i class="ti ti-file-invoice"></i></span>
+                        <span class="menu-text"> Invoice</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarInvoice">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/apps/invoices">
+                                    <span class="menu-text">Invoices</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/apps/invoice-details">
+                                    <span class="menu-text">View Invoice</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/apps/invoice-create">
+                                    <span class="menu-text">Create Invoice</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarPages" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarPages">
+                        <span class="menu-icon"><i class="ti ti-files"></i></span>
+                        <span class="menu-text"> Pages </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarPages">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/starter">
+                                    <span class="menu-text">Starter Page</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/pricing">
+                                    <span class="menu-text">Pricing</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/faq">
+                                    <span class="menu-text">FAQ</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/maintenance">
+                                    <span class="menu-text">Maintenance</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/timeline">
+                                    <span class="menu-text">Timeline</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/coming-soon">
+                                    <span class="menu-text">Coming Soon</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/pages/terms-conditions">
+                                    <span class="menu-text">Terms & Conditions</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarPagesAuth" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarPagesAuth">
+                        <span class="menu-icon"><i class="ti ti-lock"></i></span>
+                        <span class="menu-text"> Auth Pages </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarPagesAuth">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/login">
+                                    <span class="menu-text">Login</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/register">
+                                    <span class="menu-text">Register</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/logout">
+                                    <span class="menu-text">Logout</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/recoverpw">
+                                    <span class="menu-text">Recover Password</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/createpw">
+                                    <span class="menu-text">Create Password</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/lock-screen">
+                                    <span class="menu-text">Lock Screen</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/confirm-mail">
+                                    <span class="menu-text">Confirm Mail</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/auth/login-pin">
+                                    <span class="menu-text">Login with PIN</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarPagesError" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarPagesError">
+                        <span class="menu-icon"><i class="ti ti-server-2"></i></span>
+                        <span class="menu-text"> Error Pages </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarPagesError">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/401">
+                                    <span class="menu-text">401 Unauthorized</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/400">
+                                    <span class="menu-text">400 Bad Request</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/403">
+                                    <span class="menu-text">403 Forbidden</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/404">
+                                    <span class="menu-text">404 Not Found</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/500">
+                                    <span class="menu-text">500 Internal Server</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/service-unavailable">
+                                    <span class="menu-text">Service Unavailable</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/error/404-alt">
+                                    <span class="menu-text">Error 404 Alt</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-title mt-2">
+                    More
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarLayouts" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarLayouts">
+                        <span class="menu-icon"><i class="ti ti-layout"></i></span>
+                        <span class="menu-text"> Layouts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLayouts">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/horizontal" target="_blank">Horizontal</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/detached" target="_blank">Detached</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/full" target="_blank">Full View</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/fullscreen" target="_blank">Fullscreen View</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/hover" target="_blank">Hover Menu</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/compact" target="_blank">Compact</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/layouts/icon-view" target="_blank">Icon View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarMultiLevel" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarMultiLevel">
+                        <span class="menu-icon"><i class="ti ti-box-multiple-3"></i></span>
+                        <span class="menu-text"> Multi Level </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarMultiLevel">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a aria-controls="sidebarSecondLevel" aria-expanded="false" class="side-nav-link"
+                                   data-bs-toggle="collapse" href="#sidebarSecondLevel">
+                                    <span class="menu-text"> Second Level </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarSecondLevel">
+                                    <ul class="sub-menu">
+                                        <li class="side-nav-item">
+                                            <a class="side-nav-link" href="javascript: void(0);">
+                                                <span class="menu-text">Item 1</span>
+                                            </a>
+                                        </li>
+                                        <li class="side-nav-item">
+                                            <a class="side-nav-link" href="javascript: void(0);">
+                                                <span class="menu-text">Item 2</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="side-nav-item">
+                                <a aria-controls="sidebarThirdLevel" aria-expanded="false" class="side-nav-link"
+                                   data-bs-toggle="collapse" href="#sidebarThirdLevel">
+                                    <span class="menu-text"> Third Level </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarThirdLevel">
+                                    <ul class="sub-menu">
+                                        <li class="side-nav-item">
+                                            <a class="side-nav-link" href="javascript: void(0);">Item 1</a>
+                                        </li>
+                                        <li class="side-nav-item">
+                                            <a aria-controls="sidebarFourthLevel" aria-expanded="false"
+                                               class="side-nav-link" data-bs-toggle="collapse"
+                                               href="#sidebarFourthLevel">
+                                                <span class="menu-text"> Item 2 </span>
+                                                <span class="menu-arrow"></span>
+                                            </a>
+                                            <div class="collapse" id="sidebarFourthLevel">
+                                                <ul class="sub-menu">
+                                                    <li class="side-nav-item">
+                                                        <a class="side-nav-link" href="javascript: void(0);">
+                                                            <span class="menu-text">Item 2.1</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="side-nav-item">
+                                                        <a class="side-nav-link" href="javascript: void(0);">
+                                                            <span class="menu-text">Item 2.2</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-title mt-2">Components</li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarBaseUI" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarBaseUI">
+                        <span class="menu-icon"><i class="ti ti-brightness"></i></span>
+                        <span class="menu-text"> Base UI </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarBaseUI">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/accordions">
+                                    <span class="menu-text">Accordions</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/alerts">
+                                    <span class="menu-text">Alerts</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/avatars">
+                                    <span class="menu-text">Avatars</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/badges">
+                                    <span class="menu-text">Badges</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/breadcrumb">
+                                    <span class="menu-text">Breadcrumb</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/buttons">
+                                    <span class="menu-text">Buttons</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/cards">
+                                    <span class="menu-text">Cards</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/carousel">
+                                    <span class="menu-text">Carousel</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/collapse">
+                                    <span class="menu-text">Collapse</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/dropdowns">
+                                    <span class="menu-text">Dropdowns</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/ratios">
+                                    <span class="menu-text">Ratios</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/grid">
+                                    <span class="menu-text">Grid</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/links">
+                                    <span class="menu-text">Links</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/list-group">
+                                    <span class="menu-text">List Group</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/modals">
+                                    <span class="menu-text">Modals</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/notifications">
+                                    <span class="menu-text">Notifications</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/offcanvas">
+                                    <span class="menu-text">Offcanvas</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/placeholders">
+                                    <span class="menu-text">Placeholders</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/pagination">
+                                    <span class="menu-text">Pagination</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/popovers">
+                                    <span class="menu-text">Popovers</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/progress">
+                                    <span class="menu-text">Progress</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/scrollspy">
+                                    <span class="menu-text">Scrollspy</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/spinners">
+                                    <span class="menu-text">Spinners</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/tabs">
+                                    <span class="menu-text">Tabs</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/tooltips">
+                                    <span class="menu-text">Tooltips</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/typography">
+                                    <span class="menu-text">Typography</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/ui/utilities">
+                                    <span class="menu-text">Utilities</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarExtendedUI" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarExtendedUI">
+                        <span class="menu-icon"><i class="ti ti-alien"></i></span>
+                        <span class="menu-text"> Extended UI </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarExtendedUI">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/extended/dragula">
+                                    <span class="menu-text">Dragula</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/extended/sweetalerts">
+                                    <span class="menu-text">Sweet Alerts</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/extended/ratings">
+                                    <span class="menu-text">Ratings</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/extended/scrollbar">
+                                    <span class="menu-text">Scrollbar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarIcons" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarIcons">
+                        <span class="menu-icon"><i class="ti ti-leaf"></i></span>
+                        <span class="menu-text"> Icons </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarIcons">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/icons/tabler">
+                                    <span class="menu-text">Tabler</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/icons/solar">
+                                    <span class="menu-text">Solar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarCharts" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarCharts">
+                        <span class="menu-icon"><i class="ti ti-chart-arcs"></i></span>
+                        <span class="menu-text"> Charts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarCharts">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-area">
+                                    <span class="menu-text">Area</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-bar">
+                                    <span class="menu-text">Bar</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-bubble">
+                                    <span class="menu-text">Bubble</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-candlestick">
+                                    <span class="menu-text">Candlestick</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-column">
+                                    <span class="menu-text">Column</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-heatmap">
+                                    <span class="menu-text">Heatmap</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-line">
+                                    <span class="menu-text">Line</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-mixed">
+                                    <span class="menu-text">Mixed</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-timeline">
+                                    <span class="menu-text">Timeline</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-boxplot">
+                                    <span class="menu-text">Boxplot</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-treemap">
+                                    <span class="menu-text">Treemap</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-pie">
+                                    <span class="menu-text">Pie</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-radar">
+                                    <span class="menu-text">Radar</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-radialbar">
+                                    <span class="menu-text">RadialBar</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-scatter">
+                                    <span class="menu-text">Scatter</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-polar-area">
+                                    <span class="menu-text">Polar Area</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/charts/apex-sparklines">
+                                    <span class="menu-text">Sparklines</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarForms" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarForms">
+                        <span class="menu-icon"><i class="ti ti-forms"></i></span>
+                        <span class="menu-text"> Forms </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarForms">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/elements">
+                                    <span class="menu-text">Basic Elements</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/inputmask">
+                                    <span class="menu-text">Inputmask</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/picker">
+                                    <span class="menu-text">Picker</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/select">
+                                    <span class="menu-text">Select</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/range-slider">
+                                    <span class="menu-text">Range Slider</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/validation">
+                                    <span class="menu-text">Validation</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/wizard">
+                                    <span class="menu-text">Wizard</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/fileuploads">
+                                    <span class="menu-text">File Uploads</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/editors">
+                                    <span class="menu-text">Editors</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/form/layouts">
+                                    <span class="menu-text">Layouts</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarTables" aria-expanded="false" class="side-nav-link"
+                       data-bs-toggle="collapse" href="#sidebarTables">
+                        <span class="menu-icon"><i class="ti ti-table"></i></span>
+                        <span class="menu-text"> Tables </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarTables">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/tables/basic">
+                                    <span class="menu-text">Basic Tables</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/tables/gridjs">
+                                    <span class="menu-text">Gridjs Tables</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/tables/datatable">
+                                    <span class="menu-text">Datatable Tables</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a aria-controls="sidebarMaps" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse"
+                       href="#sidebarMaps">
+                        <span class="menu-icon"><i class="ti ti-map-pin"></i></span>
+                        <span class="menu-text"> Maps </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarMaps">
+                        <ul class="sub-menu">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/maps/google">
+                                    <span class="menu-text">Google Maps</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/maps/vector">
+                                    <span class="menu-text">Vector Maps</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="/maps/leaflet">
+                                    <span class="menu-text">Leaflet Maps</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <!-- Help Box -->
+            <div class="help-box text-center">
+                <h5 class="fw-semibold fs-16">Unlimited Access</h5>
+                <p class="mb-3 text-muted">Upgrade to plan to get access to unlimited reports</p>
+                <a class="btn btn-danger btn-sm" href="javascript: void(0);">Upgrade</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- Sidenav Menu End -->
+
+</th:block>
+
+</html>

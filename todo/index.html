@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Dashboard — ML in 10 Hours</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#eff6ff', 500:'#3b82f6', 600:'#2563eb', 700:'#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .priority-high   { border-left: 4px solid #ef4444; }
+    .priority-medium { border-left: 4px solid #f59e0b; }
+    .priority-low    { border-left: 4px solid #22c55e; }
+    .fade-in { animation: fadeIn .25s ease-in; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    .modal-bg { backdrop-filter: blur(4px); }
+    #logPanel { font-family: 'Courier New', monospace; font-size: 0.75rem; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+<!-- ===== HEADER ===== -->
+<header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10 shadow-lg">
+  <div class="flex items-center gap-3">
+    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">ML</div>
+    <div>
+      <h1 class="text-base font-semibold text-white leading-tight">Task Dashboard</h1>
+      <p class="text-xs text-slate-400">Machine Learning in 10 Hours</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <span id="autoRefreshBadge" class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded-full flex items-center gap-1">
+      <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> Auto-refresh
+    </span>
+    <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-1.5">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Add Task
+    </button>
+  </div>
+</header>
+
+<!-- ===== STATS BAR ===== -->
+<div class="bg-slate-800 border-b border-slate-700 px-6 py-3 grid grid-cols-2 sm:grid-cols-4 gap-3" id="statsBar">
+  <div class="bg-slate-700 rounded-lg p-3 text-center">
+    <div class="text-2xl font-bold text-white" id="statTotal">—</div>
+    <div class="text-xs text-slate-400 mt-0.5">Total</div>
+  </div>
+  <div class="bg-slate-700 rounded-lg p-3 text-center">
+    <div class="text-2xl font-bold text-yellow-400" id="statPending">—</div>
+    <div class="text-xs text-slate-400 mt-0.5">Pending</div>
+  </div>
+  <div class="bg-slate-700 rounded-lg p-3 text-center">
+    <div class="text-2xl font-bold text-blue-400" id="statInProgress">—</div>
+    <div class="text-xs text-slate-400 mt-0.5">In Progress</div>
+  </div>
+  <div class="bg-slate-700 rounded-lg p-3 text-center">
+    <div class="text-2xl font-bold text-green-400" id="statCompleted">—</div>
+    <div class="text-xs text-slate-400 mt-0.5">Completed</div>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+
+  <!-- Task List -->
+  <div class="flex-1">
+
+    <!-- Filter & Sort bar -->
+    <div class="flex flex-wrap items-center gap-2 mb-4">
+      <div class="flex bg-slate-800 rounded-lg p-1 gap-1 border border-slate-700">
+        <button onclick="setFilter('all')"       id="f-all"         class="filter-btn active text-xs px-3 py-1.5 rounded-md font-medium transition-colors">All</button>
+        <button onclick="setFilter('pending')"   id="f-pending"     class="filter-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">Pending</button>
+        <button onclick="setFilter('in_progress')" id="f-in_progress" class="filter-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">In Progress</button>
+        <button onclick="setFilter('completed')" id="f-completed"   class="filter-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">Completed</button>
+      </div>
+      <div class="flex bg-slate-800 rounded-lg p-1 gap-1 border border-slate-700">
+        <button onclick="setPriority('all')"    id="p-all"    class="pri-btn active text-xs px-3 py-1.5 rounded-md font-medium transition-colors">All Priority</button>
+        <button onclick="setPriority('high')"   id="p-high"   class="pri-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">🔴 High</button>
+        <button onclick="setPriority('medium')" id="p-medium" class="pri-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">🟡 Medium</button>
+        <button onclick="setPriority('low')"    id="p-low"    class="pri-btn text-xs px-3 py-1.5 rounded-md font-medium transition-colors text-slate-400">🟢 Low</button>
+      </div>
+      <button onclick="loadTasks()" class="ml-auto text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Refresh
+      </button>
+    </div>
+
+    <!-- Task Cards -->
+    <div id="taskList" class="space-y-3">
+      <div class="text-center text-slate-500 py-12">Loading tasks…</div>
+    </div>
+  </div>
+
+  <!-- Log Panel -->
+  <div class="lg:w-80 xl:w-96 flex flex-col">
+    <div class="bg-slate-800 rounded-xl border border-slate-700 flex flex-col h-full min-h-72">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-700">
+        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Activity Log
+        </h2>
+        <button onclick="loadLogs()" class="text-xs text-slate-500 hover:text-slate-300 transition-colors">↻ reload</button>
+      </div>
+      <div id="logPanel" class="flex-1 overflow-y-auto p-3 text-green-400 bg-slate-900 rounded-b-xl leading-relaxed max-h-[600px]">
+        Loading logs…
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== ADD / EDIT MODAL ===== -->
+<div id="modal" class="fixed inset-0 bg-black/60 modal-bg flex items-center justify-center z-50 hidden">
+  <div class="bg-slate-800 rounded-2xl w-full max-w-lg mx-4 shadow-2xl border border-slate-700 fade-in">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-700">
+      <h2 id="modalTitle" class="text-base font-semibold text-white">Add Task</h2>
+      <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form id="taskForm" onsubmit="submitTask(event)" class="px-6 py-5 space-y-4">
+      <input type="hidden" id="editId" />
+      <div>
+        <label class="text-xs font-medium text-slate-400 block mb-1.5">Title *</label>
+        <input id="fTitle" type="text" required placeholder="Task title…"
+          class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-500" />
+      </div>
+      <div>
+        <label class="text-xs font-medium text-slate-400 block mb-1.5">Description</label>
+        <textarea id="fDesc" rows="3" placeholder="Details, acceptance criteria…"
+          class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 resize-none placeholder-slate-500"></textarea>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-medium text-slate-400 block mb-1.5">Priority</label>
+          <select id="fPriority" class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+            <option value="high">🔴 High</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="low">🟢 Low</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-400 block mb-1.5">Due Date</label>
+          <input id="fDue" type="date"
+            class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500" />
+        </div>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-slate-400 block mb-1.5">Notes</label>
+        <input id="fNotes" type="text" placeholder="Optional notes…"
+          class="w-full bg-slate-700 border border-slate-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 placeholder-slate-500" />
+      </div>
+      <div class="flex items-center gap-2">
+        <input id="fAuto" type="checkbox" class="w-4 h-4 rounded bg-slate-700 border-slate-600 text-blue-500 focus:ring-blue-500" />
+        <label for="fAuto" class="text-xs text-slate-400">Auto-complete (worker marks done automatically)</label>
+      </div>
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal()" class="text-sm px-4 py-2 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors">Cancel</button>
+        <button type="submit" id="submitBtn" class="text-sm px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors">Add Task</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== CONFIRM MODAL ===== -->
+<div id="confirmModal" class="fixed inset-0 bg-black/60 modal-bg flex items-center justify-center z-50 hidden">
+  <div class="bg-slate-800 rounded-2xl w-full max-w-sm mx-4 shadow-2xl border border-slate-700 fade-in">
+    <div class="px-6 py-5">
+      <h3 class="text-base font-semibold text-white mb-2" id="confirmTitle">Confirm</h3>
+      <p class="text-sm text-slate-400" id="confirmMsg">Are you sure?</p>
+    </div>
+    <div class="flex gap-3 px-6 pb-5 justify-end">
+      <button onclick="closeConfirm()" class="text-sm px-4 py-2 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors">Cancel</button>
+      <button id="confirmOk" class="text-sm px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-medium transition-colors">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+  <div id="toastMsg" class="bg-slate-700 text-white text-sm px-4 py-3 rounded-xl shadow-xl border border-slate-600 max-w-xs fade-in"></div>
+</div>
+
+<script>
+// ===================== STATE =====================
+const API = 'api.php';
+let allTasks   = [];
+let filterStatus   = 'all';
+let filterPriority = 'all';
+let refreshTimer;
+
+// ===================== BOOT =====================
+document.addEventListener('DOMContentLoaded', () => {
+  loadTasks();
+  loadLogs();
+  startAutoRefresh();
+  // Close modal on backdrop click
+  document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+  document.getElementById('confirmModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeConfirm(); });
+  // Keyboard: Escape closes modals
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeConfirm(); } });
+});
+
+function startAutoRefresh() {
+  clearInterval(refreshTimer);
+  refreshTimer = setInterval(() => { loadTasks(); loadLogs(); }, 30000); // every 30s
+}
+
+// ===================== API CALLS =====================
+async function api(params, body = null) {
+  const url = `${API}?action=${params}`;
+  const opts = body
+    ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+    : { method: 'GET' };
+  const res  = await fetch(url, opts);
+  return res.json();
+}
+
+async function loadTasks() {
+  try {
+    const r = await api('list');
+    if (r.ok) { allTasks = r.data.tasks; renderTasks(); updateStats(); }
+  } catch (e) { showToast('Failed to load tasks', 'error'); }
+}
+
+async function loadLogs() {
+  try {
+    const r = await api('logs&lines=80');
+    if (r.ok) {
+      const panel = document.getElementById('logPanel');
+      panel.innerHTML = r.data.logs
+        ? r.data.logs.split('\n').map(line => {
+            let cls = 'text-green-400';
+            if (line.includes('[ERROR]'))   cls = 'text-red-400';
+            if (line.includes('[STATUS]'))  cls = 'text-blue-400';
+            if (line.includes('[ADDED]'))   cls = 'text-emerald-400';
+            if (line.includes('[DELETED]')) cls = 'text-red-400';
+            if (line.includes('[SYSTEM]'))  cls = 'text-slate-400';
+            if (line.includes('[WORKER]'))  cls = 'text-purple-400';
+            return `<div class="${cls} py-0.5 border-b border-slate-800">${escHtml(line)}</div>`;
+          }).join('')
+        : '<div class="text-slate-500">No log entries yet.</div>';
+      panel.scrollTop = 0;
+    }
+  } catch (e) {}
+}
+
+async function updateStats() {
+  const counts = { total: 0, pending: 0, in_progress: 0, completed: 0 };
+  allTasks.forEach(t => { counts.total++; counts[t.status] = (counts[t.status] || 0) + 1; });
+  document.getElementById('statTotal').textContent      = counts.total;
+  document.getElementById('statPending').textContent    = counts.pending    || 0;
+  document.getElementById('statInProgress').textContent = counts.in_progress || 0;
+  document.getElementById('statCompleted').textContent  = counts.completed  || 0;
+}
+
+// ===================== RENDER =====================
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  let tasks = allTasks.filter(t => {
+    if (filterStatus   !== 'all' && t.status   !== filterStatus)   return false;
+    if (filterPriority !== 'all' && t.priority  !== filterPriority) return false;
+    return true;
+  });
+
+  if (!tasks.length) {
+    list.innerHTML = `<div class="text-center text-slate-500 py-12 flex flex-col items-center gap-3">
+      <svg class="w-12 h-12 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      <span>No tasks found</span>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = tasks.map(t => taskCard(t)).join('');
+}
+
+function taskCard(t) {
+  const priLabel  = { high:'🔴 High', medium:'🟡 Medium', low:'🟢 Low' }[t.priority] || t.priority;
+  const statLabel = { pending:'Pending', in_progress:'In Progress', completed:'Completed' }[t.status] || t.status;
+  const statCls   = { pending:'bg-yellow-900 text-yellow-300', in_progress:'bg-blue-900 text-blue-300', completed:'bg-green-900 text-green-300' }[t.status];
+  const isDone    = t.status === 'completed';
+  const due       = t.due_date ? `<span class="text-xs text-slate-500 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>${t.due_date}</span>` : '';
+
+  return `<div class="bg-slate-800 rounded-xl border border-slate-700 priority-${t.priority} p-4 fade-in ${isDone ? 'opacity-60' : ''}" id="card-${t.id}">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap mb-1.5">
+          <span class="text-xs font-medium ${statCls} px-2 py-0.5 rounded-full">${statLabel}</span>
+          <span class="text-xs text-slate-500">${priLabel}</span>
+          ${t.automated ? '<span class="text-xs bg-purple-900 text-purple-300 px-2 py-0.5 rounded-full">⚡ Auto</span>' : ''}
+          ${due}
+        </div>
+        <h3 class="font-medium text-white text-sm leading-tight ${isDone ? 'line-through text-slate-400' : ''}">${escHtml(t.title)}</h3>
+        ${t.description ? `<p class="text-xs text-slate-400 mt-1 leading-relaxed">${escHtml(t.description)}</p>` : ''}
+        ${t.notes ? `<p class="text-xs text-slate-500 mt-1 italic">${escHtml(t.notes)}</p>` : ''}
+      </div>
+      <!-- Actions -->
+      <div class="flex items-center gap-1 flex-shrink-0">
+        ${!isDone ? `
+        <button onclick="setStatus('${t.id}','${t.status === 'pending' ? 'in_progress' : 'completed'}')"
+          title="${t.status === 'pending' ? 'Start' : 'Complete'}"
+          class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-slate-600 text-slate-400 hover:text-green-400 transition-colors text-xs">
+          ${t.status === 'pending' ? '▶' : '✓'}
+        </button>` : `
+        <button onclick="setStatus('${t.id}','pending')" title="Reopen"
+          class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-slate-600 text-slate-400 hover:text-yellow-400 transition-colors text-xs">↩</button>`}
+        <button onclick="openEdit(${JSON.stringify(t).replace(/"/g,'&quot;')})" title="Edit"
+          class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-slate-600 text-slate-400 hover:text-blue-400 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </button>
+        <button onclick="confirmDelete('${t.id}','${escHtml(t.title)}')" title="Delete"
+          class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-slate-600 text-slate-400 hover:text-red-400 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===================== FILTERS =====================
+function setFilter(f) {
+  filterStatus = f;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('bg-blue-600', b.id === `f-${f}`);
+    b.classList.toggle('text-white',  b.id === `f-${f}`);
+    b.classList.toggle('text-slate-400', b.id !== `f-${f}`);
+  });
+  renderTasks();
+}
+function setPriority(p) {
+  filterPriority = p;
+  document.querySelectorAll('.pri-btn').forEach(b => {
+    b.classList.toggle('bg-blue-600', b.id === `p-${p}`);
+    b.classList.toggle('text-white',  b.id === `p-${p}`);
+    b.classList.toggle('text-slate-400', b.id !== `p-${p}`);
+  });
+  renderTasks();
+}
+
+// ===================== ACTIONS =====================
+async function setStatus(id, status) {
+  const r = await api('status', { id, status });
+  if (r.ok) { await loadTasks(); loadLogs(); showToast(`Marked as ${status.replace('_',' ')}`); }
+  else showToast(r.error, 'error');
+}
+
+async function deleteTask(id) {
+  const r = await api('delete', { id });
+  if (r.ok) { await loadTasks(); loadLogs(); showToast('Task deleted'); }
+  else showToast(r.error, 'error');
+}
+
+async function submitTask(e) {
+  e.preventDefault();
+  const id = document.getElementById('editId').value;
+  const body = {
+    title:       document.getElementById('fTitle').value,
+    description: document.getElementById('fDesc').value,
+    priority:    document.getElementById('fPriority').value,
+    due_date:    document.getElementById('fDue').value || null,
+    notes:       document.getElementById('fNotes').value,
+    automated:   document.getElementById('fAuto').checked,
+  };
+  const action = id ? 'update' : 'add';
+  if (id) body.id = id;
+  const r = await api(action, body);
+  if (r.ok) {
+    closeModal();
+    await loadTasks();
+    loadLogs();
+    showToast(id ? 'Task updated' : 'Task added');
+  } else showToast(r.error, 'error');
+}
+
+// ===================== MODAL =====================
+function openModal() {
+  document.getElementById('editId').value = '';
+  document.getElementById('modalTitle').textContent = 'Add Task';
+  document.getElementById('submitBtn').textContent  = 'Add Task';
+  document.getElementById('taskForm').reset();
+  document.getElementById('modal').classList.remove('hidden');
+  setTimeout(() => document.getElementById('fTitle').focus(), 50);
+}
+
+function openEdit(t) {
+  document.getElementById('editId').value   = t.id;
+  document.getElementById('modalTitle').textContent = 'Edit Task';
+  document.getElementById('submitBtn').textContent  = 'Save Changes';
+  document.getElementById('fTitle').value    = t.title;
+  document.getElementById('fDesc').value     = t.description || '';
+  document.getElementById('fPriority').value = t.priority;
+  document.getElementById('fDue').value      = t.due_date || '';
+  document.getElementById('fNotes').value    = t.notes || '';
+  document.getElementById('fAuto').checked   = !!t.automated;
+  document.getElementById('modal').classList.remove('hidden');
+  setTimeout(() => document.getElementById('fTitle').focus(), 50);
+}
+
+function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+// ===================== CONFIRM =====================
+let _confirmCb = null;
+function confirmDelete(id, title) {
+  document.getElementById('confirmTitle').textContent = 'Delete Task';
+  document.getElementById('confirmMsg').textContent   = `Delete "${title}"? This cannot be undone.`;
+  _confirmCb = () => deleteTask(id);
+  document.getElementById('confirmOk').onclick = () => { closeConfirm(); _confirmCb && _confirmCb(); };
+  document.getElementById('confirmModal').classList.remove('hidden');
+}
+function closeConfirm() { document.getElementById('confirmModal').classList.add('hidden'); }
+
+// ===================== TOAST =====================
+let _toastTimer;
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const msgEl = document.getElementById('toastMsg');
+  msgEl.textContent = msg;
+  msgEl.className   = `text-white text-sm px-4 py-3 rounded-xl shadow-xl border max-w-xs fade-in ${
+    type === 'error' ? 'bg-red-800 border-red-700' : 'bg-slate-700 border-slate-600'
+  }`;
+  toast.classList.remove('hidden');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+}
+
+// ===================== UTILS =====================
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

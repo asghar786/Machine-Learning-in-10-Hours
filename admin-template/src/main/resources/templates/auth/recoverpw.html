@@ -1,0 +1,51 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Reset Password')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <div class="auth-bg d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="card overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
+                    <a class="auth-brand mb-4" href="/">
+                        <img alt="dark logo" class="logo-dark" height="26" src="/images/logo-dark.png"/>
+                        <img alt="logo light" class="logo-light" height="26" src="/images/logo.png"/>
+                    </a>
+                    <h4 class="fw-semibold mb-2 fs-18">Reset Your Password</h4>
+                    <p class="text-muted mb-4">Please enter your email address to request a password reset.</p>
+                    <form action="/" class="text-start mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="example-email">Email</label>
+                            <input class="form-control" id="example-email" name="example-email"
+                                   placeholder="Enter your email" type="email"/>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary fw-semibold" type="submit">Reset Password</button>
+                        </div>
+                    </form>
+                    <p class="text-muted fs-14 mb-4">Back To <a class="fw-semibold text-danger ms-1" href="/auth/login">Login
+                        !</a></p>
+                    <p class="mt-auto mb-0">
+                        <script>document.write(new Date().getFullYear())</script>
+                        © Greeva - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{partials/footer-scripts :: footer-scripts}"></th:block>
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

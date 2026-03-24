@@ -1,0 +1,86 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Candlestick Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Candlestick Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Simple Candlestick Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fa5c7c" id="simple-candlestick"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Combo Candlestick Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fa5c7c" id="combo-candlestick"></div>
+                        <div class="apex-charts" data-colors="#6b5eae,#fbcc5c" id="combo-bar-candlestick"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Category X-Axis</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77,#fa5c7c,#6b5eae" id="x-axis-candlestick"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Candlestick with Line</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#31ce77,#fa5c7c" id="candlestick-with-line"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Apex Chart Candlestick Demo js -->
+    <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"></script>
+    
+    <script src="/js/components/chart-apex-candlestick.js"></script>
+</th:block>
+</body>
+
+</html>

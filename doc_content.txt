@@ -1,0 +1,860 @@
+MACHINE LEARNING IN 10 HOURS
+Comprehensive System & Course Development Document
+────────────────────────
+5 Sessions  |  2 Hours Each  |  Certification Upon Completion
+React 19.2  +  Laravel 12  +  MySQL 8  |  API-First Architecture
+Version 1.0  |  March 2026
+1. Executive Summary
+This document provides a complete technical and educational blueprint for "Machine Learning in 10 Hours" — an online certification course platform modeled after EdX. The system spans a React 19.2 frontend, a Laravel 12 API backend, and a MySQL 8 database, built API-first to support future mobile applications.
+The course is structured into 5 sessions of 2 hours each, covering the full spectrum of Machine Learning from foundational mathematics to production deployment. Each learner receives a unique, randomized exercise set (50% variation) ensuring academic integrity and personalized learning. On successful completion, a verifiable digital certificate is issued.
+Document Scope
+• Course design: 5 sessions, learning objectives, exercises, assessments
+• System architecture: API-first design, database schema, authentication
+• Frontend specification: React 19.2 component hierarchy, state management, UI/UX
+• Backend specification: Laravel 12 API endpoints, Eloquent models, queue jobs
+• Certificate system: PDF generation, QR verification, blockchain-ready design
+• Deployment & DevOps: Docker, CI/CD, environment configuration
+2. Course Overview & Structure
+2.1 Course Philosophy
+The course is designed on three core principles: Learn by Doing (60% practical, 40% theory), Progressive Complexity (each session builds on the last), and Real-World Relevance (all examples use real datasets — Titanic, MNIST, Boston Housing, IMDB, and custom tabular data).
+2.2 Session Overview
+Session
+Topic
+Key Concepts
+Duration
+01
+Foundations & Math
+Linear algebra, probability, Python ecosystem, NumPy, Pandas
+2 hours
+02
+Supervised Learning
+Regression, classification, decision trees, SVMs, evaluation
+2 hours
+03
+Unsupervised & Ensemble
+Clustering, PCA, random forests, gradient boosting, XGBoost
+2 hours
+04
+Neural Networks & Deep Learning
+Perceptrons, CNNs, RNNs, transformers, transfer learning
+2 hours
+05
+MLOps & Deployment
+Model serving, APIs, monitoring, cloud deployment, ethics
+2 hours
+2.3 Learning Outcomes
+Upon completing all 5 sessions, learners will be able to:
+Implement and evaluate supervised and unsupervised ML algorithms from scratch and using Scikit-learn
+Build, train, and fine-tune neural networks using PyTorch and TensorFlow/Keras
+Apply feature engineering, cross-validation, and hyperparameter tuning best practices
+Deploy ML models as REST APIs and integrate them into web applications
+Understand and apply ethical AI principles including bias detection and model explainability
+2.4 Prerequisites
+Basic Python programming (variables, loops, functions)
+High school level mathematics (algebra, basic statistics)
+No prior ML experience required
+SESSION 01
+Foundations of Machine Learning
+Mathematics  |  Python Ecosystem  |  Data Manipulation  |  2 Hours
+3.1 Session 1: Foundations (Hours 1–2)
+Learning Objectives
+Understand what ML is, its types, and real-world applications
+Review essential mathematics: linear algebra and probability
+Master the Python ML ecosystem: NumPy, Pandas, Matplotlib, Scikit-learn
+Load, explore, and clean a real dataset
+Hour 1: Concepts & Mathematics (0:00 – 1:00)
+Time
+Content
+0:00 – 0:15
+What is ML? Types: supervised, unsupervised, reinforcement. Real-world use cases.
+0:15 – 0:30
+Linear algebra essentials: vectors, matrices, dot products, matrix multiplication
+0:30 – 0:45
+Probability & statistics: distributions, mean, variance, Bayes theorem basics
+0:45 – 1:00
+The ML pipeline: data → features → model → predict → evaluate → iterate
+Hour 2: Python Hands-On (1:00 – 2:00)
+Time
+Content
+1:00 – 1:20
+NumPy: arrays, broadcasting, vectorized operations, random module
+1:20 – 1:40
+Pandas: DataFrames, read_csv, describe, value_counts, handling nulls
+1:40 – 2:00
+Matplotlib & Seaborn: histograms, scatter plots, correlation heatmaps
+Key Concepts Covered
+Supervised vs. unsupervised vs. reinforcement learning
+Feature (X) vs. label (y), training vs. test split
+The bias-variance tradeoff introduced conceptually
+Data types: numerical, categorical, ordinal, time-series
+EXERCISE: Session 1 — Standard Track (Group A)
+Dataset: Titanic (titanic.csv)
+1. Load the dataset and print shape, dtypes, and .describe()
+2. Calculate mean survival rate by passenger class (Pclass)
+3. Plot a histogram of Age with 20 bins
+4. Fill missing Age values with the median per Pclass
+5. Create a correlation heatmap of numeric columns
+Deliverable: Jupyter notebook (.ipynb) uploaded to the platform
+EXERCISE: Session 1 — Alternative Track (Group B — 50% variation)
+Dataset: Iris Flower Dataset
+1. Load iris dataset from sklearn.datasets and convert to DataFrame
+2. Calculate mean sepal length and petal width per species
+3. Plot a pair plot (scatter matrix) of all four features colored by species
+4. Identify and report any outliers using the IQR method
+5. Normalize all numeric columns using Min-Max scaling (manually, no sklearn)
+Deliverable: Jupyter notebook (.ipynb) uploaded to the platform
+PRO TIP
+The platform automatically assigns Group A or Group B at enrollment using a hash of the user ID. This ensures 50% split and prevents students from sharing solutions directly.
+Instructors can view both exercise tracks from the admin panel under Courses > Session > Exercises.
+SESSION 02
+Supervised Learning
+Regression  |  Classification  |  Model Evaluation  |  2 Hours
+3.2 Session 2: Supervised Learning (Hours 3–4)
+Learning Objectives
+Implement linear and logistic regression from scratch and with Scikit-learn
+Understand and apply decision trees and support vector machines
+Master evaluation metrics: accuracy, precision, recall, F1, AUC-ROC
+Perform cross-validation and hyperparameter tuning with GridSearchCV
+Hour 1: Regression (0:00 – 1:00)
+Time
+Content
+0:00 – 0:20
+Linear regression: cost function (MSE), gradient descent, OLS solution, R² score
+0:20 – 0:40
+Polynomial regression, regularization: Ridge (L2), Lasso (L1), ElasticNet
+0:40 – 1:00
+Hands-on: Boston Housing dataset, train/test split, evaluate RMSE and R²
+Hour 2: Classification (1:00 – 2:00)
+Time
+Content
+1:00 – 1:20
+Logistic regression, sigmoid function, binary & multiclass classification
+1:20 – 1:40
+Decision trees: Gini impurity, entropy, pruning, depth tuning
+1:40 – 2:00
+SVMs: hyperplane, margin, kernel trick (RBF, polynomial), C parameter
+Evaluation Metrics Deep Dive
+Confusion matrix: TP, TN, FP, FN — visual walkthrough
+Precision = TP/(TP+FP), Recall = TP/(TP+FN), F1 = harmonic mean
+ROC curve and AUC: when to use over accuracy
+Cross-validation: k-fold (k=5 or 10), stratified k-fold for imbalanced datasets
+EXERCISE: Session 2 — Standard Track (Group A)
+Dataset: diabetes.csv (Pima Indians Diabetes Dataset)
+1. Train a Logistic Regression model; report accuracy and confusion matrix
+2. Train a Decision Tree; tune max_depth from 2 to 10, plot validation curve
+3. Use GridSearchCV to find the best C for an SVM with RBF kernel
+4. Plot the ROC curve comparing all three models
+5. Identify the top 3 features by feature importance
+EXERCISE: Session 2 — Alternative Track (Group B — 50% variation)
+Dataset: heart_disease.csv (Cleveland Heart Disease Dataset)
+1. Train a Logistic Regression model with L2 regularization; report F1 score
+2. Implement a Decision Tree with entropy criterion; visualize the first 3 levels
+3. Train an SVM with linear and polynomial kernels; compare AUC scores
+4. Perform 5-fold cross-validation for each model; report mean ± std accuracy
+5. Build a basic feature selection pipeline using SelectKBest with chi2
+SESSION 03
+Unsupervised Learning & Ensemble Methods
+Clustering  |  PCA  |  Random Forests  |  XGBoost  |  2 Hours
+3.3 Session 3: Unsupervised & Ensemble (Hours 5–6)
+Learning Objectives
+Apply K-Means, DBSCAN, and hierarchical clustering
+Reduce dimensionality using PCA and t-SNE for visualization
+Understand bagging and boosting: Random Forest, AdaBoost, Gradient Boosting
+Train and tune XGBoost — the competition-winning algorithm
+Hour 1: Unsupervised Learning (0:00 – 1:00)
+Time
+Content
+0:00 – 0:20
+K-Means: centroid initialization, elbow method, silhouette score, limitations
+0:20 – 0:35
+DBSCAN: density-based clustering, eps and min_samples, outlier detection
+0:35 – 1:00
+PCA: eigenvectors, explained variance, 2D/3D visualization; t-SNE for MNIST
+Hour 2: Ensemble Methods (1:00 – 2:00)
+Time
+Content
+1:00 – 1:20
+Bagging and Random Forest: out-of-bag error, feature importance, n_estimators
+1:20 – 1:40
+Boosting: AdaBoost, Gradient Boosting (GBM), learning rate vs. tree count tradeoff
+1:40 – 2:00
+XGBoost: regularization, early stopping, SHAP values for explainability
+EXERCISE: Session 3 — Standard Track (Group A)
+Dataset: Mall Customers + Wine Quality
+1. Apply K-Means to Mall Customers (Annual Income vs. Spending Score); find optimal k
+2. Visualize clusters with DBSCAN; compare silhouette scores
+3. Apply PCA to Wine Quality; visualize first 2 components colored by quality
+4. Train Random Forest on Wine Quality; report OOB score and feature importance
+5. Train XGBoost with early stopping; compare to Random Forest with F1 macro
+EXERCISE: Session 3 — Alternative Track (Group B — 50% variation)
+Dataset: Online Retail + Credit Card Fraud
+1. Apply K-Means to transaction RFM features; identify high-value customer cluster
+2. Use t-SNE to visualize fraud vs. non-fraud in 2D after PCA pre-reduction
+3. Handle class imbalance with SMOTE; train Random Forest; compare AUC before/after
+4. Use XGBoost with scale_pos_weight for fraud detection; analyze top SHAP features
+5. Build a simple anomaly detection pipeline using Isolation Forest
+SESSION 04
+Neural Networks & Deep Learning
+Perceptrons  |  CNNs  |  RNNs  |  Transformers  |  2 Hours
+3.4 Session 4: Neural Networks & Deep Learning (Hours 7–8)
+Learning Objectives
+Build and train a neural network from scratch using NumPy
+Implement CNNs for image classification using PyTorch and Keras
+Understand RNNs, LSTMs, and sequence modeling for NLP
+Apply transfer learning with pre-trained models (ResNet, BERT)
+Hour 1: Neural Network Fundamentals (0:00 – 1:00)
+Time
+Content
+0:00 – 0:20
+Perceptron → MLP: activation functions (ReLU, sigmoid, softmax), forward pass
+0:20 – 0:40
+Backpropagation: chain rule, gradient descent, Adam optimizer, learning rate
+0:40 – 1:00
+Build MLP with PyTorch: nn.Module, DataLoader, training loop, loss curves
+Hour 2: CNNs, RNNs & Transfer Learning (1:00 – 2:00)
+Time
+Content
+1:00 – 1:20
+CNNs: convolution, pooling, feature maps; build LeNet-5 for MNIST
+1:20 – 1:40
+RNNs & LSTMs: vanishing gradient, sequence-to-sequence, sentiment analysis
+1:40 – 2:00
+Transfer learning: fine-tune ResNet18 on custom 5-class dataset; BERT for text
+Key Architecture Concepts
+Dropout and Batch Normalization: when and why to use them
+Overfitting diagnosis: training vs. validation loss gap
+Data augmentation for images: random crop, flip, color jitter
+Attention mechanism: self-attention, multi-head attention, positional encoding
+EXERCISE: Session 4 — Standard Track (Group A)
+Dataset: MNIST (digits)
+1. Build a 3-layer MLP in PyTorch; achieve >97% test accuracy
+2. Build a CNN (2 conv layers + 2 FC layers); achieve >99% test accuracy
+3. Apply dropout and batch norm; plot training/validation loss curves
+4. Fine-tune a pre-trained ResNet18 on CIFAR-10 (10 classes); report top-1 accuracy
+5. Visualize feature maps from the first convolutional layer for 5 test images
+EXERCISE: Session 4 — Alternative Track (Group B — 50% variation)
+Dataset: Fashion-MNIST + IMDB Reviews
+1. Build a CNN for Fashion-MNIST; experiment with batch size (32, 64, 128)
+2. Build an LSTM for IMDB sentiment; embed words with nn.Embedding, achieve >85% AUC
+3. Compare GRU vs. LSTM on the same IMDB task; report training time and accuracy
+4. Implement a simple attention mechanism over the LSTM hidden states
+5. Use BERT (bert-base-uncased via HuggingFace) for IMDB; fine-tune 1 epoch; compare
+SESSION 05
+MLOps, Deployment & Ethics
+Model Serving  |  APIs  |  Monitoring  |  Cloud  |  Ethics  |  2 Hours
+3.5 Session 5: MLOps & Deployment (Hours 9–10)
+Learning Objectives
+Serve an ML model as a REST API using FastAPI
+Containerize ML services with Docker and deploy to cloud
+Monitor model drift and implement retraining pipelines
+Apply responsible AI principles: fairness, bias, explainability, privacy
+Hour 1: Deployment & MLOps (0:00 – 1:00)
+Time
+Content
+0:00 – 0:20
+Save/load models: pickle, joblib, ONNX, TorchScript; versioning with MLflow
+0:20 – 0:40
+FastAPI model server: POST /predict endpoint, Pydantic validation, async handler
+0:40 – 1:00
+Docker: Dockerfile for ML service, docker-compose, environment variables
+Hour 2: Ethics & Final Assessment (1:00 – 2:00)
+Time
+Content
+1:00 – 1:20
+Model monitoring: data drift (Evidently AI), performance degradation alerts
+1:20 – 1:40
+Responsible AI: fairness metrics, SHAP/LIME for explainability, GDPR basics
+1:40 – 2:00
+Final project review, Q&A, certification exam (30 MCQs, 70% pass threshold)
+EXERCISE: Session 5 — Standard Track (Group A)
+Capstone: Deploy the best model from Session 2 or 3 as a production-grade API
+1. Save your best classifier using joblib with versioning (v1.0.0)
+2. Build a FastAPI app with /predict, /health, and /model-info endpoints
+3. Write a Dockerfile; build and run the container; test with curl or Postman
+4. Add SHAP explanations to the /predict response (top 3 contributing features)
+5. Write a brief fairness audit: does the model perform equally across gender/age groups?
+EXERCISE: Session 5 — Alternative Track (Group B — 50% variation)
+Capstone: Build an ML pipeline with drift detection and automated retraining
+1. Set up MLflow tracking server locally; log all parameters and metrics from Sessions 2-4
+2. Build a FastAPI server serving your Session 4 neural network (ONNX export)
+3. Simulate data drift by adding Gaussian noise; detect with Evidently AI report
+4. Implement a simple retraining trigger: if accuracy drops >5%, retrain automatically
+5. Deploy to a cloud provider (AWS EC2 or GCP Cloud Run) and provide a live URL
+4. Technology Stack
+4.1 Framework Versions (March 2026)
+Layer
+Technology
+Version
+Purpose
+Frontend
+React
+19.2
+Component UI, Server Components, concurrent rendering
+Frontend
+Vite
+6.x
+Build tool, HMR, optimized bundling
+Frontend
+TanStack Query
+5.x
+Server state, caching, background refetch
+Frontend
+Zustand
+5.x
+Client-side global state (auth, UI preferences)
+Frontend
+React Router
+7.x
+SPA routing, nested routes, loaders
+Frontend
+Tailwind CSS
+4.x
+Utility-first styling
+Frontend
+shadcn/ui
+Latest
+Accessible UI components built on Radix
+Backend
+Laravel
+12.x
+PHP API framework, Eloquent ORM, Queues
+Backend
+PHP
+8.4
+Runtime — required for Laravel 12
+Backend
+Laravel Sanctum
+4.x
+SPA authentication, API token management
+Backend
+Laravel Queue
+12.x
+Certificate generation, email dispatch
+Database
+MySQL
+8.0
+Primary relational database
+Database
+Redis
+7.x
+Session cache, queue driver, rate limiting
+ML Runtime
+Python
+3.12
+ML exercise evaluation, model demos
+ML Runtime
+FastAPI
+0.115
+ML model serving microservice
+DevOps
+Docker
+27.x
+Containerization of all services
+DevOps
+GitHub Actions
+N/A
+CI/CD pipeline
+4.2 Why API-First?
+The system is designed API-first, meaning all business logic is exposed via versioned REST endpoints before any UI is built. This architecture provides:
+Mobile app readiness: React Native or Flutter can consume the same API
+Third-party integrations: partner LMS systems can integrate via API keys
+Independent frontend/backend deployment and scaling
+Full Postman / OpenAPI (Swagger) documentation from day one
+5. Database Schema
+5.1 Core Tables
+users
+Column
+Type / Notes
+id
+BIGINT UNSIGNED — primary key, auto-increment
+name
+VARCHAR(255) — full name
+email
+VARCHAR(255) — unique, indexed
+password
+VARCHAR(255) — bcrypt hashed
+role
+ENUM('student','instructor','admin') — default: student
+exercise_group
+ENUM('A','B') — set on enrollment, hash(user_id) % 2
+email_verified_at
+TIMESTAMP nullable
+created_at / updated_at
+TIMESTAMPS
+courses
+Column
+Type / Notes
+id
+BIGINT UNSIGNED — primary key
+title
+VARCHAR(255)
+slug
+VARCHAR(255) — unique, URL-friendly
+description
+TEXT
+total_sessions
+TINYINT UNSIGNED — default: 5
+pass_threshold
+TINYINT UNSIGNED — default: 70 (%)
+is_published
+BOOLEAN — default: false
+created_at / updated_at
+TIMESTAMPS
+sessions (course_sessions)
+Column
+Type / Notes
+id
+BIGINT UNSIGNED
+course_id
+FK → courses.id
+session_number
+TINYINT — 1 through 5
+title
+VARCHAR(255)
+duration_minutes
+SMALLINT — default: 120
+video_url
+VARCHAR(500) — nullable
+content_json
+JSON — slides, notes, code snippets
+order
+TINYINT — for reordering
+exercises
+Column
+Type / Notes
+id
+BIGINT UNSIGNED
+session_id
+FK → course_sessions.id
+group
+ENUM('A','B') — which student group sees this
+title
+VARCHAR(255)
+description
+TEXT
+dataset_url
+VARCHAR(500) — link to downloadable CSV
+starter_code
+TEXT nullable — .ipynb JSON or Python snippet
+rubric_json
+JSON — scoring criteria per task
+max_score
+SMALLINT — default: 100
+submissions
+Column
+Type / Notes
+id
+BIGINT UNSIGNED
+user_id
+FK → users.id
+exercise_id
+FK → exercises.id
+file_path
+VARCHAR(500) — uploaded notebook path
+score
+DECIMAL(5,2) nullable — after grading
+feedback
+TEXT nullable
+status
+ENUM('pending','grading','graded','failed')
+submitted_at
+TIMESTAMP
+certificates
+Column
+Type / Notes
+id
+BIGINT UNSIGNED
+user_id
+FK → users.id
+course_id
+FK → courses.id
+certificate_uuid
+CHAR(36) — UUID v4, used in QR code URL
+final_score
+DECIMAL(5,2)
+issued_at
+TIMESTAMP
+pdf_path
+VARCHAR(500) — storage path
+revoked_at
+TIMESTAMP nullable — for revocation
+6. API Design (Laravel 12)
+6.1 API Versioning & Base URL
+All endpoints are versioned under /api/v1/. Laravel 12 route attributes are used for clean, annotation-based routing.
+Base URL:  https://api.ml10hours.com/api/v1
+Auth header: Authorization: Bearer {sanctum_token}
+6.2 Authentication Endpoints
+Method
+Endpoint
+Auth
+Description
+POST
+/auth/register
+Public
+Register new student, returns Sanctum token
+POST
+/auth/login
+Public
+Login, returns Sanctum token + user object
+POST
+/auth/logout
+Bearer
+Revoke current token
+GET
+/auth/me
+Bearer
+Get authenticated user profile
+POST
+/auth/forgot-password
+Public
+Send password reset email
+POST
+/auth/reset-password
+Public
+Reset password with token
+6.3 Course & Content Endpoints
+Method
+Endpoint
+Auth
+Description
+GET
+/courses
+Public
+List all published courses with metadata
+GET
+/courses/{slug}
+Public
+Course detail with sessions list
+GET
+/courses/{slug}/enroll
+Bearer
+Enroll user; assigns exercise group A or B
+GET
+/sessions/{id}
+Bearer+Enrolled
+Session content, video URL, slides
+GET
+/sessions/{id}/exercise
+Bearer+Enrolled
+Exercise for user's group (A or B)
+GET
+/sessions/{id}/progress
+Bearer+Enrolled
+User progress for this session
+6.4 Submission & Assessment Endpoints
+Method
+Endpoint
+Auth
+Description
+POST
+/submissions
+Bearer
+Upload .ipynb file; triggers grading queue job
+GET
+/submissions/{id}
+Bearer
+Get submission status and score
+GET
+/submissions/my
+Bearer
+All submissions by authenticated user
+POST
+/quiz/submit
+Bearer
+Submit final MCQ answers (Session 5)
+GET
+/quiz/result/{attempt_id}
+Bearer
+Get quiz result and pass/fail status
+6.5 Certificate Endpoints
+Method
+Endpoint
+Auth
+Description
+GET
+/certificates/my
+Bearer
+List all certificates earned by user
+GET
+/certificates/{uuid}
+Public
+Verify certificate by UUID (for QR scan)
+GET
+/certificates/{uuid}/download
+Bearer
+Download certificate PDF
+POST
+/certificates/generate/{course_id}
+System
+Triggered by queue job after pass
+6.6 Admin Endpoints
+Method
+Endpoint
+Auth
+Description
+GET
+/admin/users
+Admin
+List all users with pagination and filters
+GET
+/admin/submissions
+Admin
+All submissions; filter by status, session
+PATCH
+/admin/submissions/{id}/grade
+Admin
+Manually grade submission with score+feedback
+GET
+/admin/analytics
+Admin
+Enrollment counts, completion rates, avg scores
+POST
+/admin/courses
+Admin
+Create a new course
+PUT
+/admin/sessions/{id}
+Admin
+Update session content
+7. Frontend Architecture (React 19.2)
+7.1 React 19.2 Key Features Used
+Server Components for static course content pages (zero JS to client)
+Actions API for form submissions (enrollment, submission upload, quiz)
+useOptimistic hook for real-time submission status updates
+<Activity> component to pre-render the next session in background
+Partial Pre-rendering (PPR) for the course catalog — static shell + dynamic enrollment data
+7.2 Page & Component Structure
+Page / Component
+Description
+/ (HomePage)
+Hero, course overview, stats, CTA to register
+/courses (CourseCatalog)
+All courses, filter by category, search
+/courses/:slug (CourseDetail)
+Course info, session list, enroll button
+/learn/:slug/session/:num
+Video player, slides, notes, exercise panel
+/learn/:slug/quiz
+Final MCQ assessment with timer
+/dashboard
+Student progress overview, scores, certificates
+/certificates/:uuid
+Public certificate verification page
+/admin (AdminLayout)
+Protected admin panel with sidebar
+/admin/submissions
+Grade submissions, filter, bulk actions
+/admin/analytics
+Charts: enrollments, completions, scores
+7.3 State Management Strategy
+The app uses a layered state strategy to keep components clean and predictable:
+TanStack Query v5: all server state (courses, sessions, submissions, user data). Auto-caches, background refetches, stale-while-revalidate.
+Zustand v5: client-side global state only — auth token, user role, UI theme preference, sidebar open/closed.
+React 19 Actions: form submissions and mutations. No manual loading state needed — useActionState handles pending/error/success automatically.
+URL state (React Router v7): current session number, filter parameters, pagination — stored in URL so pages are shareable and bookmarkable.
+7.4 Authentication Flow
+User submits login form → React 19 Action calls POST /auth/login
+On success, Sanctum token stored in Zustand (in-memory) + httpOnly cookie via Sanctum SPA mode
+TanStack Query attaches token to all subsequent requests via global queryClient default
+Route guards check Zustand auth state; protected routes redirect to /login if unauthenticated
+On logout: revoke token via API, clear Zustand store, invalidate all queries, redirect to /
+7.5 Certificate Page Design
+The public certificate verification page (/certificates/:uuid) is inspired by EdX certificates and includes:
+Learner name, course title, completion date prominently displayed
+Digital seal/logo and instructor signature image
+Unique QR code that links back to the same URL for third-party verification
+Share buttons for LinkedIn (using OpenGraph meta tags) and download PDF button
+Certificate status badge: VALID / REVOKED with color indicator
+8. Certificate System
+8.1 Generation Pipeline
+Certificate generation is triggered asynchronously via a Laravel Queue job after a student passes the final quiz (score >= 70%). The pipeline:
+Quiz submitted → POST /quiz/submit → QuizController validates answers → stores QuizAttempt with score
+If score >= 70%: dispatch GenerateCertificateJob via Laravel Queue (Redis driver)
+Job runs: creates certificates record with UUID v4, renders PDF template, stores to S3/local storage
+Job completes: fires CertificateIssued event → sends congratulations email with PDF attachment
+Frontend polls GET /certificates/my every 5s after quiz pass using TanStack Query until certificate appears
+8.2 PDF Template Specification
+The certificate PDF is generated using Laravel DomPDF or Snappy (wkhtmltopdf). Template elements:
+A4 landscape format (297mm × 210mm)
+Header: Course logo on left, platform name on right, decorative border
+Body: "This certifies that [NAME] has successfully completed [COURSE]" in serif font
+Details: Date, final score percentage, course duration (10 hours)
+Footer: Instructor signature, platform seal, QR code (generated via PHP QR Code library)
+UUID printed in small text below QR for manual verification
+8.3 Verification URL
+https://ml10hours.com/certificates/{uuid}
+This public URL returns the certificate data as JSON (for API consumers) and renders the verification page for browsers. Certificate validity is checked against the certificates table — revoked_at NULL means valid.
+9. Laravel 12 Backend Details
+9.1 Laravel 12 Features Leveraged
+PHP Attribute-based routing: #[Route] annotations on controller methods for clean, co-located route definitions
+Automatic eager loading (12.8+): eliminates N+1 query issues on course/session listings without manual with() calls
+Native health check endpoint: /up route built-in, used by Docker and Kubernetes readiness probes
+Enhanced job batching: certificate generation and bulk submission grading use Bus::batch() with progress callbacks
+Improved lazy collections: processing large submission datasets without memory exhaustion
+9.2 Key Eloquent Models
+Model
+Relationships & Notes
+User
+hasMany Submissions, hasMany Certificates, belongsToMany Courses (via enrollments)
+Course
+hasMany CourseSessions, hasMany Enrollments; scopes: published()
+CourseSession
+belongsTo Course, hasMany Exercises; attribute: content (casts JSON)
+Exercise
+belongsTo CourseSession; scope: forGroup($group)
+Submission
+belongsTo User, belongsTo Exercise; observer: fires grading queue job
+Certificate
+belongsTo User, belongsTo Course; accessor: isValid (checks revoked_at)
+QuizAttempt
+belongsTo User, belongsTo Course; stores JSON answers + score
+9.3 Queue Jobs
+Job Class
+Description
+GenerateCertificateJob
+Renders PDF, stores file, creates certificate record, dispatches email
+GradeSubmissionJob
+Runs auto-grader (for code exercises), or flags for manual review
+SendCertificateEmailJob
+Sends congratulatory email with PDF via Laravel Mail (SMTP/SES)
+SendProgressReminderJob
+Scheduled weekly — emails students with incomplete sessions
+9.4 Security Considerations
+All API routes behind Laravel Sanctum — tokens hashed in DB, expire after 30 days of inactivity
+Rate limiting: 60 req/min on public endpoints, 10 req/min on /auth/* to prevent brute force
+File uploads validated: only .ipynb and .zip allowed, max 10MB, stored with UUID filename (not original)
+SQL injection prevention: all DB interactions via Eloquent ORM — no raw queries except for analytics aggregates, all parameterized
+CORS configured for the frontend domain only via config/cors.php
+Secrets in .env: never committed; production uses AWS Secrets Manager or Laravel Vapor secrets
+10. Deployment & DevOps
+10.1 Docker Compose Services
+Service
+Description
+app (Laravel)
+PHP-FPM 8.4, runs artisan, queues, scheduled tasks
+nginx
+Web server, proxies to PHP-FPM, serves React build static files
+mysql
+MySQL 8.0 with persistent volume, seeded with course data
+redis
+Queue driver + session cache, persistent volume
+frontend
+Node 22 + Vite dev server (development only)
+ml-service
+Python 3.12 + FastAPI, serves demo ML model predictions
+10.2 CI/CD Pipeline (GitHub Actions)
+On PR: run PHPUnit (Laravel), Vitest (React), ESLint, PHP CS Fixer
+On merge to main: build Docker images, push to Container Registry
+Deploy to staging: docker compose pull && docker compose up -d --no-downtime
+Run smoke tests (health check, login, certificate verification endpoint)
+Deploy to production on manual approval
+10.3 Environment Configuration
+Variable
+Description
+APP_URL
+Laravel application base URL
+DB_CONNECTION / DB_HOST
+MySQL connection settings
+REDIS_HOST
+Redis connection for queues and cache
+SANCTUM_STATEFUL_DOMAINS
+Frontend domain for SPA auth cookies
+QUEUE_CONNECTION
+Set to redis in production
+MAIL_MAILER
+smtp or ses for certificate emails
+CERTIFICATE_STORAGE_DISK
+s3 in production, local in development
+ML_SERVICE_URL
+URL of the FastAPI ML microservice
+CERTIFICATE_SECRET_KEY
+Used to sign certificate UUIDs for tamper detection
+11. Development Timeline
+11.1 Recommended Sprint Plan (8 Weeks)
+Sprint
+Deliverables
+Week 1
+DB schema, Laravel project setup, auth API (register/login/me), migrations
+Week 2
+Course & session CRUD APIs, exercise seeder (groups A & B), Postman collection
+Week 3
+Submission upload API, queue jobs (grading + certificate), certificate PDF template
+Week 4
+React project setup (Vite + React 19.2), auth flows, course catalog, session viewer
+Week 5
+Exercise submission UI, quiz component, progress dashboard, certificate page
+Week 6
+Admin panel: user management, submission grading UI, analytics charts
+Week 7
+ML microservice (FastAPI), integration testing, mobile responsiveness
+Week 8
+Docker Compose, CI/CD pipeline, staging deployment, UAT, launch
+11.2 Team Roles
+Role
+Responsibilities
+Backend Developer (1)
+Laravel API, Eloquent models, queue jobs, certificate system
+Frontend Developer (1)
+React 19.2 UI, TanStack Query, routing, component library
+ML Engineer (1)
+Course content, exercise design, FastAPI microservice, Jupyter notebooks
+UI/UX Designer
+Certificate template, dashboard wireframes, mobile-first design
+DevOps Engineer
+Docker, CI/CD, staging/production environments, monitoring
+Appendix A: ML Topics Coverage Matrix
+The following topics are covered across all 5 sessions, ensuring comprehensive ML education:
+ML Domain
+Topics Covered
+Mathematics
+Linear algebra, calculus (gradient), probability, statistics, information theory basics
+Data Engineering
+ETL, feature engineering, imputation, encoding, scaling, train/val/test split
+Supervised Learning
+Linear/logistic regression, decision trees, SVM, k-NN, Naive Bayes
+Ensemble Methods
+Bagging, boosting, random forest, AdaBoost, GBM, XGBoost, LightGBM
+Unsupervised Learning
+K-Means, DBSCAN, hierarchical clustering, PCA, t-SNE, autoencoders
+Deep Learning
+MLP, CNN, RNN, LSTM, GRU, Transformer, attention, BERT, fine-tuning
+Model Evaluation
+Accuracy, precision, recall, F1, AUC-ROC, cross-validation, learning curves
+Optimization
+SGD, Adam, RMSProp, learning rate schedulers, early stopping, weight decay
+MLOps
+MLflow, FastAPI serving, Docker, drift detection, A/B testing, retraining
+Responsible AI
+Fairness metrics, SHAP, LIME, GDPR compliance basics, bias audit
+Appendix B: Recommended Libraries & Versions
+Library
+Version & Purpose
+scikit-learn
+1.6+ — classical ML algorithms, pipelines, preprocessing
+PyTorch
+2.5+ — neural networks, GPU training, TorchScript export
+TensorFlow / Keras
+2.18+ — high-level DL, transfer learning, deployment
+XGBoost
+2.1+ — gradient boosting, SHAP integration
+LightGBM
+4.5+ — fast gradient boosting for large datasets
+HuggingFace Transformers
+4.45+ — BERT, GPT, vision transformers
+Pandas
+2.2+ — data manipulation, IO, groupby, merge
+NumPy
+2.1+ — array operations, broadcasting, linear algebra
+Matplotlib / Seaborn
+3.9+ / 0.13+ — plotting, statistical visualization
+FastAPI
+0.115+ — ML model serving REST API
+MLflow
+2.17+ — experiment tracking, model registry, serving
+Evidently AI
+0.4+ — data drift, model performance monitoring
+SHAP
+0.46+ — model explainability, feature importance
+— End of Document —
+Machine Learning in 10 Hours
+React 19.2  |  Laravel 12  |  MySQL 8  |  API-First  |  v1.0  |  March 2026

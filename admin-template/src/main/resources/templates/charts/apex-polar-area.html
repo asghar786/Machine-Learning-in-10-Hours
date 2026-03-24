@@ -1,0 +1,52 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Polar Area Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Polar Area Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Basic Polar Area Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae,#35b8e0,#31ce77,#fa5c7c,#fbcc5c,#39afd1"
+                             id="basic-polar-area"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Monochrome Polar Area</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#35b8e0" id="monochrome-polar-area"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/components/chart-apex-polar-area.js"></script>
+</th:block>
+</body>
+
+</html>

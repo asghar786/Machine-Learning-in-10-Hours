@@ -1,0 +1,190 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Line Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Line Charts')}"></th:block>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Simple line chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fbcc5c" id="line-chart"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Line with Data Labels</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#35b8e0,#6b5eae" id="line-chart-datalabel"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Zoomable Timeseries</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fa5c7c" id="line-chart-zoomable"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Line Chart with Annotations</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1" id="line-chart-annotations"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Syncing charts</h4>
+                    <div data-colors="#6b5eae" id="line-chart-syncing2"></div>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#35b8e0" id="line-chart-syncing"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Gradient Line Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" id="line-chart-gradient"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Missing / Null values</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#fbcc5c,#31ce77,#39afd1" id="line-chart-missing"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Dashed Line Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#35b8e0,#31ce77,#39afd1" id="line-chart-dashed"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-3">Stepline Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#31ce77" id="line-chart-stepline"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Brush Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#6b5eae" id="chart-line2"></div>
+                        <div class="apex-charts" data-colors="#39afd1" id="chart-line"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Realtime Chart</h4>
+                    <div dir="ltr">
+                        <div class="apex-charts" data-colors="#39afd1" id="line-chart-realtime"></div>
+                    </div>
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Apex Chart line Demo js -->
+    <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+    <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+
+    <script src="/js/components/chart-apex-line.js"></script>
+</th:block>
+</body>
+
+</html>

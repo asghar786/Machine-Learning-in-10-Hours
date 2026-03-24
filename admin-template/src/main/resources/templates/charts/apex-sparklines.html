@@ -1,0 +1,101 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Apex Sparklines Charts')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Apex', 'Sparklines Charts')}"></th:block>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row" dir="ltr">
+                        <div class="col-md-4">
+                            <div class="apex-charts" data-colors="#6b5eae" id="spark1"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="apex-charts" data-colors="#fbcc5c" id="spark2"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="apex-charts" data-colors="#31ce77" id="spark3"></div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div><!-- end card body-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="table-light">
+                                <tr>
+                                    <th class="ps-3">Total Value</th>
+                                    <th>Percentage of Portfolio</th>
+                                    <th>Last 10 days</th>
+                                    <th>Volume</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="ps-3">$32,554</td>
+                                    <td>15%</td>
+                                    <td>
+                                        <div data-colors="#6b5eae" id="chart1"></div>
+                                    </td>
+                                    <td>
+                                        <div data-colors="#6b5eae" id="chart5"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">$23,533</td>
+                                    <td>7%</td>
+                                    <td>
+                                        <div data-colors="#31ce77" id="chart2"></div>
+                                    </td>
+                                    <td>
+                                        <div data-colors="#31ce77" id="chart6"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">$54,276</td>
+                                    <td>9%</td>
+                                    <td>
+                                        <div data-colors="#fbcc5c" id="chart3"></div>
+                                    </td>
+                                    <td>
+                                        <div data-colors="#fbcc5c" id="chart7"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">$11,533</td>
+                                    <td>2%</td>
+                                    <td>
+                                        <div data-colors="#fa5c7c" id="chart4"></div>
+                                    </td>
+                                    <td>
+                                        <div data-colors="#fa5c7c" id="chart8"></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive -->
+                    </div> <!-- end col -->
+                </div> <!-- end row-->
+            </div><!-- end card -->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row-->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/components/chart-apex-sparklines.js"></script>
+</th:block>
+</body>
+
+</html>

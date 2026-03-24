@@ -1,0 +1,127 @@
+{
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Scaffold Laravel 12 backend",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-23T00:00:00", "updated_at": "2026-03-24T12:00:00", "completed_at": "2026-03-24T12:00:00",
+      "due_date": "2026-03-30",
+      "notes": "DONE — Laravel 12.12.2, .env configured, Sanctum, vhost updated."
+    },
+    {
+      "id": "task-002",
+      "title": "Scaffold React 19.2 frontend",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-23T00:00:00", "updated_at": "2026-03-23T22:00:00", "completed_at": "2026-03-23T22:00:00",
+      "due_date": "2026-04-06",
+      "notes": "DONE — 160 modules, builds clean. Edumel + Greeva templates integrated."
+    },
+    {
+      "id": "task-003",
+      "title": "Create database migrations",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-23T00:00:00", "updated_at": "2026-03-24T12:00:00", "completed_at": "2026-03-24T12:00:00",
+      "due_date": "2026-03-30",
+      "notes": "DONE — 15 tables in MySQL."
+    },
+    {
+      "id": "task-004",
+      "title": "Implement auth API endpoints",
+      "priority": "medium", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-23T00:00:00", "updated_at": "2026-03-24T13:00:00", "completed_at": "2026-03-24T13:00:00",
+      "due_date": "2026-03-30",
+      "notes": "DONE — 6 auth routes, Sanctum, CORS."
+    },
+    {
+      "id": "task-005",
+      "title": "Seed database with course content",
+      "priority": "medium", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-23T00:00:00", "updated_at": "2026-03-24T13:00:00", "completed_at": "2026-03-24T13:00:00",
+      "due_date": "2026-04-06",
+      "notes": "DONE — 2 users, 1 course, 5 sessions, 10 exercises A/B, 15 site settings."
+    },
+    {
+      "id": "task-006",
+      "title": "Wire frontend — public pages (homepage, course catalog, course detail)",
+      "description": "Connect HomePage, CourseCatalog, CourseDetail pages to real API data via TanStack Query. Replace all static/placeholder content with live data from /api/v1/courses.",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T13:30:00", "updated_at": "2026-03-24T14:30:00", "completed_at": "2026-03-24T14:30:00",
+      "due_date": "2026-03-31",
+      "notes": "DONE — HomePage, CourseCatalog (search+filter), CourseDetail (enroll flow), CertificateVerify, InsightsPage, InsightDetail all wired to real API."
+    },
+    {
+      "id": "task-007",
+      "title": "Wire frontend — student dashboard & enrollment",
+      "description": "Connect StudentDashboard, enrollment flow, SessionViewer to real API. Enroll button hits POST /enrollments, dashboard shows real enrolled courses.",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T13:30:00", "updated_at": "2026-03-24T14:30:00", "completed_at": "2026-03-24T14:30:00",
+      "due_date": "2026-04-06",
+      "notes": "DONE — StudentDashboard (real enrollments+submissions), SessionViewer (A/B exercises, submission form), MyCertificates, QuizPage wired."
+    },
+    {
+      "id": "task-008",
+      "title": "Wire frontend — admin panel (dashboard, users, courses, submissions)",
+      "description": "Connect all admin pages to real API. AdminDashboard shows live stats, AdminUsers/Courses/Submissions pull from backend with pagination.",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T13:30:00", "updated_at": "2026-03-24T14:30:00", "completed_at": "2026-03-24T14:30:00",
+      "due_date": "2026-04-06",
+      "notes": "DONE — AdminDashboard (live stats), AdminUsers (inline role edit), AdminCourses (toggle publish), AdminSubmissions (grade modal), AdminSettings + AdminSEO (site/seo settings) all wired."
+    },
+    {
+      "id": "task-009",
+      "title": "Certificate generation & verification",
+      "description": "Queue job to generate PDF certificate on course completion. Public verify page at /certificates/:uuid.",
+      "priority": "medium", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T13:30:00", "updated_at": "2026-03-24T15:00:00", "completed_at": "2026-03-24T15:00:00",
+      "due_date": "2026-04-13",
+      "notes": "DONE — GenerateCertificateJob, CourseCompletionService (A/B group aware), certificate Blade template (A4 landscape, gold/navy), download endpoint, storage symlink created."
+    },
+    {
+      "id": "task-010",
+      "title": "Insights / Blog section",
+      "description": "Wire InsightsPage and InsightDetail to GET /api/v1/posts. Admin post management via AdminPostController.",
+      "priority": "low", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T13:30:00", "updated_at": "2026-03-24T15:00:00", "completed_at": "2026-03-24T15:00:00",
+      "due_date": "2026-04-13",
+      "notes": "DONE — AdminPosts.jsx (add/edit/delete modal), router + sidebar wired, postsApi confirmed. Build: 161 modules."
+    },
+    {
+      "id": "task-011",
+      "title": "Queue worker + Analytics API",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T15:30:00", "updated_at": "2026-03-24T16:00:00", "completed_at": "2026-03-24T16:00:00",
+      "due_date": "2026-03-31",
+      "notes": "DONE — QUEUE_CONNECTION=sync, AdminAnalyticsController (6 KPIs + 3 chart datasets), AdminAnalytics wired with ApexCharts (area/donut/bar)."
+    },
+    {
+      "id": "task-012",
+      "title": "Production deployment",
+      "priority": "high", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T15:30:00", "updated_at": "2026-03-24T16:00:00", "completed_at": "2026-03-24T16:00:00",
+      "due_date": "2026-03-31",
+      "notes": "DONE — web.php SPA fallback, .htaccess updated, vite base=/, build: 163 modules. machinelearning.local serves React without npm run dev."
+    },
+    {
+      "id": "task-013",
+      "title": "Dynamic SEO meta tags",
+      "priority": "medium", "status": "completed",
+      "automated": false,
+      "created_at": "2026-03-24T15:30:00", "updated_at": "2026-03-24T16:00:00", "completed_at": "2026-03-24T16:00:00",
+      "due_date": "2026-04-06",
+      "notes": "DONE — SeoHead component, useSeoSettings hook, public /settings/seo + /settings/site endpoints, GA4 injection, MainLayout wired."
+    }
+  ],
+  "last_updated": "2026-03-24T17:00:00"
+}

@@ -1,0 +1,281 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="horizontal-nav">
+
+    <!-- Horizontal Menu Start -->
+    <header class="topnav">
+        <nav class="navbar navbar-expand-lg">
+            <nav class="page-container">
+                <div class="collapse navbar-collapse" id="topnav-menu-content">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown hover-dropdown">
+                            <a class="nav-link dropdown-toggle drop-arrow-none" href="/">
+                                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                                <span class="menu-text"> Dashboards </span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown hover-dropdown">
+                            <a aria-expanded="false" aria-haspopup="true"
+                               class="nav-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" href="#"
+                               id="topnav-apps" role="button">
+                                <span class="menu-icon"><i class="ti ti-apps"></i></span>
+                                <span class="menu-text">Apps</span>
+                                <div class="menu-arrow"></div>
+                            </a>
+                            <div aria-labelledby="topnav-apps" class="dropdown-menu">
+                                <a class="dropdown-item" href="/apps/calendar">Calendar</a>
+                                <a class="dropdown-item" href="/apps/email">Email</a>
+                                <a class="dropdown-item" href="/apps/file-manager">File Manager</a>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-tasks" role="button">
+                                        Invoice
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-tasks" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/apps/invoices">Invoices</a>
+                                        <a class="dropdown-item" href="/apps/invoic-details">View Invoice</a>
+                                        <a class="dropdown-item" href="/apps/invoic-create">Create Invoice</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown hover-dropdown">
+                            <a aria-expanded="false" aria-haspopup="true"
+                               class="nav-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" href="#"
+                               id="topnav-pages" role="button">
+                                <span class="menu-icon"><i class="ti ti-file-description"></i></span>
+                                <span class="menu-text">Pages</span>
+                                <div class="menu-arrow"></div>
+                            </a>
+                            <div aria-labelledby="topnav-pages" class="dropdown-menu">
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-auth" role="button">
+                                        Authentication
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-auth" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/auth/login">Login</a>
+                                        <a class="dropdown-item" href="/auth/register">Register</a>
+                                        <a class="dropdown-item" href="/auth/logout">Logout</a>
+                                        <a class="dropdown-item" href="/auth/recoverpw">Recover Password</a>
+                                        <a class="dropdown-item" href="/auth/createpw">Create Password</a>
+                                        <a class="dropdown-item" href="/auth/lock-screen">Lock Screen</a>
+                                        <a class="dropdown-item" href="/auth/confirm-mail">Confirm Mail</a>
+                                        <a class="dropdown-item" href="/auth/login-pin">Login with PIN</a>                                        
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-error" role="button">
+                                        Error
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-error" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/error/401">401 Unauthorized</a>
+                                        <a class="dropdown-item" href="/error/400">400 Bad Request</a>
+                                        <a class="dropdown-item" href="/error/403">403 Forbidden</a>
+                                        <a class="dropdown-item" href="/error/404">404 Not Found</a>
+                                        <a class="dropdown-item" href="/error/408">408 Request Timeout</a>
+                                        <a class="dropdown-item" href="/error/500">500 Internal Server</a>
+                                        <a class="dropdown-item" href="/error/501">501 Not Implemented</a>
+                                        <a class="dropdown-item" href="/error/502">502 Service Overloaded</a>
+                                        <a class="dropdown-item" href="/error/service-unavailable">Service
+                                            Unavailable</a>
+                                        <a class="dropdown-item" href="/error/404-alt">Error 404 Alt</a>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item" href="/pages/starter">Starter Page</a>
+                                <a class="dropdown-item" href="/pages/faq">FAQ</a>
+                                <a class="dropdown-item" href="/pages/pricing">Pricing One</a>
+                                <a class="dropdown-item" href="/pages/maintenance">Maintenance</a>
+                                <a class="dropdown-item" href="/pages/timeline">Timeline</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown hover-dropdown">
+                            <a aria-expanded="false" aria-haspopup="true"
+                               class="nav-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" href="#"
+                               id="topnav-components" role="button">
+                                <span class="menu-icon"><i class="ti ti-components"></i></span>
+                                <span class="menu-text">Components</span>
+                                <div class="menu-arrow"></div>
+                            </a>
+                            <div aria-labelledby="topnav-components" class="dropdown-menu">
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-ui-kit" role="button">
+                                        Base UI 1
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-ui-kit" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/ui/accordions">Accordions</a>
+                                        <a class="dropdown-item" href="/ui/alerts">Alerts</a>
+                                        <a class="dropdown-item" href="/ui/avatars">Avatars</a>
+                                        <a class="dropdown-item" href="/ui/badges">Badges</a>
+                                        <a class="dropdown-item" href="/ui/breadcrumb">Breadcrumb</a>
+                                        <a class="dropdown-item" href="/ui/buttons">Buttons</a>
+                                        <a class="dropdown-item" href="/ui/cards">Cards</a>
+                                        <a class="dropdown-item" href="/ui/carousel">Carousel</a>
+                                        <a class="dropdown-item" href="/ui/dropdowns">Dropdowns</a>
+                                        <a class="dropdown-item" href="/ui/embed-video">Embed Video</a>
+                                        <a class="dropdown-item" href="/ui/grid">Grid</a>
+                                        <a class="dropdown-item" href="/ui/list-group">List Group</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-ui-kit2" role="button">
+                                        Base UI 2
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-ui-kit2" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/ui/modals">Modals</a>
+                                        <a class="dropdown-item" href="/ui/notifications">Notifications</a>
+                                        <a class="dropdown-item" href="/ui/offcanvas">Offcanvas</a>
+                                        <a class="dropdown-item" href="/ui/placeholders">Placeholders</a>
+                                        <a class="dropdown-item" href="/ui/pagination">Pagination</a>
+                                        <a class="dropdown-item" href="/ui/popovers">Popovers</a>
+                                        <a class="dropdown-item" href="/ui/progress">Progress</a>
+                                        <a class="dropdown-item" href="/ui/spinners">Spinners</a>
+                                        <a class="dropdown-item" href="/ui/tabs">Tabs</a>
+                                        <a class="dropdown-item" href="/ui/tooltips">Tooltips</a>
+                                        <a class="dropdown-item" href="/ui/links">Links</a>
+                                        <a class="dropdown-item" href="/ui/typography">Typography</a>
+                                        <a class="dropdown-item" href="/ui/utilities">Utilities</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-extended-ui" role="button">
+                                        Extended UI
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-extended-ui" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/extended/dragula">Dragula</a>
+                                        <a class="dropdown-item" href="/extended/sweetalerts">Sweet Alerts</a>
+                                        <a class="dropdown-item" href="/extended/ratings">Ratings</a>
+                                        <a class="dropdown-item" href="/extended/scrollbar">Scrollbar</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-forms" role="button">
+                                        Forms
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-forms" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/form/elements">Basic Elements</a>
+                                        <a class="dropdown-item" href="/form/inputmask">Inputmask</a>
+                                        <a class="dropdown-item" href="/form/picker">Picker</a>
+                                        <a class="dropdown-item" href="/form/select">Select</a>
+                                        <a class="dropdown-item" href="/form/range-slider">Range Slider</a>
+                                        <a class="dropdown-item" href="/form/validation">Validation</a>
+                                        <a class="dropdown-item" href="/form/wizard">Wizard</a>
+                                        <a class="dropdown-item" href="/form/fileuploads">File Uploads</a>
+                                        <a class="dropdown-item" href="/form/editors">Editors</a>
+                                        <a class="dropdown-item" href="/form/layouts">Layouts</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-charts" role="button">
+                                        Charts
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-charts" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/charts/apex-area">Area</a>
+                                        <a class="dropdown-item" href="/charts/apex-bar">Bar</a>
+                                        <a class="dropdown-item" href="/charts/apex-bubble">Bubble</a>
+                                        <a class="dropdown-item" href="/charts/apex-candlestick">Candlestick</a>
+                                        <a class="dropdown-item" href="/charts/apex-column">Column</a>
+                                        <a class="dropdown-item" href="/charts/apex-heatmap">Heatmap</a>
+                                        <a class="dropdown-item" href="/charts/apex-line">Line</a>
+                                        <a class="dropdown-item" href="/charts/apex-mixed">Mixed</a>
+                                        <a class="dropdown-item" href="/charts/apex-timeline">Timeline</a>
+                                        <a class="dropdown-item" href="/charts/apex-boxplot">Boxplot</a>
+                                        <a class="dropdown-item" href="/charts/apex-treemap">Treemap</a>
+                                        <a class="dropdown-item" href="/charts/apex-pie">Pie</a>
+                                        <a class="dropdown-item" href="/charts/apex-radar">Radar</a>
+                                        <a class="dropdown-item" href="/charts/apex-radialbar">RadialBar</a>
+                                        <a class="dropdown-item" href="/charts/apex-scatter">Scatter</a>
+                                        <a class="dropdown-item" href="/charts/apex-polar-area">Polar Area</a>
+                                        <a class="dropdown-item" href="/charts/apex-sparklines">Sparklines</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-tables" role="button">
+                                        Tables
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-tables" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/tables/basic">Basic Tables</a>
+                                        <a class="dropdown-item" href="/tables/gridjs">Gridjs Tables</a>
+                                        <a class="dropdown-item" href="/tables/datatable">Datatable Tables</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true"
+                                       class="dropdown-item dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown"
+                                       href="#" id="topnav-icons" role="button">
+                                        Icons
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-icons" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/icons/tabler">Tabler Icons</a>
+                                        <a class="dropdown-item" href="/icons/solar">Solar Design</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown hover-dropdown">
+                                    <a aria-expanded="false" class="dropdown-item dropdown-toggle drop-arrow-none"
+                                       data-bs-toggle="dropdown" href="#" id="topnav-maps" role="button">
+                                        Maps
+                                        <div class="menu-arrow"></div>
+                                    </a>
+                                    <div aria-labelledby="topnav-maps" class="dropdown-menu">
+                                        <a class="dropdown-item" href="/maps/google">Google Maps</a>
+                                        <a class="dropdown-item" href="/maps/vector">Vector Maps</a>
+                                        <a class="dropdown-item" href="/maps/leaflet">Leaflet Maps</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown hover-dropdown">
+                            <a aria-expanded="false" aria-haspopup="true"
+                               class="nav-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" href="#"
+                               id="topnav-layouts" role="button">
+                                <span class="menu-icon"><i class="ti ti-layout"></i></span>
+                                <span class="menu-text">Layouts</span>
+                                <div class="menu-arrow"></div>
+                            </a>
+                            <div aria-labelledby="topnav-layouts" class="dropdown-menu">
+                                <a class="dropdown-item" href="/" target="_blank">Vertical</a>
+                                <a class="dropdown-item" href="/layouts/horizontal" target="_blank">Horizontal</a>
+                                <a class="dropdown-item" href="/layouts/detached" target="_blank">Detached</a>
+                                <a class="dropdown-item" href="/layouts/full" target="_blank">Full</a>
+                                <a class="dropdown-item" href="/layouts/fullscreen" target="_blank">Fullscreen</a>
+                                <a class="dropdown-item" href="/layouts/hover" target="_blank">Hover Menu</a>
+                                <a class="dropdown-item" href="/layouts/compact" target="_blank">Compact Menu</a>
+                                <a class="dropdown-item" href="/layouts/icon-view" target="_blank">Icon View</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <!-- Horizontal Menu End -->
+
+</th:block>
+
+</html>

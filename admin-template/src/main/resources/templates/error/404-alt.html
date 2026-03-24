@@ -1,0 +1,34 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/vertical}">
+
+<th:block layout:fragment="styles">
+
+</th:block>
+
+<head>
+    <th:block layout:fragment="title-meta" th:replace="~{partials/title-meta :: title-meta('Error 404')}"/>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <th:block th:replace="~{partials/page-title :: page-title('Pages', '404 Error')}"></th:block>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img alt="File not found Image" height="230" src="/images/error/error-404.png"/>
+                <h4 class="text-uppercase text-danger mt-3">Page Not Found</h4>
+                <p class="text-muted mt-3">It's looking like you may have taken a wrong turn. Don't worry... it
+                    happens to the best of us. Here's a
+                    little tip that might help you get back on track.</p>
+                <a class="btn btn-info mt-3" href="/"><i class="ti ti-home me-1"></i> Return Home</a>
+            </div> <!-- end /.text-center-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row -->
+</th:block>
+
+<th:block layout:fragment="javascripts">
+
+</th:block>
+</body>
+
+</html>

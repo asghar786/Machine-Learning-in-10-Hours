@@ -1,0 +1,22 @@
+[2026-03-23 00:00:00] [SYSTEM] Task system initialized. 5 starter tasks loaded from project plan.
+[2026-03-23 00:00:00] [SYSTEM] Worker script: todo/worker.php | Dashboard: http://machinelearning.local/todo/
+[2026-03-24 00:17:00] [WORKER] [task-001] Action taken: Marked in_progress — highest priority pending task (high). Blocked on user providing backend template. | Task: Scaffold Laravel 12 backend [high]
+[2026-03-24 00:17:00] [WORKER] [task-002] Action taken: Marked completed — React 19.2 frontend fully built in previous session (160 modules, build passes). | Task: Scaffold React 19.2 frontend [high]
+[2026-03-24 00:17:00] [WORKER] [SYSTEM] Summary → pending: 3 | in_progress: 1 | completed: 1
+[2026-03-24 12:30:00] [WORKER] [task-005] Action taken: Marked in_progress — highest priority pending task (medium). Seeder implementation required: 1 course, 5 sessions, 10 exercises (Group A+B), admin + demo student. | Task: Seed database with course content [medium]
+[2026-03-24 12:30:00] [WORKER] [SYSTEM] Summary → pending: 0 | in_progress: 2 | completed: 3
+[2026-03-24 13:00:00] [WORKER] [task-004] Action taken: Marked completed — AuthController built, 6 Sanctum routes live under /api/v1/auth/, CORS + statefulApi configured. | Task: Implement auth API endpoints [medium]
+[2026-03-24 13:00:00] [WORKER] [task-005] Action taken: Marked completed — UserSeeder, CourseSeeder, SiteSettingsSeeder ran clean. 2 users, 1 course, 5 sessions, 10 exercises (A/B), 15 site settings seeded. | Task: Seed database with course content [medium]
+[2026-03-24 13:00:00] [WORKER] [SYSTEM] Summary → pending: 0 | in_progress: 0 | completed: 5
+[2026-03-24 14:30:00] [WORKER] [task-006] Action taken: Marked completed — All public pages wired to real API: HomePage, CourseCatalog, CourseDetail (enroll), CertificateVerify, InsightsPage, InsightDetail. | Task: Wire frontend public pages [high]
+[2026-03-24 14:30:00] [WORKER] [task-007] Action taken: Marked completed — StudentDashboard, SessionViewer (A/B exercises + submission form), MyCertificates, QuizPage all connected to real API. | Task: Wire frontend student dashboard [high]
+[2026-03-24 14:30:00] [WORKER] [task-008] Action taken: Marked completed — All 6 admin pages wired: dashboard stats, users (role edit), courses (publish toggle), submissions (grade), settings, SEO. Build: 160 modules, 1.85s. | Task: Wire frontend admin panel [high]
+[2026-03-24 14:30:00] [WORKER] [SYSTEM] Summary → pending: 2 | in_progress: 0 | completed: 8
+[2026-03-24 16:00:00] [WORKER] [task-011] Action taken: Marked completed — QUEUE_CONNECTION=sync, analytics API (6 KPIs + 3 chart datasets), AdminAnalytics with ApexCharts. | Task: Queue worker + Analytics API [high]
+[2026-03-24 16:00:00] [WORKER] [task-012] Action taken: Marked completed — SPA fallback route, .htaccess, vite base=/app/, prod build 163 modules. machinelearning.local now serves React. | Task: Production deployment [high]
+[2026-03-24 16:00:00] [WORKER] [task-013] Action taken: Marked completed — SeoHead component, useSeoSettings hook, public settings endpoints, GA4 support. | Task: Dynamic SEO meta tags [medium]
+[2026-03-24 16:00:00] [WORKER] [SYSTEM] Summary → pending: 0 | in_progress: 0 | completed: 13
+[2026-03-24 17:00:00] [WORKER] [SYSTEM] No pending tasks. Also repaired tasks.json structural bug (task-011 through task-013 were orphaned outside the tasks array — merged back into array). | Summary → pending: 0 | in_progress: 0 | completed: 13
+[2026-03-24 18:00:00] [WORKER] [BUGFIX] Action taken: Fixed LoginPage redirect — admin now lands on /admin (Greeva panel) instead of /dashboard (student area). Role-aware redirect: admin→/admin, student→/dashboard, respects from-state. | Build: 163 modules clean.
+[2026-03-24 18:00:00] [WORKER] [BUGFIX] Action taken: Fixed Apache Forbidden on /admin/ — .htaccess now routes /admin SPA paths to index.php while exempting real asset subdirs (/admin/css|js|fonts|images|vendor|scss/).
+[2026-03-24 18:00:00] [WORKER] [SYSTEM] No pending tasks. | Summary → pending: 0 | in_progress: 0 | completed: 13
