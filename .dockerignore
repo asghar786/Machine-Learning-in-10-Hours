@@ -1,0 +1,27 @@
+# Git
+.git
+.github
+
+# Node
+frontend/node_modules
+frontend/.vite
+
+# PHP vendor (installed during build)
+backend/vendor
+
+# Laravel runtime
+backend/storage/logs/*
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/bootstrap/cache/*
+
+# Environment files (injected at runtime)
+backend/.env
+backend/.env.*
+ml-service/.env
+
+# Dev tools
+*.log
+*.sql
+docker-compose.override.yml

@@ -1,0 +1,106 @@
+name: Build & Push Docker Images
+
+on:
+  push:
+    branches: [master, main]
+    tags:
+      - 'v*'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_APP: ghcr.io/${{ github.repository }}/app
+  IMAGE_ML:  ghcr.io/${{ github.repository }}/ml-service
+
+jobs:
+  build-and-push:
+    name: Build & Push
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta — app
+        id: meta-app
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_APP }}
+          tags: |
+            type=sha,prefix=,format=short
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            latest
+
+      - name: Docker meta — ml-service
+        id: meta-ml
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_ML }}
+          tags: |
+            type=sha,prefix=,format=short
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            latest
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build & push — app
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.app
+          push: true
+          tags: ${{ steps.meta-app.outputs.tags }}
+          labels: ${{ steps.meta-app.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & push — ml-service
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.ml
+          push: true
+          tags: ${{ steps.meta-ml.outputs.tags }}
+          labels: ${{ steps.meta-ml.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ── Smoke test against staging ──────────────────────────────────────────
+  smoke-test:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Health check — API
+        run: |
+          URL="${{ secrets.STAGING_URL }}"
+          if [ -z "$URL" ]; then echo "STAGING_URL not set, skipping."; exit 0; fi
+          curl -sf "${URL}/up" || (echo "Laravel /up failed" && exit 1)
+          echo "API health OK"
+
+      - name: Health check — ML service
+        run: |
+          URL="${{ secrets.STAGING_ML_URL }}"
+          if [ -z "$URL" ]; then echo "STAGING_ML_URL not set, skipping."; exit 0; fi
+          curl -sf "${URL}/health" || (echo "ML service /health failed" && exit 1)
+          echo "ML service health OK"
+
+      - name: Certificate verify endpoint
+        run: |
+          URL="${{ secrets.STAGING_URL }}"
+          if [ -z "$URL" ]; then exit 0; fi
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" "${URL}/api/v1/certificates/nonexistent-uuid")
+          [ "$STATUS" = "404" ] && echo "Certificate endpoint OK" || (echo "Unexpected status $STATUS" && exit 1)
