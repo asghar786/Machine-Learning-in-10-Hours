@@ -7,12 +7,16 @@ export const useAuthStore = create(
       user: null,
       token: null,
       isAuthenticated: false,
+      locked: false,
 
       setAuth: (user, token) =>
-        set({ user, token, isAuthenticated: true }),
+        set({ user, token, isAuthenticated: true, locked: false }),
+
+      lock: () => set({ locked: true }),
+      unlock: () => set({ locked: false }),
 
       logout: () =>
-        set({ user: null, token: null, isAuthenticated: false }),
+        set({ user: null, token: null, isAuthenticated: false, locked: false }),
 
       updateUser: (user) =>
         set({ user }),
@@ -24,7 +28,7 @@ export const useAuthStore = create(
     }),
     {
       name: 'ml-auth',
-      partialize: (state) => ({ token: state.token, user: state.user, isAuthenticated: state.isAuthenticated }),
+      partialize: (state) => ({ token: state.token, user: state.user, isAuthenticated: state.isAuthenticated, locked: state.locked }),
     }
   )
 )

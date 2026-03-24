@@ -1,22 +1,33 @@
 import { useNavigate, Link } from 'react-router-dom'
-import { useMutation } from '@tanstack/react-query'
+import { useState, useEffect, useRef } from 'react'
 import { useAuthStore, useUIStore } from '@/store/authStore'
 import { authApi } from '@/api/authApi'
 import { queryClient } from '@/api/queryClient'
 
 export default function AdminTopbar() {
-  const { user, logout } = useAuthStore()
+  const { user, logout, lock } = useAuthStore()
   const { toggleSidebar } = useUIStore()
   const navigate = useNavigate()
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef(null)
 
-  const logoutMutation = useMutation({
-    mutationFn: authApi.logout,
-    onSettled: () => {
-      logout()
-      queryClient.clear()
-      navigate('/admin/login')
-    },
-  })
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const handleLogout = async () => {
+    logout()                    // clear Zustand store immediately
+    queryClient.clear()         // wipe cached queries
+    navigate('/admin/login', { replace: true })
+    try { await authApi.logout() } catch (_) {} // best-effort server-side token revoke
+  }
 
   const initials = (name = '') =>
     name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
@@ -25,7 +36,7 @@ export default function AdminTopbar() {
     <>
       <header className="app-topbar">
         <div className="page-container topbar-menu">
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-2 w-100">
 
             {/* Sidebar toggle */}
             <button className="sidenav-toggle-button px-2" onClick={toggleSidebar} type="button">
@@ -133,14 +144,13 @@ export default function AdminTopbar() {
                 </Link>
               </div>
 
-              {/* User dropdown */}
-              <div className="topbar-item nav-user">
-                <div className="dropdown">
+              {/* User dropdown — React-controlled (Bootstrap JS not yet loaded) */}
+              <div className="topbar-item nav-user" ref={userMenuRef}>
+                <div className={`dropdown${userMenuOpen ? ' show' : ''}`}>
                   <button
-                    className="topbar-link dropdown-toggle drop-arrow-none px-2 btn btn-link d-flex align-items-center gap-2"
-                    data-bs-toggle="dropdown"
-                    data-bs-offset="0,19"
-                    aria-expanded="false"
+                    className="topbar-link drop-arrow-none px-2 btn btn-link d-flex align-items-center gap-2"
+                    onClick={() => setUserMenuOpen(o => !o)}
+                    aria-expanded={userMenuOpen}
                     type="button"
                   >
                     <span
@@ -155,22 +165,35 @@ export default function AdminTopbar() {
                     </span>
                     <i className="ti ti-chevron-down d-none d-lg-block align-middle ms-1"></i>
                   </button>
-                  <div className="dropdown-menu dropdown-menu-end">
+                  <div className={`dropdown-menu dropdown-menu-end${userMenuOpen ? ' show' : ''}`}
+                       style={{ minWidth: 200 }}>
                     <div className="dropdown-header noti-title">
-                      <h6 className="text-overflow m-0">Welcome!</h6>
+                      <h6 className="text-overflow m-0">Welcome !</h6>
                     </div>
-                    <Link className="dropdown-item" to="/admin/settings">
+                    <Link className="dropdown-item" to="/dashboard" onClick={() => setUserMenuOpen(false)}>
+                      <i className="ti ti-user-hexagon me-1 fs-17 align-middle"></i>
+                      <span className="align-middle">My Account</span>
+                    </Link>
+                    <Link className="dropdown-item" to="/admin/settings" onClick={() => setUserMenuOpen(false)}>
                       <i className="ti ti-settings me-1 fs-17 align-middle"></i>
                       <span className="align-middle">Settings</span>
                     </Link>
-                    <a className="dropdown-item" href="/" target="_blank" rel="noreferrer">
-                      <i className="ti ti-external-link me-1 fs-17 align-middle"></i>
+                    <a className="dropdown-item" href="/" target="_blank" rel="noreferrer" onClick={() => setUserMenuOpen(false)}>
+                      <i className="ti ti-lifebuoy me-1 fs-17 align-middle"></i>
                       <span className="align-middle">View Site</span>
                     </a>
                     <div className="dropdown-divider"></div>
                     <button
-                      className="dropdown-item text-danger fw-semibold"
-                      onClick={() => logoutMutation.mutate()}
+                      className="dropdown-item"
+                      type="button"
+                      onClick={() => { setUserMenuOpen(false); lock(); navigate('/admin/lock') }}
+                    >
+                      <i className="ti ti-lock-square-rounded me-1 fs-17 align-middle"></i>
+                      <span className="align-middle">Lock Screen</span>
+                    </button>
+                    <button
+                      className="dropdown-item fw-semibold text-danger"
+                      onClick={() => { setUserMenuOpen(false); handleLogout() }}
                       type="button"
                     >
                       <i className="ti ti-logout me-1 fs-17 align-middle"></i>

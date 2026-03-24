@@ -37,6 +37,7 @@ import AdminSettings from '@/pages/admin/AdminSettings'
 import AdminSEO from '@/pages/admin/AdminSEO'
 import AdminPosts from '@/pages/admin/AdminPosts'
 import AdminLoginPage from '@/pages/auth/AdminLoginPage'
+import LockScreenPage from '@/pages/auth/LockScreenPage'
 
 export const router = createBrowserRouter([
   // ===== Public routes (Edumel layout) =====
@@ -84,10 +85,14 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // ===== Admin login (Greeva styled, no sidebar) =====
+  // ===== Admin login + lock screen (Greeva styled, no sidebar) =====
   {
     path: '/admin/login',
     element: <AdminLoginPage />,
+  },
+  {
+    path: '/admin/lock',
+    element: <LockScreenPage />,
   },
 
   // ===== Admin routes (Greeva layout) =====
