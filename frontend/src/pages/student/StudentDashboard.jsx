@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { enrollmentsApi, submissionsApi } from '@/api/coursesApi'
+import { enrollmentsApi, submissionsApi, certificatesApi } from '@/api/coursesApi'
 import { useAuthStore } from '@/store/authStore'
 
 export default function StudentDashboard() {
@@ -8,14 +8,17 @@ export default function StudentDashboard() {
 
   const { data: enrollments, isLoading: loadingEnrollments } = useQuery({
     queryKey: ['enrollments', 'mine'],
-    queryFn: () => enrollmentsApi.mine(),
-    select: (res) => res.data.data,
+    queryFn: () => enrollmentsApi.mine().then(r => r.data),
   })
 
   const { data: submissions } = useQuery({
     queryKey: ['submissions', 'mine'],
-    queryFn: () => submissionsApi.mine(),
-    select: (res) => res.data.data,
+    queryFn: () => submissionsApi.mine().then(r => r.data),
+  })
+
+  const { data: certificates = [] } = useQuery({
+    queryKey: ['certificates', 'mine'],
+    queryFn: () => certificatesApi.mine().then(r => r.data),
   })
 
   return (
@@ -129,6 +132,48 @@ export default function StudentDashboard() {
               </div>
             </div>
           )}
+
+          {/* Certificates */}
+          <div className="mb-5">
+            <h5 className="mb-3">My Certificates</h5>
+            {certificates.length === 0 ? (
+              <div className="text-center py-4 text-muted">
+                <i className="fa fa-certificate fa-2x mb-2"></i>
+                <p className="mb-0">No certificates yet. Complete a course to earn your certificate.</p>
+              </div>
+            ) : (
+              <div className="row">
+                {certificates.map((cert) => (
+                  <div key={cert.id} className="col-md-4 mb-4">
+                    <div className="card border-0 shadow-sm text-center p-4">
+                      <i className="fa fa-certificate fa-3x text-warning mb-3"></i>
+                      <h6 className="mb-1">{cert.course?.title}</h6>
+                      <p className="text-muted small mb-1">
+                        Issued: {new Date(cert.issued_at).toLocaleDateString()}
+                      </p>
+                      {cert.final_score !== null && (
+                        <p className="text-muted small mb-3">Score: {cert.final_score}%</p>
+                      )}
+                      <div className="d-flex gap-2 justify-content-center">
+                        <Link
+                          to={`/certificates/${cert.uuid}`}
+                          className="btn btn-sm btn-outline-primary rounded"
+                        >
+                          <i className="fa fa-eye me-1"></i>View
+                        </Link>
+                        <a
+                          href={`/api/v1/certificates/${cert.uuid}/download`}
+                          className="btn btn-sm btn-main rounded"
+                        >
+                          <i className="fa fa-download me-1"></i>Download
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </>

@@ -7,8 +7,7 @@ export default function CertificateVerify() {
 
   const { data: cert, isLoading, isError } = useQuery({
     queryKey: ['certificate', uuid],
-    queryFn: () => certificatesApi.verify(uuid),
-    select: (res) => res.data.data,
+    queryFn: () => certificatesApi.verify(uuid).then(r => r.data),
     retry: false,
   })
 

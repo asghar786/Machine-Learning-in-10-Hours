@@ -7,8 +7,7 @@ import CourseCard from '@/components/course/CourseCard'
 export default function HomePage() {
   const { data: coursesData } = useQuery({
     queryKey: ['courses', 'featured'],
-    queryFn: () => coursesApi.getAll({ limit: 3 }),
-    select: (res) => res.data.data,
+    queryFn: () => coursesApi.getAll({ limit: 3 }).then(r => r.data),
   })
 
   const courses = coursesData || []

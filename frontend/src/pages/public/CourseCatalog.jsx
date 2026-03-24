@@ -21,8 +21,7 @@ export default function CourseCatalog() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['courses', { search, category }],
-    queryFn: () => coursesApi.getAll({ search: search || undefined, category: category || undefined }),
-    select: (res) => res.data.data,
+    queryFn: () => coursesApi.getAll({ search: search || undefined, category: category || undefined }).then(r => r.data),
   })
 
   const courses = data || []

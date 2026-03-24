@@ -13,8 +13,7 @@ export default function CourseDetail() {
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', slug],
-    queryFn: () => coursesApi.getBySlug(slug),
-    select: (res) => res.data.data,
+    queryFn: () => coursesApi.getBySlug(slug).then(r => r.data),
   })
 
   const enrollMutation = useMutation({

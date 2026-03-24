@@ -11,8 +11,7 @@ export default function SessionViewer() {
 
   const { data: session, isLoading } = useQuery({
     queryKey: ['session', slug, num],
-    queryFn: () => axiosInstance.get(`/courses/${slug}/sessions/${num}`),
-    select: (res) => res.data.data,
+    queryFn: () => axiosInstance.get(`/courses/${slug}/sessions/${num}`).then(r => r.data),
   })
 
   const submitMutation = useMutation({

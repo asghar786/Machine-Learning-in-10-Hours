@@ -5,8 +5,7 @@ import { certificatesApi } from '@/api/coursesApi'
 export default function MyCertificates() {
   const { data: certificates, isLoading } = useQuery({
     queryKey: ['certificates', 'mine'],
-    queryFn: () => certificatesApi.mine(),
-    select: (res) => res.data.data,
+    queryFn: () => certificatesApi.mine().then(r => r.data),
   })
 
   return (
