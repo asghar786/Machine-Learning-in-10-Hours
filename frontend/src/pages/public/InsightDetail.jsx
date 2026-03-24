@@ -62,8 +62,8 @@ export default function InsightDetail() {
                 {post.type && (
                   <span className="badge bg-light text-dark">{post.type}</span>
                 )}
-                {post.author && (
-                  <span className="text-muted small"><i className="fa fa-user me-1"></i>{post.author}</span>
+                {post.author?.name && (
+                  <span className="text-muted small"><i className="fa fa-user me-1"></i>{post.author.name}</span>
                 )}
                 {post.tags?.map((tag) => (
                   <span key={tag} className="badge bg-light text-dark">{tag}</span>
