@@ -14,7 +14,9 @@ use App\Http\Controllers\Api\V1\Admin\AdminPostController;
 use App\Http\Controllers\Api\V1\Admin\AdminSettingsController;
 use App\Http\Controllers\Api\V1\Admin\AdminSubmissionController;
 use App\Http\Controllers\Api\V1\Admin\AdminAnalyticsController;
+use App\Http\Controllers\Api\V1\Admin\AdminVisitController;
 use App\Http\Controllers\Api\V1\Admin\AdminUserController;
+use App\Http\Controllers\Api\V1\TrackController;
 use App\Http\Controllers\Api\V1\Instructor\InstructorController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/posts/{slug}',        [PostController::class, 'show']);
     Route::get('/settings/site',       [AdminSettingsController::class, 'getSiteSettings']);
     Route::get('/settings/seo',        [AdminSettingsController::class, 'getSeoSettings']);
+    Route::post('/track',              [TrackController::class, 'store']);
 
     // -----------------------------------------------------------------------
     // Auth-required endpoints
@@ -132,6 +135,12 @@ Route::prefix('v1')->group(function () {
             Route::post('/posts',     [AdminPostController::class, 'store']);
             Route::put('/posts/{id}',    [AdminPostController::class, 'update']);
             Route::delete('/posts/{id}', [AdminPostController::class, 'destroy']);
+
+            // Analytics
+            Route::get('/analytics',   [AdminAnalyticsController::class, 'index']);
+
+            // Visit tracking
+            Route::get('/visits',      [AdminVisitController::class, 'index']);
         });
     });
 });

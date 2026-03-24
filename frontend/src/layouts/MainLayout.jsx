@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import Navbar from '@/components/common/Navbar'
 import Footer from '@/components/common/Footer'
 import SeoHead from '@/components/common/SeoHead'
+import { usePageTracker } from '@/hooks/usePageTracker'
 
 export default function MainLayout() {
   const { pathname } = useLocation()
+  usePageTracker()
 
   // Re-initialize Edumel jQuery plugins after route change
   useEffect(() => {

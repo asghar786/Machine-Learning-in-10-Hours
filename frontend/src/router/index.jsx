@@ -36,6 +36,7 @@ import AdminDashboard from '@/pages/admin/AdminDashboard'
 import AdminUsers from '@/pages/admin/AdminUsers'
 import AdminSubmissions from '@/pages/admin/AdminSubmissions'
 import AdminAnalytics from '@/pages/admin/AdminAnalytics'
+import AdminVisits from '@/pages/admin/AdminVisits'
 import AdminCourses from '@/pages/admin/AdminCourses'
 import AdminSettings from '@/pages/admin/AdminSettings'
 import AdminSEO from '@/pages/admin/AdminSEO'
@@ -152,6 +153,7 @@ export const router = createBrowserRouter([
       { path: 'instructors',       element: <AdminInstructors /> },
       { path: 'submissions',       element: <AdminSubmissions /> },
       { path: 'analytics',         element: <AdminAnalytics /> },
+      { path: 'visits',            element: <AdminVisits /> },
       { path: 'courses',           element: <AdminCourses /> },
       { path: 'settings',          element: <AdminSettings /> },
       { path: 'seo',               element: <AdminSEO /> },

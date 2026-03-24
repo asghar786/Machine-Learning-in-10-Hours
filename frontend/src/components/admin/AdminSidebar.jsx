@@ -12,6 +12,7 @@ const NAV = [
       { to: '/admin/courses',     icon: 'ti ti-book',            label: 'Courses'          },
       { to: '/admin/submissions', icon: 'ti ti-file-upload',     label: 'Submissions'      },
       { to: '/admin/analytics',   icon: 'ti ti-chart-bar',       label: 'Analytics'        },
+      { to: '/admin/visits',      icon: 'ti ti-eye',             label: 'Visit Tracking'   },
     ],
   },
   {
