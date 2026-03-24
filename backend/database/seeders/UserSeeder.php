@@ -37,5 +37,19 @@ class UserSeeder extends Seeder
                 'group'    => 0,
             ]
         );
+
+        // Demo instructor
+        User::updateOrCreate(
+            ['email' => 'instructor@ml.local'],
+            [
+                'name'     => 'Dr. Sarah Ahmed',
+                'email'    => 'instructor@ml.local',
+                'password' => Hash::make('Demo@2026!'),
+                'role'     => 'instructor',
+                'bio'      => 'Machine Learning researcher with 8+ years of industry and academic experience.',
+                'location' => 'Karachi, Pakistan',
+                'group'    => null,
+            ]
+        );
     }
 }

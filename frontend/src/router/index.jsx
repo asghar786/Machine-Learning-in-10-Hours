@@ -41,8 +41,15 @@ import AdminSettings from '@/pages/admin/AdminSettings'
 import AdminSEO from '@/pages/admin/AdminSEO'
 import AdminPosts from '@/pages/admin/AdminPosts'
 import AdminPostForm from '@/pages/admin/AdminPostForm'
+import AdminInstructors from '@/pages/admin/AdminInstructors'
 import AdminLoginPage from '@/pages/auth/AdminLoginPage'
 import LockScreenPage from '@/pages/auth/LockScreenPage'
+
+// Instructor pages (protected + instructor role)
+import InstructorLayout from '@/layouts/InstructorLayout'
+import InstructorDashboard from '@/pages/instructor/InstructorDashboard'
+import InstructorCourses from '@/pages/instructor/InstructorCourses'
+import InstructorStudents from '@/pages/instructor/InstructorStudents'
 
 export const router = createBrowserRouter([
   // ===== Public routes (Edumel layout) =====
@@ -106,6 +113,21 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // ===== Instructor routes (Greeva layout) =====
+  {
+    path: '/instructor',
+    element: (
+      <ProtectedRoute instructorOnly>
+        <InstructorLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      { index: true,          element: <InstructorDashboard /> },
+      { path: 'courses',      element: <InstructorCourses />   },
+      { path: 'students',     element: <InstructorStudents />  },
+    ],
+  },
+
   // ===== Admin login + lock screen (Greeva styled, no sidebar) =====
   {
     path: '/admin/login',
@@ -127,6 +149,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true,               element: <AdminDashboard /> },
       { path: 'users',             element: <AdminUsers /> },
+      { path: 'instructors',       element: <AdminInstructors /> },
       { path: 'submissions',       element: <AdminSubmissions /> },
       { path: 'analytics',         element: <AdminAnalytics /> },
       { path: 'courses',           element: <AdminCourses /> },

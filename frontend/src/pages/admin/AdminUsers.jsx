@@ -10,7 +10,13 @@ export default function AdminUsers() {
     queryFn: () => axiosInstance.get('/admin/users'),
     select: (res) => res.data,
   })
-  const users = data?.data || []
+  const [search, setSearch] = useState('')
+
+  const allUsers = data?.data || []
+  const q = search.toLowerCase()
+  const users = q
+    ? allUsers.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q))
+    : allUsers
 
   // Track which user row is being edited and what the selected role is
   const [editingId, setEditingId]   = useState(null)
@@ -57,7 +63,14 @@ export default function AdminUsers() {
         <div className="card-header d-flex align-items-center justify-content-between">
           <h5 className="card-title mb-0">All Users</h5>
           <div className="d-flex gap-2">
-            <input type="text" className="form-control form-control-sm" placeholder="Search users…" style={{ width: 200 }} />
+            <input
+              type="text"
+              className="form-control form-control-sm"
+              placeholder="Search users…"
+              style={{ width: 200 }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
         </div>
         <div className="card-body p-0">
@@ -94,6 +107,7 @@ export default function AdminUsers() {
                             onChange={(e) => setSelectedRole(e.target.value)}
                           >
                             <option value="student">student</option>
+                            <option value="instructor">instructor</option>
                             <option value="admin">admin</option>
                           </select>
                           <button

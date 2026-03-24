@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 import { useMutation } from '@tanstack/react-query'
@@ -5,9 +6,21 @@ import { authApi } from '@/api/authApi'
 import { queryClient } from '@/api/queryClient'
 
 export default function Navbar() {
-  const { isAuthenticated, user, logout, isAdmin } = useAuthStore()
+  const { isAuthenticated, user, logout, isAdmin, isInstructor } = useAuthStore()
   const location = useLocation()
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 992)
+
+  useEffect(() => {
+    const handler = () => {
+      const mobile = window.innerWidth < 992
+      setIsMobile(mobile)
+      if (!mobile) setMenuOpen(false)
+    }
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   const logoutMutation = useMutation({
     mutationFn: authApi.logout,
@@ -20,7 +33,17 @@ export default function Navbar() {
 
   const isActive = (path) => location.pathname === path ? 'current' : ''
 
+  // Close mobile menu on route change
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
+
   return (
+    <>
+    {menuOpen && (
+      <div
+        onClick={() => setMenuOpen(false)}
+        style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 999 }}
+      />
+    )}
     <header className="header-style-1">
       {/* Top Bar */}
       <div className="header-topbar topbar-style-2">
@@ -64,7 +87,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <div className="header-navbar navbar-sticky">
+      <div className={`header-navbar navbar-sticky${isMobile ? ' mobile-menu' : ''}`}>
         <div className="container">
           <div className="d-flex align-items-center justify-content-between">
             {/* Logo */}
@@ -76,7 +99,13 @@ export default function Navbar() {
 
             {/* Mobile toggle */}
             <div className="offcanvas-icon d-block d-lg-none">
-              <a href="#" className="nav-toggler"><i className="fal fa-bars"></i></a>
+              <a
+                href="#"
+                className="nav-toggler"
+                onClick={(e) => { e.preventDefault(); setMenuOpen(true) }}
+              >
+                <i className="fal fa-bars"></i>
+              </a>
             </div>
 
             {/* Category Menu */}
@@ -95,31 +124,118 @@ export default function Navbar() {
             </div>
 
             {/* Primary Nav */}
-            <nav className="site-navbar ms-auto">
+            <nav className={`site-navbar ms-auto${menuOpen ? ' menu-on' : ''}`}>
               <ul className="primary-menu">
-                <li className={isActive('/')}><Link to="/">Home</Link></li>
-                <li className={isActive('/courses')}><Link to="/courses">Courses</Link></li>
+                <li className={isActive('/')}><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+                <li className={isActive('/courses')}><Link to="/courses" onClick={() => setMenuOpen(false)}>Courses</Link></li>
                 <li className={isActive('/insights')}>
-                  <Link to="/insights">Insights</Link>
+                  <Link to="/insights" onClick={() => setMenuOpen(false)}>Insights</Link>
                   <ul className="submenu">
-                    <li><Link to="/insights">Blog</Link></li>
-                    <li><Link to="/insights/case-studies">Case Studies</Link></li>
+                    <li><Link to="/insights" onClick={() => setMenuOpen(false)}>Blog</Link></li>
+                    <li><Link to="/insights/case-studies" onClick={() => setMenuOpen(false)}>Case Studies</Link></li>
                   </ul>
                 </li>
-                <li className={isActive('/about')}><Link to="/about">About</Link></li>
-                <li className={isActive('/contact')}><Link to="/contact">Contact</Link></li>
+                <li className={isActive('/about')}><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
+                <li className={isActive('/contact')}><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
+                {/* Mobile-only account links — hidden on desktop (header-btn handles desktop) */}
                 {isAuthenticated && isAdmin() && (
-                  <li><Link to="/admin">Admin</Link></li>
+                  <li className="d-lg-none"><Link to="/admin" onClick={() => setMenuOpen(false)}>Admin</Link></li>
+                )}
+                {isAuthenticated && isInstructor() && (
+                  <li className="d-lg-none"><Link to="/instructor" onClick={() => setMenuOpen(false)}>My Portal</Link></li>
+                )}
+                {isAuthenticated && !isAdmin() && !isInstructor() && (
+                  <li className="d-lg-none" style={{ listStyle: 'none' }}>
+                    <ul style={{ padding: 0, margin: 0, listStyle: 'none' }}>
+                      <li style={{ borderTop: '1px solid rgba(255,255,255,0.15)', marginTop: 8, paddingTop: 8 }}>
+                        <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', padding: '4px 0', display: 'block' }}>My Account</span>
+                      </li>
+                      <li><Link to="/dashboard"  onClick={() => setMenuOpen(false)}>My Dashboard</Link></li>
+                      <li><Link to="/study"      onClick={() => setMenuOpen(false)}>Study Hub</Link></li>
+                      <li><Link to="/profile"    onClick={() => setMenuOpen(false)}>My Profile</Link></li>
+                      <li><Link to="/account"    onClick={() => setMenuOpen(false)}>Account Settings</Link></li>
+                      <li><Link to="/billing"    onClick={() => setMenuOpen(false)}>Billing &amp; Invoices</Link></li>
+                      <li>
+                        <a href="#" onClick={(e) => { e.preventDefault(); logoutMutation.mutate() }}
+                           style={{ color: '#ff6b6b' }}>
+                          Logout
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                )}
+                {!isAuthenticated && (
+                  <>
+                    <li className="d-lg-none" style={{ borderTop: '1px solid rgba(255,255,255,0.15)', marginTop: 8, paddingTop: 8 }}>
+                      <Link to="/login"    onClick={() => setMenuOpen(false)}>Login</Link>
+                    </li>
+                    <li className="d-lg-none"><Link to="/register" onClick={() => setMenuOpen(false)}>Sign Up</Link></li>
+                  </>
                 )}
               </ul>
-              <a href="#" className="nav-close"><i className="fal fa-times"></i></a>
+              <a
+                href="#"
+                className="nav-close"
+                onClick={(e) => { e.preventDefault(); setMenuOpen(false) }}
+              >
+                <i className="fal fa-times"></i>
+              </a>
             </nav>
 
             {/* Auth Buttons */}
             <div className="header-btn d-none d-xl-block">
               {isAuthenticated ? (
                 <div className="d-flex align-items-center gap-2">
-                  {!isAdmin() && (
+                  {isInstructor() && (
+                    <div className="dropdown">
+                      <a
+                        href="#"
+                        className="login dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <i className="fa fa-chalkboard-teacher me-1"></i>{user?.name?.split(' ')[0]}
+                      </a>
+                      <ul className="dropdown-menu dropdown-menu-end shadow border-0" style={{ minWidth: 200 }}>
+                        <li className="px-3 py-1">
+                          <small className="text-muted">{user?.email}</small>
+                        </li>
+                        <li><hr className="dropdown-divider my-1" /></li>
+                        <li>
+                          <Link to="/instructor" className="dropdown-item">
+                            <i className="fa fa-tachometer-alt me-2" style={{ color: 'var(--theme-primary-color)' }}></i>Instructor Portal
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/instructor/courses" className="dropdown-item">
+                            <i className="fa fa-book me-2" style={{ color: 'var(--theme-primary-color)' }}></i>My Courses
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/instructor/students" className="dropdown-item">
+                            <i className="fa fa-users me-2" style={{ color: 'var(--theme-primary-color)' }}></i>My Students
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/profile" className="dropdown-item">
+                            <i className="fa fa-user me-2" style={{ color: 'var(--theme-primary-color)' }}></i>My Profile
+                          </Link>
+                        </li>
+                        <li><hr className="dropdown-divider my-1" /></li>
+                        <li>
+                          <button
+                            onClick={() => logoutMutation.mutate()}
+                            className="dropdown-item text-danger"
+                            disabled={logoutMutation.isPending}
+                          >
+                            <i className="fa fa-sign-out-alt me-2"></i>Logout
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                  {!isAdmin() && !isInstructor() && (
                     <div className="dropdown">
                       <a
                         href="#"
@@ -137,27 +253,27 @@ export default function Navbar() {
                         <li><hr className="dropdown-divider my-1" /></li>
                         <li>
                           <Link to="/dashboard" className="dropdown-item">
-                            <i className="fa fa-tachometer-alt me-2 text-primary"></i>My Dashboard
+                            <i className="fa fa-tachometer-alt me-2" style={{ color: 'var(--theme-primary-color)' }}></i>My Dashboard
                           </Link>
                         </li>
                         <li>
                           <Link to="/study" className="dropdown-item">
-                            <i className="fa fa-book-open me-2 text-success"></i>Study Hub
+                            <i className="fa fa-book-open me-2" style={{ color: 'var(--theme-primary-color)' }}></i>Study Hub
                           </Link>
                         </li>
                         <li>
                           <Link to="/profile" className="dropdown-item">
-                            <i className="fa fa-user me-2 text-info"></i>My Profile
+                            <i className="fa fa-user me-2" style={{ color: 'var(--theme-primary-color)' }}></i>My Profile
                           </Link>
                         </li>
                         <li>
                           <Link to="/account" className="dropdown-item">
-                            <i className="fa fa-cog me-2 text-secondary"></i>Account Settings
+                            <i className="fa fa-cog me-2" style={{ color: 'var(--theme-primary-color)' }}></i>Account Settings
                           </Link>
                         </li>
                         <li>
                           <Link to="/billing" className="dropdown-item">
-                            <i className="fa fa-file-invoice-dollar me-2 text-warning"></i>Billing &amp; Invoices
+                            <i className="fa fa-file-invoice-dollar me-2" style={{ color: 'var(--theme-primary-color)' }}></i>Billing &amp; Invoices
                           </Link>
                         </li>
                         <li><hr className="dropdown-divider my-1" /></li>
@@ -194,5 +310,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    </>
   )
 }

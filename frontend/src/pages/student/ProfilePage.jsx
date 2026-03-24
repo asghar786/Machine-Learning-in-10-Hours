@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { profileApi } from '@/api/profileApi'
@@ -19,6 +19,8 @@ export default function ProfilePage() {
   const [successMsg, setSuccessMsg] = useState('')
   const [apiErrors, setApiErrors] = useState({})
   const [avatarPreview, setAvatarPreview] = useState('')
+  const [avatarUploading, setAvatarUploading] = useState(false)
+  const fileInputRef = useRef(null)
 
   const { data: profileData, isLoading } = useQuery({
     queryKey: ['profile'],
@@ -60,7 +62,26 @@ export default function ProfilePage() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
-    if (name === 'avatar_url') setAvatarPreview(value)
+  }
+
+  const handleAvatarFile = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setAvatarUploading(true)
+    try {
+      const res = await profileApi.uploadAvatar(file)
+      const url = res.data?.avatar_url
+      setForm((prev) => ({ ...prev, avatar_url: url }))
+      setAvatarPreview(url)
+      queryClient.invalidateQueries({ queryKey: ['profile'] })
+      setSuccessMsg('Profile picture updated.')
+      setTimeout(() => setSuccessMsg(''), 3000)
+    } catch {
+      setApiErrors({ avatar_url: ['Upload failed. Max 2 MB, image files only.'] })
+    } finally {
+      setAvatarUploading(false)
+      e.target.value = ''
+    }
   }
 
   const handleSubmit = (e) => {
@@ -112,22 +133,47 @@ export default function ProfilePage() {
               {/* Left: Avatar Card */}
               <div className="col-lg-4 mb-4">
                 <div className="card border-0 shadow-sm text-center p-4">
-                  {avatarPreview ? (
-                    <img
-                      src={avatarPreview}
-                      alt={profileData?.name}
-                      className="rounded-circle mx-auto d-block mb-3"
-                      style={{ width: 100, height: 100, objectFit: 'cover' }}
-                      onError={() => setAvatarPreview('')}
-                    />
-                  ) : (
+                  {/* Avatar with upload overlay */}
+                  <div
+                    className="position-relative mx-auto mb-3"
+                    style={{ width: 100, height: 100, cursor: 'pointer' }}
+                    onClick={() => fileInputRef.current?.click()}
+                    title="Click to change photo"
+                  >
+                    {avatarPreview ? (
+                      <img
+                        src={avatarPreview}
+                        alt={profileData?.name}
+                        className="rounded-circle"
+                        style={{ width: 100, height: 100, objectFit: 'cover' }}
+                        onError={() => setAvatarPreview('')}
+                      />
+                    ) : (
+                      <div
+                        className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fs-4 fw-bold"
+                        style={{ width: 100, height: 100 }}
+                      >
+                        {initials}
+                      </div>
+                    )}
+                    {/* Camera overlay */}
                     <div
-                      className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3 fs-4 fw-bold"
-                      style={{ width: 100, height: 100 }}
+                      className="position-absolute bottom-0 end-0 rounded-circle d-flex align-items-center justify-content-center"
+                      style={{ width: 30, height: 30, background: 'var(--theme-primary-color, #F14D5D)', border: '2px solid #fff' }}
                     >
-                      {initials}
+                      {avatarUploading
+                        ? <span className="spinner-border spinner-border-sm text-white" style={{ width: 14, height: 14, borderWidth: 2 }} />
+                        : <i className="fa fa-camera text-white" style={{ fontSize: 12 }}></i>
+                      }
                     </div>
-                  )}
+                  </div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    className="d-none"
+                    onChange={handleAvatarFile}
+                  />
 
                   <h5 className="mb-1">{profileData?.name}</h5>
                   <p className="text-muted small mb-2">{profileData?.email}</p>
@@ -285,35 +331,12 @@ export default function ProfilePage() {
                         )}
                       </div>
 
-                      {/* Avatar URL + live preview */}
-                      <div className="col-12 mb-3">
-                        <label className="form-label fw-semibold">
-                          <i className="fa fa-image me-1"></i>Avatar URL
-                        </label>
-                        <input
-                          type="url"
-                          name="avatar_url"
-                          value={form.avatar_url}
-                          onChange={handleChange}
-                          className={`form-control ${apiErrors.avatar_url ? 'is-invalid' : ''}`}
-                          placeholder="https://example.com/photo.jpg"
-                        />
-                        {apiErrors.avatar_url && (
-                          <div className="invalid-feedback">{apiErrors.avatar_url[0]}</div>
-                        )}
-                        {avatarPreview && (
-                          <div className="mt-2">
-                            <small className="text-muted d-block mb-1">Preview:</small>
-                            <img
-                              src={avatarPreview}
-                              alt="Avatar preview"
-                              className="rounded-circle"
-                              style={{ width: 64, height: 64, objectFit: 'cover' }}
-                              onError={() => setAvatarPreview('')}
-                            />
-                          </div>
-                        )}
-                      </div>
+                      {/* Avatar upload hint */}
+                      {apiErrors.avatar_url && (
+                        <div className="col-12 mb-2">
+                          <div className="alert alert-danger py-2 mb-0">{apiErrors.avatar_url[0]}</div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="d-flex gap-2 mt-2">

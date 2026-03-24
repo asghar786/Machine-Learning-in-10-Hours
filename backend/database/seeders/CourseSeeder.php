@@ -65,6 +65,53 @@ class CourseSeeder extends Seeder
             ],
         ];
 
+        // --- Additional courses ---
+        $extraCourses = [
+            [
+                'title'             => 'Microsoft Office Mastery',
+                'slug'              => 'microsoft-office-mastery',
+                'short_description' => 'Master Word, Excel, PowerPoint and Outlook in 10 hours.',
+                'description'       => 'A comprehensive course covering the full Microsoft Office suite. Learn to create professional documents in Word, build powerful spreadsheets in Excel, deliver impactful presentations in PowerPoint, and manage communications in Outlook.',
+                'category'          => 'ms-office',
+                'level'             => 'beginner',
+                'price'             => 49.00,
+                'original_price'    => 79.00,
+                'duration_hours'    => 10,
+                'is_published'      => true,
+            ],
+            [
+                'title'             => 'Database Management with SQL',
+                'slug'              => 'database-management-with-sql',
+                'short_description' => 'Learn relational databases and SQL from scratch in 10 hours.',
+                'description'       => 'This course covers the fundamentals of relational database design, SQL querying, joins, indexing, and database administration. Ideal for beginners who want to work with data professionally.',
+                'category'          => 'dbms',
+                'level'             => 'beginner',
+                'price'             => 69.00,
+                'original_price'    => 99.00,
+                'duration_hours'    => 10,
+                'is_published'      => true,
+            ],
+            [
+                'title'             => 'Python Programming for Beginners',
+                'slug'              => 'python-programming-for-beginners',
+                'short_description' => 'Go from zero to writing real Python programs in 10 hours.',
+                'description'       => 'Start your programming journey with Python — one of the most in-demand languages in the world. This course covers variables, control flow, functions, file handling, and an introduction to libraries like NumPy and Pandas.',
+                'category'          => 'programming',
+                'level'             => 'beginner',
+                'price'             => 59.00,
+                'original_price'    => 89.00,
+                'duration_hours'    => 10,
+                'is_published'      => true,
+            ],
+        ];
+
+        foreach ($extraCourses as $courseData) {
+            Course::firstOrCreate(
+                ['slug' => $courseData['slug']],
+                $courseData
+            );
+        }
+
         foreach ($sessionsData as $sessionData) {
             $session = CourseSession::firstOrCreate(
                 [

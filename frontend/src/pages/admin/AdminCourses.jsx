@@ -6,7 +6,7 @@ const LEVELS      = ['beginner', 'intermediate', 'advanced']
 const CATEGORIES  = ['machine-learning', 'data-science', 'python', 'deep-learning', 'statistics', 'other']
 
 const EMPTY_FORM = {
-  title: '', slug: '', short_description: '', description: '',
+  instructor_id: '', title: '', slug: '', short_description: '', description: '',
   category: '', level: 'beginner', price: '', original_price: '',
   duration_hours: '', thumbnail: '', is_published: false,
 }
@@ -27,6 +27,11 @@ export default function AdminCourses() {
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ['admin', 'courses'],
     queryFn:  () => axiosInstance.get('/admin/courses').then(r => r.data),
+  })
+
+  const { data: instructors = [] } = useQuery({
+    queryKey: ['admin', 'instructors'],
+    queryFn:  () => axiosInstance.get('/admin/users/instructors').then(r => r.data),
   })
 
   // ── Mutations ─────────────────────────────────────────────────────────────
@@ -70,6 +75,7 @@ export default function AdminCourses() {
   const openEdit = (c) => {
     setEditing(c)
     setForm({
+      instructor_id:     c.instructor_id     ?? '',
       title:             c.title             ?? '',
       slug:              c.slug              ?? '',
       short_description: c.short_description ?? '',
@@ -139,6 +145,7 @@ export default function AdminCourses() {
                   <th>Category</th>
                   <th>Level</th>
                   <th>Price</th>
+                  <th>Instructor</th>
                   <th>Sessions</th>
                   <th>Published</th>
                   <th>Actions</th>
@@ -173,6 +180,11 @@ export default function AdminCourses() {
                       {c.price
                         ? <><span className="fw-medium">${c.price}</span>{c.original_price && <s className="text-muted ms-1 fs-12">${c.original_price}</s>}</>
                         : <span className="badge bg-success-subtle text-success">Free</span>}
+                    </td>
+                    <td>
+                      {c.instructor
+                        ? <span className="badge bg-primary-subtle text-primary">{c.instructor.name}</span>
+                        : <span className="text-muted small">—</span>}
                     </td>
                     <td>{c.sessions_count ?? '—'}</td>
                     <td>
@@ -262,6 +274,17 @@ export default function AdminCourses() {
                       <select name="category" className="form-select" value={form.category} onChange={handleField}>
                         <option value="">— Select —</option>
                         {CATEGORIES.map(c => <option key={c} value={c}>{c.replace(/-/g, ' ')}</option>)}
+                      </select>
+                    </div>
+
+                    {/* Instructor */}
+                    <div className="col-md-6">
+                      <label className="form-label fw-medium">Instructor</label>
+                      <select name="instructor_id" className="form-select" value={form.instructor_id} onChange={handleField}>
+                        <option value="">— Unassigned —</option>
+                        {instructors.map(i => (
+                          <option key={i.id} value={i.id}>{i.name} ({i.email})</option>
+                        ))}
                       </select>
                     </div>
 

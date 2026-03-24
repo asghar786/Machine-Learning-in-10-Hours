@@ -44,6 +44,66 @@ class AdminUserController extends Controller
     }
 
     /**
+     * POST /api/v1/admin/users
+     * Create a new user (typically an instructor) from admin panel.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        if ($guard = $this->adminGuard($request)) {
+            return $guard;
+        }
+
+        try {
+            $validated = $request->validate([
+                'name'     => ['required', 'string', 'max:255'],
+                'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+                'password' => ['required', 'string', 'min:8'],
+                'role'     => ['required', 'string', 'in:student,admin,instructor'],
+                'bio'      => ['nullable', 'string'],
+                'phone'    => ['nullable', 'string', 'max:30'],
+                'location' => ['nullable', 'string', 'max:100'],
+            ]);
+
+            $user = User::create($validated);
+
+            return response()->json([
+                'success' => true,
+                'data'    => $user,
+                'message' => 'User created successfully.',
+            ], 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'data'    => null,
+                'message' => $e->getMessage(),
+                'errors'  => $e->errors(),
+            ], 422);
+        }
+    }
+
+    /**
+     * GET /api/v1/admin/users/instructors
+     * Return all users with role=instructor (for dropdowns).
+     */
+    public function instructors(Request $request): JsonResponse
+    {
+        if ($guard = $this->adminGuard($request)) {
+            return $guard;
+        }
+
+        $instructors = User::where('role', 'instructor')
+            ->select('id', 'name', 'email', 'avatar_url')
+            ->orderBy('name')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data'    => $instructors,
+            'message' => 'Instructors retrieved.',
+        ], 200);
+    }
+
+    /**
      * GET /api/v1/admin/users/{id}
      */
     public function show(Request $request, int $id): JsonResponse

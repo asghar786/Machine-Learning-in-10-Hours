@@ -32,7 +32,8 @@ class AdminCourseController extends Controller
             return $guard;
         }
 
-        $courses = Course::withCount('sessions')
+        $courses = Course::with('instructor:id,name,email')
+            ->withCount('sessions', 'enrollments')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -54,6 +55,7 @@ class AdminCourseController extends Controller
 
         try {
             $validated = $request->validate([
+                'instructor_id'     => ['nullable', 'exists:users,id'],
                 'title'             => ['required', 'string', 'max:255'],
                 'slug'              => ['required', 'string', 'max:255', 'unique:courses,slug'],
                 'description'       => ['nullable', 'string'],
@@ -112,6 +114,7 @@ class AdminCourseController extends Controller
 
         try {
             $validated = $request->validate([
+                'instructor_id'     => ['nullable', 'exists:users,id'],
                 'title'             => ['sometimes', 'string', 'max:255'],
                 'slug'              => ['sometimes', 'string', 'max:255', "unique:courses,slug,{$id}"],
                 'description'       => ['nullable', 'string'],

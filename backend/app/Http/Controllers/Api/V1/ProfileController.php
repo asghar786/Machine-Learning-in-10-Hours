@@ -61,6 +61,39 @@ class ProfileController extends Controller
     }
 
     /**
+     * POST /api/v1/profile/avatar
+     * Upload a profile picture.
+     */
+    public function uploadAvatar(Request $request): JsonResponse
+    {
+        $request->validate([
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+        $file = $request->file('avatar');
+        $filename = 'avatar_' . $user->id . '_' . time() . '.' . $file->extension();
+
+        // Store in public/avatars — directly web-accessible
+        $file->move(public_path('avatars'), $filename);
+
+        // Delete old avatar file if it was a local upload
+        if ($user->avatar_url && str_starts_with($user->avatar_url, '/avatars/')) {
+            $oldPath = public_path(ltrim($user->avatar_url, '/'));
+            if (file_exists($oldPath)) @unlink($oldPath);
+        }
+
+        $url = '/avatars/' . $filename;
+        $user->update(['avatar_url' => $url]);
+
+        return response()->json([
+            'success' => true,
+            'data'    => ['avatar_url' => $url],
+            'message' => 'Avatar uploaded successfully.',
+        ]);
+    }
+
+    /**
      * PUT /api/v1/profile/password
      * Change password.
      */

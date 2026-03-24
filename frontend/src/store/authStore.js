@@ -37,6 +37,22 @@ export const useAuthStore = create(
 export const useUIStore = create((set) => ({
   sidebarOpen: true,
   theme: 'light',
-  toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
+  toggleSidebar: () => set((s) => {
+    const html = document.documentElement
+    const isMobile = window.innerWidth < 992
+    if (isMobile) {
+      const next = !html.classList.contains('sidebar-enable')
+      html.classList.toggle('sidebar-enable', next)
+      return { sidebarOpen: next }
+    } else {
+      const condensed = html.getAttribute('data-sidenav-size') === 'condensed'
+      html.setAttribute('data-sidenav-size', condensed ? 'default' : 'condensed')
+      return { sidebarOpen: condensed }
+    }
+  }),
+  closeSidebar: () => set(() => {
+    document.documentElement.classList.remove('sidebar-enable')
+    return { sidebarOpen: false }
+  }),
   setTheme: (theme) => set({ theme }),
 }))

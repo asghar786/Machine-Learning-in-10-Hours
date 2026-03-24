@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 
-export default function ProtectedRoute({ children, adminOnly = false }) {
+export default function ProtectedRoute({ children, adminOnly = false, instructorOnly = false }) {
   const { isAuthenticated, user, locked } = useAuthStore()
   const location = useLocation()
 
@@ -15,6 +15,10 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
   }
 
   if (adminOnly && user?.role !== 'admin') {
+    return <Navigate to="/" replace />
+  }
+
+  if (instructorOnly && user?.role !== 'instructor') {
     return <Navigate to="/" replace />
   }
 

@@ -14,8 +14,9 @@ export default function LoginPage() {
     mutationFn: authApi.login,
     onSuccess: (data) => {
       setAuth(data.user, data.token)
+      const roleHome = { admin: '/admin', instructor: '/instructor' }
       const destination = location.state?.from?.pathname
-        || (data.user.role === 'admin' ? '/admin' : '/dashboard')
+        || roleHome[data.user.role] || '/dashboard'
       navigate(destination, { replace: true })
     },
     onError: (err) => {

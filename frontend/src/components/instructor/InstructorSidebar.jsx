@@ -1,36 +1,30 @@
 import { NavLink } from 'react-router-dom'
 import { useUIStore } from '@/store/authStore'
 
-
 const NAV = [
   {
     group: 'Main',
     items: [
-      { to: '/admin',             icon: 'ti ti-dashboard',       label: 'Dashboard'        },
-      { to: '/admin/users',        icon: 'ti ti-users',           label: 'Users'            },
-      { to: '/admin/instructors', icon: 'ti ti-chalkboard',      label: 'Instructors'      },
-      { to: '/admin/courses',     icon: 'ti ti-book',            label: 'Courses'          },
-      { to: '/admin/submissions', icon: 'ti ti-file-upload',     label: 'Submissions'      },
-      { to: '/admin/analytics',   icon: 'ti ti-chart-bar',       label: 'Analytics'        },
+      { to: '/instructor',          icon: 'ti ti-dashboard',    label: 'Dashboard'   },
+      { to: '/instructor/courses',  icon: 'ti ti-book',         label: 'My Courses'  },
+      { to: '/instructor/students', icon: 'ti ti-users',        label: 'My Students' },
     ],
   },
   {
-    group: 'Settings',
+    group: 'Account',
     items: [
-      { to: '/admin/posts',       icon: 'ti ti-pencil',          label: 'Posts / Insights' },
-      { to: '/admin/settings',    icon: 'ti ti-settings',        label: 'Site Settings'    },
-      { to: '/admin/seo',         icon: 'ti ti-world',           label: 'SEO / SMM'        },
+      { to: '/profile',  icon: 'ti ti-user-circle', label: 'My Profile'       },
+      { to: '/account',  icon: 'ti ti-settings',    label: 'Account Settings' },
     ],
   },
 ]
 
-export default function AdminSidebar() {
-  const { toggleSidebar, closeSidebar } = useUIStore()
+export default function InstructorSidebar() {
+  const { toggleSidebar } = useUIStore()
 
   return (
     <div className="sidenav-menu">
-      {/* Brand Logo */}
-      <a className="logo" href="/admin">
+      <a className="logo" href="/instructor">
         <span className="logo-light">
           <span className="logo-lg">
             <img alt="logo" src="/assets/images/logo.png" style={{ height: 36 }} />
@@ -49,13 +43,11 @@ export default function AdminSidebar() {
         </span>
       </a>
 
-      {/* Hover toggle */}
       <button className="button-sm-hover" onClick={toggleSidebar} type="button">
         <i className="ti ti-circle align-middle"></i>
       </button>
 
-      {/* Full sidebar close (mobile) */}
-      <button className="button-close-fullsidebar" type="button" onClick={closeSidebar}>
+      <button className="button-close-fullsidebar" type="button">
         <i className="ti ti-x align-middle"></i>
       </button>
 
@@ -63,17 +55,13 @@ export default function AdminSidebar() {
         <ul className="side-nav">
           {NAV.map(({ group, items }) => (
             <>
-              {/* Group title is its own <li> — Greeva flat structure */}
               <li key={`title-${group}`} className="side-nav-title">{group}</li>
-
               {items.map(({ to, icon, label }) => (
                 <li key={to} className="side-nav-item">
                   <NavLink
                     to={to}
-                    end={to === '/admin'}
-                    className={({ isActive }) =>
-                      `side-nav-link${isActive ? ' active' : ''}`
-                    }
+                    end={to === '/instructor'}
+                    className={({ isActive }) => `side-nav-link${isActive ? ' active' : ''}`}
                   >
                     <span className="menu-icon"><i className={icon}></i></span>
                     <span className="menu-text">{label}</span>

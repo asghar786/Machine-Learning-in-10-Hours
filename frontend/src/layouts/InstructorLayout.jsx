@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useUIStore } from '@/store/authStore'
-import AdminSidebar from '@/components/admin/AdminSidebar'
-import AdminTopbar from '@/components/admin/AdminTopbar'
+import InstructorSidebar from '@/components/instructor/InstructorSidebar'
+import InstructorTopbar from '@/components/instructor/InstructorTopbar'
 
 const GREEVA_CSS = [
   '/admin/css/icons.min.css',
@@ -35,17 +35,8 @@ function removeAssets(assets) {
   })
 }
 
-function injectIconify() {
-  if (document.getElementById('iconify-cdn')) return
-  const s = document.createElement('script')
-  s.id = 'iconify-cdn'
-  s.src = 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
-  s.async = true
-  document.body.appendChild(s)
-}
-
-export default function AdminLayout() {
-  const { closeSidebar } = useUIStore()
+export default function InstructorLayout() {
+  const { sidebarOpen } = useUIStore()
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -54,11 +45,9 @@ export default function AdminLayout() {
     html.setAttribute('data-topbar-color', 'dark')
     html.setAttribute('data-bs-theme', 'light')
     html.setAttribute('data-layout-mode', 'fluid')
-    html.setAttribute('data-sidenav-size', 'default')
 
     injectAssets(GREEVA_CSS, 'css')
     injectAssets(GREEVA_JS, 'js')
-    injectIconify()
     document.body.classList.add('admin-layout')
 
     return () => {
@@ -66,8 +55,6 @@ export default function AdminLayout() {
       html.removeAttribute('data-topbar-color')
       html.removeAttribute('data-bs-theme')
       html.removeAttribute('data-layout-mode')
-      html.removeAttribute('data-sidenav-size')
-      html.classList.remove('sidebar-enable')
       removeAssets(GREEVA_CSS)
       removeAssets(GREEVA_JS)
       document.body.classList.remove('admin-layout')
@@ -79,16 +66,14 @@ export default function AdminLayout() {
   }, [pathname])
 
   return (
-    <div className="wrapper">
-      <AdminSidebar />
-      <AdminTopbar />
+    <div className={`wrapper${sidebarOpen ? '' : ' sidebar-collapsed'}`}>
+      <InstructorSidebar />
+      <InstructorTopbar />
       <div className="page-content">
         <div className="page-container">
           <Outlet />
         </div>
       </div>
-      {/* Mobile sidebar backdrop — Greeva CSS shows/hides via html.sidebar-enable */}
-      <div className="sidenav-backdrop" onClick={closeSidebar} />
     </div>
   )
 }

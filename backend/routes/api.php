@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\V1\Admin\AdminSettingsController;
 use App\Http\Controllers\Api\V1\Admin\AdminSubmissionController;
 use App\Http\Controllers\Api\V1\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Api\V1\Admin\AdminUserController;
+use App\Http\Controllers\Api\V1\Instructor\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,9 +60,10 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
 
         // Student profile
-        Route::get('/profile',          [ProfileController::class, 'show']);
-        Route::put('/profile',          [ProfileController::class, 'update']);
-        Route::put('/profile/password', [ProfileController::class, 'changePassword']);
+        Route::get('/profile',           [ProfileController::class, 'show']);
+        Route::put('/profile',           [ProfileController::class, 'update']);
+        Route::post('/profile/avatar',   [ProfileController::class, 'uploadAvatar']);
+        Route::put('/profile/password',  [ProfileController::class, 'changePassword']);
 
         // Payments / Invoices
         Route::get('/payments',      [PaymentController::class, 'index']);
@@ -82,6 +84,15 @@ Route::prefix('v1')->group(function () {
         Route::get('/certificates/me', [CertificateController::class, 'myCertificates']);
 
         // -------------------------------------------------------------------
+        // Instructor endpoints
+        // -------------------------------------------------------------------
+        Route::prefix('instructor')->group(function () {
+            Route::get('/dashboard', [InstructorController::class, 'dashboard']);
+            Route::get('/courses',   [InstructorController::class, 'courses']);
+            Route::get('/students',  [InstructorController::class, 'students']);
+        });
+
+        // -------------------------------------------------------------------
         // Admin endpoints
         // -------------------------------------------------------------------
         Route::prefix('admin')->group(function () {
@@ -93,9 +104,11 @@ Route::prefix('v1')->group(function () {
             Route::delete('/courses/{id}', [AdminCourseController::class, 'destroy']);
 
             // Users
-            Route::get('/users',       [AdminUserController::class, 'index']);
-            Route::get('/users/{id}',  [AdminUserController::class, 'show']);
-            Route::put('/users/{id}',  [AdminUserController::class, 'update']);
+            Route::get('/users',             [AdminUserController::class, 'index']);
+            Route::get('/users/instructors', [AdminUserController::class, 'instructors']);
+            Route::post('/users',            [AdminUserController::class, 'store']);
+            Route::get('/users/{id}',        [AdminUserController::class, 'show']);
+            Route::put('/users/{id}',        [AdminUserController::class, 'update']);
 
             // Submissions
             Route::get('/submissions',             [AdminSubmissionController::class, 'index']);
