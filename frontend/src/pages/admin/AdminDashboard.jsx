@@ -174,7 +174,7 @@ export default function AdminDashboard() {
                       <tr key={s.id}>
                         <td>
                           <div className="d-flex align-items-center gap-2">
-                            <span className={`avatar-title avatar-sm bg-${avatarColor(s.user?.name)} text-white rounded-circle fs-12`}>
+                            <span className={`avatar-title bg-${avatarColor(s.user?.name)} text-white rounded-circle fs-12 d-inline-flex align-items-center justify-content-center flex-shrink-0`} style={{ width: 32, height: 32 }}>
                               {initials(s.user?.name)}
                             </span>
                             <span className="fw-medium">{s.user?.name ?? '—'}</span>
@@ -261,7 +261,7 @@ export default function AdminDashboard() {
                   <tr key={u.id}>
                     <td>
                       <div className="d-flex align-items-center gap-2">
-                        <span className={`avatar-title avatar-sm bg-${avatarColor(u.name)} text-white rounded-circle fs-12`}>
+                        <span className={`avatar-title bg-${avatarColor(u.name)} text-white rounded-circle fs-12 d-inline-flex align-items-center justify-content-center flex-shrink-0`} style={{ width: 32, height: 32 }}>
                           {initials(u.name)}
                         </span>
                         <span className="fw-medium">{u.name}</span>
