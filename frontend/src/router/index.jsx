@@ -36,6 +36,7 @@ import AdminCourses from '@/pages/admin/AdminCourses'
 import AdminSettings from '@/pages/admin/AdminSettings'
 import AdminSEO from '@/pages/admin/AdminSEO'
 import AdminPosts from '@/pages/admin/AdminPosts'
+import AdminPostForm from '@/pages/admin/AdminPostForm'
 import AdminLoginPage from '@/pages/auth/AdminLoginPage'
 import LockScreenPage from '@/pages/auth/LockScreenPage'
 
@@ -112,6 +113,8 @@ export const router = createBrowserRouter([
       { path: 'settings',          element: <AdminSettings /> },
       { path: 'seo',               element: <AdminSEO /> },
       { path: 'posts',             element: <AdminPosts /> },
+      { path: 'posts/new',         element: <AdminPostForm /> },
+      { path: 'posts/:id/edit',    element: <AdminPostForm /> },
     ],
   },
 ])

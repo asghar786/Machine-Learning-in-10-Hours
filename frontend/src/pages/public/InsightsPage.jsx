@@ -8,8 +8,7 @@ export default function InsightsPage() {
 
   const { data: posts, isLoading } = useQuery({
     queryKey: ['posts', type],
-    queryFn: () => postsApi.getAll({ type: type || undefined }),
-    select: (res) => res.data.data,
+    queryFn: () => postsApi.getAll({ type: type || undefined }).then(r => r.data),
   })
 
   return (

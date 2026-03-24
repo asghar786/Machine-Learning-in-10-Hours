@@ -7,8 +7,7 @@ export default function InsightDetail() {
 
   const { data: post, isLoading } = useQuery({
     queryKey: ['post', slug],
-    queryFn: () => postsApi.getBySlug(slug),
-    select: (res) => res.data.data,
+    queryFn: () => postsApi.getBySlug(slug).then(r => r.data),
   })
 
   if (isLoading) return (
@@ -47,8 +46,13 @@ export default function InsightDetail() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
-              {post.thumbnail && (
-                <img src={post.thumbnail} className="img-fluid rounded mb-4 w-100" alt={post.title} style={{ maxHeight: 400, objectFit: 'cover' }} />
+              {(post.feature_image || post.thumbnail) && (
+                <img
+                  src={post.feature_image || post.thumbnail}
+                  className="img-fluid rounded mb-4 w-100"
+                  alt={post.title}
+                  style={{ maxHeight: 460, objectFit: 'cover' }}
+                />
               )}
               <div className="d-flex gap-2 align-items-center mb-4">
                 <span className="text-muted small">
