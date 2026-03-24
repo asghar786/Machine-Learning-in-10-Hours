@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\CertificateController;
 use App\Http\Controllers\Api\V1\CourseController;
 use App\Http\Controllers\Api\V1\EnrollmentController;
 use App\Http\Controllers\Api\V1\PostController;
+use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\SessionController;
 use App\Http\Controllers\Api\V1\SubmissionController;
 use App\Http\Controllers\Api\V1\Admin\AdminCourseController;
@@ -55,6 +56,11 @@ Route::prefix('v1')->group(function () {
     // Auth-required endpoints
     // -----------------------------------------------------------------------
     Route::middleware('auth:sanctum')->group(function () {
+
+        // Student profile
+        Route::get('/profile',          [ProfileController::class, 'show']);
+        Route::put('/profile',          [ProfileController::class, 'update']);
+        Route::put('/profile/password', [ProfileController::class, 'changePassword']);
 
         // Enrollments
         Route::get('/enrollments/me', [EnrollmentController::class, 'myEnrollments']);

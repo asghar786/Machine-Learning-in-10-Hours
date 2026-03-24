@@ -108,6 +108,9 @@ export default function Navbar() {
                 </li>
                 <li className={isActive('/about')}><Link to="/about">About</Link></li>
                 <li className={isActive('/contact')}><Link to="/contact">Contact</Link></li>
+                {isAuthenticated && !isAdmin() && (
+                  <li className={isActive('/study')}><Link to="/study">Study Hub</Link></li>
+                )}
                 {isAuthenticated && isAdmin() && (
                   <li><Link to="/admin">Admin</Link></li>
                 )}
@@ -120,13 +123,55 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <div className="d-flex align-items-center gap-2">
                   <Link to="/dashboard" className="login">Dashboard</Link>
-                  <button
-                    onClick={() => logoutMutation.mutate()}
-                    className="btn btn-main-2 btn-sm-2 rounded"
-                    disabled={logoutMutation.isPending}
-                  >
-                    Logout
-                  </button>
+                  {!isAdmin() && (
+                    <>
+                      <Link to="/study" className="login">
+                        <i className="fa fa-book-open me-1"></i>Study Hub
+                      </Link>
+                      <div className="dropdown">
+                        <a
+                          href="#"
+                          className="login dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <i className="fa fa-user-circle me-1"></i>{user?.name?.split(' ')[0]}
+                        </a>
+                        <ul className="dropdown-menu dropdown-menu-end shadow border-0">
+                          <li>
+                            <Link to="/profile" className="dropdown-item">
+                              <i className="fa fa-user me-2 text-primary"></i>My Profile
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/account" className="dropdown-item">
+                              <i className="fa fa-cog me-2 text-secondary"></i>Account Settings
+                            </Link>
+                          </li>
+                          <li><hr className="dropdown-divider" /></li>
+                          <li>
+                            <button
+                              onClick={() => logoutMutation.mutate()}
+                              className="dropdown-item text-danger"
+                              disabled={logoutMutation.isPending}
+                            >
+                              <i className="fa fa-sign-out-alt me-2"></i>Logout
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </>
+                  )}
+                  {isAdmin() && (
+                    <button
+                      onClick={() => logoutMutation.mutate()}
+                      className="btn btn-main-2 btn-sm-2 rounded"
+                      disabled={logoutMutation.isPending}
+                    >
+                      Logout
+                    </button>
+                  )}
                 </div>
               ) : (
                 <>

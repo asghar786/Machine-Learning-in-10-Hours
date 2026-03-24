@@ -22,6 +22,9 @@ import StudentDashboard from '@/pages/student/StudentDashboard'
 import SessionViewer from '@/pages/student/SessionViewer'
 import QuizPage from '@/pages/student/QuizPage'
 import MyCertificates from '@/pages/student/MyCertificates'
+import ProfilePage from '@/pages/student/ProfilePage'
+import AccountPage from '@/pages/student/AccountPage'
+import StudyPage from '@/pages/student/StudyPage'
 
 // Insights (Blog)
 import InsightsPage from '@/pages/public/InsightsPage'
@@ -71,6 +74,18 @@ export const router = createBrowserRouter([
       {
         path: 'my-certificates',
         element: <ProtectedRoute><MyCertificates /></ProtectedRoute>,
+      },
+      {
+        path: 'profile',
+        element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
+      },
+      {
+        path: 'account',
+        element: <ProtectedRoute><AccountPage /></ProtectedRoute>,
+      },
+      {
+        path: 'study',
+        element: <ProtectedRoute><StudyPage /></ProtectedRoute>,
       },
     ],
   },
