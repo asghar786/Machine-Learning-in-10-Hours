@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
+use App\Models\Payment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -42,6 +43,22 @@ class EnrollmentController extends Controller
             ]);
 
             $enrollment->load('course');
+
+            // Auto-create payment record for this enrollment
+            $course = $enrollment->course;
+            $amount = $course->price ?? 0;
+            Payment::create([
+                'user_id'        => $userId,
+                'enrollment_id'  => $enrollment->id,
+                'invoice_number' => Payment::generateInvoiceNumber(),
+                'course_title'   => $course->title ?? 'Course Enrollment',
+                'amount'         => $amount,
+                'currency'       => 'USD',
+                'status'         => $amount > 0 ? 'paid' : 'paid',
+                'payment_method' => 'card',
+                'transaction_id' => 'TXN-' . strtoupper(substr(md5(uniqid()), 0, 12)),
+                'paid_at'        => now(),
+            ]);
 
             return response()->json([
                 'success' => true,

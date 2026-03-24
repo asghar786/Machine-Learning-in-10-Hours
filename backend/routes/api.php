@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\CertificateController;
 use App\Http\Controllers\Api\V1\CourseController;
 use App\Http\Controllers\Api\V1\EnrollmentController;
 use App\Http\Controllers\Api\V1\PostController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\SessionController;
 use App\Http\Controllers\Api\V1\SubmissionController;
@@ -61,6 +62,10 @@ Route::prefix('v1')->group(function () {
         Route::get('/profile',          [ProfileController::class, 'show']);
         Route::put('/profile',          [ProfileController::class, 'update']);
         Route::put('/profile/password', [ProfileController::class, 'changePassword']);
+
+        // Payments / Invoices
+        Route::get('/payments',      [PaymentController::class, 'index']);
+        Route::get('/payments/{id}', [PaymentController::class, 'show']);
 
         // Enrollments
         Route::get('/enrollments/me', [EnrollmentController::class, 'myEnrollments']);

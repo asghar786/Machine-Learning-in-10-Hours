@@ -25,6 +25,7 @@ import MyCertificates from '@/pages/student/MyCertificates'
 import ProfilePage from '@/pages/student/ProfilePage'
 import AccountPage from '@/pages/student/AccountPage'
 import StudyPage from '@/pages/student/StudyPage'
+import BillingPage from '@/pages/student/BillingPage'
 
 // Insights (Blog)
 import InsightsPage from '@/pages/public/InsightsPage'
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
       {
         path: 'study',
         element: <ProtectedRoute><StudyPage /></ProtectedRoute>,
+      },
+      {
+        path: 'billing',
+        element: <ProtectedRoute><BillingPage /></ProtectedRoute>,
       },
     ],
   },
