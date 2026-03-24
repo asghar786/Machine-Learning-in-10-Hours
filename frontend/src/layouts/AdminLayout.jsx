@@ -83,7 +83,7 @@ export default function AdminLayout() {
       <AdminSidebar />
       <AdminTopbar />
       <div className="page-content">
-        <div className="page-container">
+        <div className="page-container" style={{ paddingTop: '1.5rem' }}>
           <Outlet />
         </div>
       </div>

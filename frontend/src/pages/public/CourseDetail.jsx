@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { coursesApi, enrollmentsApi } from '@/api/coursesApi'
+import { paymentsApi } from '@/api/paymentsApi'
 import { useAuthStore } from '@/store/authStore'
 import { queryClient } from '@/api/queryClient'
 
@@ -17,8 +18,19 @@ export default function CourseDetail() {
   })
 
   const enrollMutation = useMutation({
-    mutationFn: () => enrollmentsApi.enroll(course.id),
-    onSuccess: () => {
+    mutationFn: async () => {
+      const price = parseFloat(course.price ?? 0)
+      if (price > 0) {
+        // Paid course → Stripe checkout
+        const res = await paymentsApi.checkout(course.id)
+        const url = res.data?.checkout_url
+        if (url) { window.location.href = url; return }
+      }
+      // Free course → direct enroll
+      return enrollmentsApi.enroll(course.id)
+    },
+    onSuccess: (data) => {
+      if (!data) return // redirected to Stripe, nothing to do
       queryClient.invalidateQueries({ queryKey: ['course', slug] })
       setEnrolledSuccess(true)
       setEnrollError('')

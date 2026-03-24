@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EnrollmentConfirmedEmail;
 use App\Models\Enrollment;
 use App\Models\Payment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class EnrollmentController extends Controller
@@ -59,6 +61,9 @@ class EnrollmentController extends Controller
                 'transaction_id' => 'TXN-' . strtoupper(substr(md5(uniqid()), 0, 12)),
                 'paid_at'        => now(),
             ]);
+
+            // Send enrollment confirmation email
+            try { Mail::to($request->user()->email)->send(new EnrollmentConfirmedEmail($enrollment)); } catch (\Throwable) {}
 
             return response()->json([
                 'success' => true,

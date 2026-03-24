@@ -49,7 +49,50 @@ class SessionController extends Controller
             ->orderBy('sort_order')
             ->get();
 
+        // Attach user's latest submission to each exercise
+        $exerciseIds = $exercises->pluck('id');
+        $submissions = \App\Models\Submission::where('user_id', $request->user()->id)
+            ->whereIn('exercise_id', $exerciseIds)
+            ->orderBy('submitted_at', 'desc')
+            ->get()
+            ->keyBy('exercise_id');
+
+        $exercises->each(function ($ex) use ($submissions) {
+            $ex->my_submission = $submissions->get($ex->id);
+        });
+
         $session->setRelation('exercises', $exercises);
+
+        // Load course with all sessions + user's submitted session numbers for progress
+        $allSessions = $course->sessions()
+            ->where('is_published', true)
+            ->orderBy('sort_order')
+            ->get(['id', 'session_number', 'title', 'duration_minutes']);
+
+        // Which sessions has the user submitted at least one exercise for?
+        $submittedSessionIds = \App\Models\Submission::where('user_id', $request->user()->id)
+            ->whereHas('exercise', fn($q) => $q->whereIn(
+                'session_id',
+                $allSessions->pluck('id')
+            ))
+            ->with('exercise:id,session_id')
+            ->get()
+            ->pluck('exercise.session_id')
+            ->unique()
+            ->values();
+
+        $session->setRelation('course', (object)[
+            'id'             => $course->id,
+            'title'          => $course->title,
+            'slug'           => $course->slug,
+            'total_sessions' => $allSessions->count(),
+            'sessions'       => $allSessions->map(fn($s) => [
+                'id'             => $s->id,
+                'session_number' => $s->session_number,
+                'title'          => $s->title,
+                'submitted'      => $submittedSessionIds->contains($s->id),
+            ]),
+        ]);
 
         return response()->json([
             'success' => true,

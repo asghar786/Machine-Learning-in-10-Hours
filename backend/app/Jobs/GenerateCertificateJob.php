@@ -1,6 +1,7 @@
 <?php
 namespace App\Jobs;
 
+use App\Mail\CertificateReadyEmail;
 use App\Models\Certificate;
 use App\Models\User;
 use App\Models\Course;
@@ -10,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class GenerateCertificateJob implements ShouldQueue
@@ -51,7 +53,7 @@ class GenerateCertificateJob implements ShouldQueue
 
         $pdf->save($fullPath);
 
-        Certificate::create([
+        $certificate = Certificate::create([
             'user_id'    => $this->userId,
             'course_id'  => $this->courseId,
             'uuid'       => $uuid,
@@ -59,5 +61,11 @@ class GenerateCertificateJob implements ShouldQueue
             'pdf_path'   => $path,
             'is_revoked' => false,
         ]);
+
+        // Send certificate ready email
+        try {
+            $certificate->load(['user', 'course']);
+            Mail::to($certificate->user->email)->send(new CertificateReadyEmail($certificate));
+        } catch (\Throwable) {}
     }
 }

@@ -43,6 +43,11 @@ Route::prefix('v1')->group(function () {
     });
 
     // -----------------------------------------------------------------------
+    // Stripe webhook — public, no auth (signature-verified inside controller)
+    // -----------------------------------------------------------------------
+    Route::post('/payments/webhook', [PaymentController::class, 'webhook']);
+
+    // -----------------------------------------------------------------------
     // Public endpoints
     // -----------------------------------------------------------------------
     Route::get('/courses',             [CourseController::class, 'index']);
@@ -66,8 +71,9 @@ Route::prefix('v1')->group(function () {
         Route::put('/profile/password',  [ProfileController::class, 'changePassword']);
 
         // Payments / Invoices
-        Route::get('/payments',      [PaymentController::class, 'index']);
-        Route::get('/payments/{id}', [PaymentController::class, 'show']);
+        Route::get('/payments',             [PaymentController::class, 'index']);
+        Route::get('/payments/{id}',        [PaymentController::class, 'show']);
+        Route::post('/payments/checkout',   [PaymentController::class, 'createCheckout']);
 
         // Enrollments
         Route::get('/enrollments/me', [EnrollmentController::class, 'myEnrollments']);

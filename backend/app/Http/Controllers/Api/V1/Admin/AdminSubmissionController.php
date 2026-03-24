@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SubmissionGradedEmail;
 use App\Models\Submission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class AdminSubmissionController extends Controller
@@ -80,6 +82,12 @@ class AdminSubmissionController extends Controller
                 'graded_by' => $request->user()->id,
                 'graded_at' => now(),
             ]);
+
+            // Send graded notification email
+            try {
+                $fresh = $submission->fresh(['user', 'exercise']);
+                Mail::to($fresh->user->email)->send(new SubmissionGradedEmail($fresh));
+            } catch (\Throwable) {}
 
             // Check course completion
             $exercise = $submission->exercise()->with('session')->first();

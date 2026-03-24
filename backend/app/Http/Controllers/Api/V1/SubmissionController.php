@@ -70,7 +70,7 @@ class SubmissionController extends Controller
     public function mySubmissions(Request $request): JsonResponse
     {
         $submissions = Submission::where('user_id', $request->user()->id)
-            ->with('exercise')
+            ->with(['exercise.session:id,session_number,title,course_id', 'exercise.session.course:id,slug,title'])
             ->orderBy('submitted_at', 'desc')
             ->get();
 
